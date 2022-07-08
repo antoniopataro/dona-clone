@@ -55,6 +55,9 @@ const TaskStyles = styled.li<Props>`
     padding-right: 20px;
 
     label {
+      display: grid;
+      place-items: center;
+
       width: 30px;
       height: 30px;
 
@@ -65,6 +68,20 @@ const TaskStyles = styled.li<Props>`
 
         :checked + .checkbox-div {
           background-color: black;
+
+          animation: bounce 0.25s ease forwards;
+
+          @keyframes bounce {
+            0% {
+              transform: scale(1);
+            }
+            50% {
+              transform: scale(0.9);
+            }
+            100% {
+              transform: scale(1);
+            }
+          }
         }
       }
 
@@ -80,10 +97,11 @@ const TaskStyles = styled.li<Props>`
         background-color: var(--gray);
 
         transition: 0.15s ease;
-        transition-property: background-color;
+        transition-property: transform background-color;
 
         ::before {
           content: "";
+
           display: inline-block;
 
           height: 3px;
@@ -184,6 +202,7 @@ const TaskStyles = styled.li<Props>`
       }
     }
   }
+
   @media (max-width: 1024px) {
     min-height: 50px;
 
