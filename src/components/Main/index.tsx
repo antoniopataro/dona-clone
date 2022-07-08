@@ -86,7 +86,7 @@ function Main() {
   });
 
   return (
-    <MainStyles>
+    <MainStyles checked={checked}>
       <div id="tasks-area-wrapper">
         {path === "/" && (
           <header>

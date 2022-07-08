@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-const MainStyles = styled.main`
+interface Props {
+  checked?: boolean;
+}
+
+const MainStyles = styled.main<Props>`
   display: flex;
   flex-direction: column;
 
@@ -105,11 +109,14 @@ const MainStyles = styled.main`
             display: none;
 
             :checked + .checkbox-div {
-              background-color: var(--darkGray);
+              background-color: black;
             }
           }
 
           .checkbox-div {
+            display: grid;
+            place-items: center;
+
             width: 30px;
             height: 30px;
 
@@ -117,10 +124,30 @@ const MainStyles = styled.main`
 
             background-color: var(--gray);
 
-            transform: translateX(-50px);
+            transform: translateX(-51px);
 
             transition: 0.15s ease;
-            transition-property: opacity background-color;
+            transition-property: opacity transform background-color;
+
+            ::before {
+              content: "";
+
+              display: inline-block;
+
+              height: 3px;
+              width: 6px;
+
+              border-radius: 2px;
+
+              border-bottom: 4px solid white;
+              border-left: 4px solid white;
+
+              opacity: ${(props) => (props.checked ? "1" : "0")};
+              transform: ${(props) => (props.checked ? "rotate(-45deg) scale(1)" : "rotate(-45deg) scale(0)")};
+
+              transition: 0.15s ease;
+              transition-property: transform opacity;
+            }
           }
         }
 
@@ -191,6 +218,20 @@ const MainStyles = styled.main`
             .checkbox-div {
               transform: translateX(0px);
               opacity: 1;
+
+              animation: bounce 0.25s ease forwards;
+
+              @keyframes bounce {
+                0% {
+                  transform: scale(1);
+                }
+                50% {
+                  transform: scale(0.9);
+                }
+                100% {
+                  transform: scale(1);
+                }
+              }
             }
           }
 
