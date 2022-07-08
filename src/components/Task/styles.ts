@@ -55,9 +55,6 @@ const TaskStyles = styled.li<Props>`
     padding-right: 20px;
 
     label {
-      display: grid;
-      place-items: center;
-
       width: 30px;
       height: 30px;
 
