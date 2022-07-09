@@ -29,6 +29,25 @@ function ColorPicker({ setColor, isSelectingColor, setIsSelectingColor }: ColorP
     if (customColor === "") setCustomColor("008FFD");
   }, [customColor]);
 
+  const colors = [
+    "0564A4",
+    "0C8FF1",
+    "0ABAFA",
+    "0BB8AA",
+    "00B873",
+    "DDBC10",
+    "FCF7BD",
+    "FF705D",
+    "F8003C",
+    "BE0A19",
+    "B90F8B",
+    "F56ED8",
+    "7E45F7",
+    "4A40EE",
+    "94959F",
+    "7B7168",
+  ];
+
   return (
     <ColorPickerStyles isSelectingColor={isSelectingColor} ref={wrapperRef}>
       {isSelectingColor && (
@@ -36,41 +55,22 @@ function ColorPicker({ setColor, isSelectingColor, setIsSelectingColor }: ColorP
           <h4>Colors</h4>
           <div className="colors">
             <ul>
-              <li onClick={() => handleSelectColor("493DF4")}>
-                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="1.25" y="1.25" width="12.5" height="12.5" rx="4.75" stroke="#493DF4" strokeWidth="2.5" />
-                </svg>
-              </li>
-              <li onClick={() => handleSelectColor("9719FA")}>
-                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="1.25" y="1.25" width="12.5" height="12.5" rx="4.75" stroke="#9719FA" strokeWidth="2.5" />
-                </svg>
-              </li>
-              <li onClick={() => handleSelectColor("FA4119")}>
-                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="1.25" y="1.25" width="12.5" height="12.5" rx="4.75" stroke="#FA4119" strokeWidth="2.5" />
-                </svg>
-              </li>
-              <li onClick={() => handleSelectColor("DBBA0D")}>
-                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="1.25" y="1.25" width="12.5" height="12.5" rx="4.75" stroke="#DBBA0D" strokeWidth="2.5" />
-                </svg>
-              </li>
-              <li onClick={() => handleSelectColor("B50C1F")}>
-                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="1.25" y="1.25" width="12.5" height="12.5" rx="4.75" stroke="#B50C1F" strokeWidth="2.5" />
-                </svg>
-              </li>
-              <li onClick={() => handleSelectColor("28C166")}>
-                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="1.25" y="1.25" width="12.5" height="12.5" rx="4.75" stroke="#28C166" strokeWidth="2.5" />
-                </svg>
-              </li>
-              <li onClick={() => handleSelectColor("6D6D6D")}>
-                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="1.25" y="1.25" width="12.5" height="12.5" rx="4.75" stroke="#6D6D6D" strokeWidth="2.5" />
-                </svg>
-              </li>
+              {colors.map((color) => (
+                <li key={color} onClick={() => handleSelectColor(color)}>
+                  <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect
+                      x="1.25"
+                      y="1.25"
+                      width="12.5"
+                      height="12.5"
+                      rx="4.75"
+                      stroke={`#${color}`}
+                      fill={`#${color}`}
+                      strokeWidth="2.5"
+                    />
+                  </svg>
+                </li>
+              ))}
             </ul>
           </div>
           <div id="custom-color-wrapper">
@@ -84,6 +84,7 @@ function ColorPicker({ setColor, isSelectingColor, setIsSelectingColor }: ColorP
                   height="12.5"
                   rx="4.75"
                   stroke={`#${customColor}`}
+                  fill={`#${customColor}`}
                   strokeWidth="2.5"
                 />
               </svg>
