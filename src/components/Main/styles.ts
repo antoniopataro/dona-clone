@@ -208,6 +208,24 @@ const MainStyles = styled.main<Props>`
         img {
           pointer-events: none;
         }
+
+        ::after {
+          content: "";
+
+          position: absolute;
+
+          right: 20px;
+
+          width: 4px;
+          height: 4px;
+
+          border-bottom: 2px solid var(--darkGray);
+          border-left: 2px solid var(--darkGray);
+
+          border-radius: 1px;
+
+          transform: rotate(-45deg);
+        }
       }
 
       :focus-within,
