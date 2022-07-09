@@ -17,7 +17,10 @@ interface TaskComponentProps {
 
 import removeIcon from "../../assets/removeIcon.svg";
 import donaBlue from "../../assets/donaBlue.svg";
+import donaPurple from "../../assets/donaPurple.svg";
 import donaOrange from "../../assets/donaOrange.svg";
+import donaYellow from "../../assets/donaYellow.svg";
+import donaRed from "../../assets/donaRed.svg";
 import donaGreen from "../../assets/donaGreen.svg";
 import donaGray from "../../assets/donaGray.svg";
 
@@ -59,9 +62,15 @@ function Task({ task }: TaskComponentProps) {
     switch (task.category) {
       case "/":
         return donaBlue;
+      case "/personal":
+        return donaPurple;
       case "/work":
         return donaOrange;
       case "/studies":
+        return donaYellow;
+      case "/gym":
+        return donaRed;
+      case "/finances":
         return donaGreen;
       default:
         return donaGray;
