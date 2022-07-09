@@ -38,6 +38,8 @@ function Main() {
     addTask();
 
     setContent("");
+
+    inputRef.current?.blur();
   }
 
   const addTask = () => {
@@ -55,6 +57,10 @@ function Main() {
   const maintainFocus = useEffect(() => {
     inputRef.current?.focus();
   }, [checked, category, isSelectingCategory]);
+
+  const preventFocusOnLoad = useEffect(() => {
+    inputRef.current?.blur();
+  }, []);
 
   const getDayOfTheWeek = () => {
     switch (date.getDay()) {
