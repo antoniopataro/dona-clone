@@ -105,10 +105,6 @@ const MainStyles = styled.main<Props>`
 
           input {
             display: none;
-
-            :checked + .checkbox-div {
-              background-color: black;
-            }
           }
 
           .checkbox-div {
@@ -120,7 +116,7 @@ const MainStyles = styled.main<Props>`
 
             border-radius: 10px;
 
-            background-color: var(--gray);
+            background-color: ${(props) => (props.checked ? "black" : "var(--gray)")};
 
             transform: translateX(-51px);
 
