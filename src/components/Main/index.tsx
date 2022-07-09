@@ -24,7 +24,7 @@ function Main() {
   const [content, setContent] = useState("");
   const [checked, setChecked] = useState(false);
   const [category, setCategory] = useState<CategoryProps>(categories[0]);
-  const [isSelectingCategory, setIsSelectingCategory] = useState(true);
+  const [isSelectingCategory, setIsSelectingCategory] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
 
