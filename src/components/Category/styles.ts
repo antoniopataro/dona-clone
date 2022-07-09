@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
-const CategoryStyles = styled.a`
+interface Props {
+  activeCategory: boolean;
+  beingRemoved: boolean;
+}
+
+const CategoryStyles = styled.a<Props>`
   display: flex;
   flex-direction: row;
 
@@ -15,7 +20,12 @@ const CategoryStyles = styled.a`
 
   border-radius: 20px;
 
+  opacity: ${(props) => (props.beingRemoved ? "0" : "1")};
+  transform: ${(props) => (props.beingRemoved ? "translateY(-10px)" : "")};
+
   cursor: pointer;
+
+  background-color: ${(props) => (props.activeCategory ? "var(--bg)" : "")};
 
   transition: 0.15s ease;
   transition-property: background-color transform opacity;

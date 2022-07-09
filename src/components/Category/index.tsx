@@ -13,15 +13,19 @@ interface CategoryComponentProps {
 }
 
 import removeIcon from "../../assets/removeIcon.svg";
+
 import donaBlue from "../../assets/donaBlue.svg";
+import donaPurple from "../../assets/donaPurple.svg";
 import donaOrange from "../../assets/donaOrange.svg";
+import donaYellow from "../../assets/donaYellow.svg";
+import donaRed from "../../assets/donaRed.svg";
 import donaGreen from "../../assets/donaGreen.svg";
 import donaGray from "../../assets/donaGray.svg";
 
 import CategoryStyles from "./styles";
 
 function Category({ category }: CategoryComponentProps) {
-  const { categories, setCategories, setPath, tasks, setTasks } = useContext(Context);
+  const { categories, setCategories, setPath, tasks, setTasks, path } = useContext(Context);
 
   const [beingRemoved, setBeingRemoved] = useState("");
 
@@ -63,9 +67,15 @@ function Category({ category }: CategoryComponentProps) {
     switch (category.slug) {
       case "/":
         return donaBlue;
+      case "/personal":
+        return donaPurple;
       case "/work":
         return donaOrange;
       case "/studies":
+        return donaYellow;
+      case "/gym":
+        return donaRed;
+      case "/finances":
         return donaGreen;
       default:
         return donaGray;
@@ -74,8 +84,9 @@ function Category({ category }: CategoryComponentProps) {
 
   return (
     <CategoryStyles
+      beingRemoved={beingRemoved === category.slug}
+      activeCategory={category.slug === path}
       onClick={() => setPath(category.slug)}
-      style={beingRemoved === category.slug ? { opacity: "0", transform: "translateY(-10px)" } : {}}
     >
       <div className="left">
         <img src={handleIcon()} alt="" width={15} />
