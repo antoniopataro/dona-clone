@@ -38,7 +38,7 @@ const MainStyles = styled.main<Props>`
 
       transform: translateX(60px) translateY(0px);
 
-      animation: slideIn 0.15s ease;
+      animation: slideIn 0.25s ease;
 
       @keyframes slideIn {
         0% {
@@ -81,7 +81,7 @@ const MainStyles = styled.main<Props>`
 
       background-color: var(--gray);
 
-      transition: 0.15s ease;
+      transition: 0.25s ease;
       transition-property: background-color box-shadow;
 
       .left {
@@ -137,7 +137,7 @@ const MainStyles = styled.main<Props>`
               opacity: ${(props) => (props.checked ? "1" : "0")};
               transform: ${(props) => (props.checked ? "rotate(-45deg) scale(1)" : "rotate(-45deg) scale(0)")};
 
-              transition: 0.15s ease;
+              transition: 0.25s ease;
               transition-property: transform opacity;
             }
           }
@@ -151,7 +151,7 @@ const MainStyles = styled.main<Props>`
 
           transform: translateX(-50px);
 
-          transition: 0.15s ease;
+          transition: 0.25s ease;
           transition-property: transform;
 
           input {
@@ -196,7 +196,7 @@ const MainStyles = styled.main<Props>`
         opacity: 0;
         pointer-events: none;
 
-        transition: 0.15s ease;
+        transition: 0.25s ease;
         transition-property: opacity;
 
         h4 {

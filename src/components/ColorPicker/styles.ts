@@ -57,7 +57,7 @@ const ColorPickerStyles = styled.div<Props>`
 
       cursor: pointer;
 
-      transition: 0.15s ease;
+      transition: 0.25s ease;
       transition-property: outline-color;
 
       :hover {

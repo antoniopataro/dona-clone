@@ -27,10 +27,10 @@ const CategoryStyles = styled.a<Props>`
 
   background-color: ${(props) => (props.activeCategory ? "var(--bg)" : "")};
 
-  transition: 0.15s ease;
+  transition: 0.25s ease;
   transition-property: background-color transform opacity;
 
-  animation: fadeIn 0.15s ease;
+  animation: fadeIn 0.25s ease;
 
   @keyframes fadeIn {
     0% {
@@ -68,7 +68,7 @@ const CategoryStyles = styled.a<Props>`
 
       outline: 2px solid transparent;
 
-      transition: 0.15s ease;
+      transition: 0.25s ease;
       transition-property: background-color;
 
       :hover {
@@ -114,7 +114,7 @@ const CategoryStyles = styled.a<Props>`
 
       background-color: var(--gray);
 
-      transition: 0.15s ease;
+      transition: 0.25s ease;
       transition-property: opacity;
 
       img {

@@ -70,7 +70,7 @@ const SelectStyles = styled.div<Props>`
 
       cursor: pointer;
 
-      transition: 0.15s ease;
+      transition: 0.25s ease;
       transition-property: background-color;
 
       :hover {

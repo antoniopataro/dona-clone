@@ -41,7 +41,7 @@ function Category({ category }: CategoryComponentProps) {
     setTimeout(() => {
       removeCategory(slug);
       removeTasks(slug);
-    }, 150);
+    }, 250);
 
     setPath("/");
   }

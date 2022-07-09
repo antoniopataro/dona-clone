@@ -28,10 +28,10 @@ const TaskStyles = styled.li<Props>`
 
   background-color: var(--fg);
 
-  transition: 0.15s ease;
+  transition: 0.25s ease;
   transition-property: opacity transform;
 
-  animation: fadeIn 0.15s ease;
+  animation: fadeIn 0.25s ease;
 
   @keyframes fadeIn {
     0% {
@@ -93,7 +93,7 @@ const TaskStyles = styled.li<Props>`
 
         background-color: var(--gray);
 
-        transition: 0.15s ease;
+        transition: 0.25s ease;
         transition-property: transform background-color;
 
         ::before {
@@ -112,7 +112,7 @@ const TaskStyles = styled.li<Props>`
           opacity: ${(props) => (props.checked ? "1" : "0")};
           transform: ${(props) => (props.checked ? "rotate(-45deg) scale(1)" : "rotate(-45deg) scale(0)")};
 
-          transition: 0.15s ease;
+          transition: 0.25s ease;
           transition-property: transform opacity;
         }
       }
@@ -144,7 +144,7 @@ const TaskStyles = styled.li<Props>`
 
         background-color: black;
 
-        transition: 0.15s ease 0.15s;
+        transition: 0.25s ease 0.25s;
         transition-property: width;
       }
     }
@@ -187,7 +187,7 @@ const TaskStyles = styled.li<Props>`
       border-radius: 50%;
       background-color: transparent;
 
-      transition: 0.15s ease;
+      transition: 0.25s ease;
       transition-property: background-color;
 
       :hover {

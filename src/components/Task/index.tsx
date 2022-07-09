@@ -35,7 +35,7 @@ function Task({ task }: TaskComponentProps) {
   const waitForAnimationAndRemove = (removedTaskArray: TaskProps[]) => {
     setTimeout(() => {
       setTasks(removedTaskArray);
-    }, 150);
+    }, 250);
   };
 
   const updateCheckedStatus = useEffect(() => {
