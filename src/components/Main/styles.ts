@@ -192,7 +192,7 @@ const MainStyles = styled.main<Props>`
         cursor: pointer;
 
         color: var(--darkGray);
-        background-color: var(--gray);
+        background-color: var(--bg);
 
         opacity: 0;
         pointer-events: none;

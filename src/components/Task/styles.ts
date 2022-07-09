@@ -169,7 +169,7 @@ const TaskStyles = styled.li<Props>`
       border-radius: 10px;
 
       color: var(--darkGray);
-      background-color: var(--gray);
+      background-color: var(--bg);
     }
 
     button {
