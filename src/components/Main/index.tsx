@@ -9,12 +9,6 @@ import { CategoryProps } from "../Category";
 import Select from "../Select";
 
 import donaBlue from "../../assets/donaBlue.svg";
-import donaPurple from "../../assets/donaPurple.svg";
-import donaOrange from "../../assets/donaOrange.svg";
-import donaYellow from "../../assets/donaYellow.svg";
-import donaRed from "../../assets/donaRed.svg";
-import donaGreen from "../../assets/donaGreen.svg";
-import donaGray from "../../assets/donaGray.svg";
 
 import MainStyles from "./styles";
 
@@ -38,8 +32,6 @@ function Main() {
     addTask();
 
     setContent("");
-
-    inputRef.current?.blur();
   }
 
   const addTask = () => {
@@ -54,7 +46,7 @@ function Main() {
     setTasks([...tasks, newTask]);
   };
 
-  const maintainFocus = useEffect(() => {
+  const maintainFocusOnTaskWriterInteraction = useEffect(() => {
     inputRef.current?.focus();
   }, [checked, category, isSelectingCategory]);
 
@@ -93,31 +85,9 @@ function Main() {
     }
   };
 
-  const filteredTasks = tasks.filter((task) => {
-    if (task.category === path) {
-      return task;
-    }
-    return;
-  });
-
-  const handleIcon = (slug: string) => {
-    switch (slug) {
-      case "/":
-        return donaBlue;
-      case "/personal":
-        return donaPurple;
-      case "/work":
-        return donaOrange;
-      case "/studies":
-        return donaYellow;
-      case "/gym":
-        return donaRed;
-      case "/finances":
-        return donaGreen;
-      default:
-        return donaGray;
-    }
-  };
+  const filteredTasks = tasks.filter((task) => task.category === path);
+  const currentMonth = date.toString().split(" ")[1];
+  const currentDay = date.toString().split(" ")[2];
 
   return (
     <MainStyles checked={checked}>
@@ -127,12 +97,12 @@ function Main() {
             <img src={donaBlue} alt="Dona Logo" width={35} />
             <h1>Good {getTimeOfTheDay()}</h1>
             <h2>
-              It's {getDayOfTheWeek()}, {date.toString().split(" ")[1]} {date.toString().split(" ")[2]}
+              It's {getDayOfTheWeek()}, {currentMonth} {currentDay}
             </h2>
           </header>
         )}
         <h1 className="category-indicator">{categories.filter((category) => category.slug === path)[0]?.title}</h1>
-        <div id="task-writter">
+        <div id="task-writter" onClick={() => inputRef.current?.focus()}>
           <div className="left">
             <label>
               <input type="checkbox" defaultChecked={checked} onChange={() => setChecked(!checked)} />
@@ -149,9 +119,25 @@ function Main() {
             </form>
           </div>
           <div className="right" onClick={() => setIsSelectingCategory(!isSelectingCategory)}>
-            <img src={handleIcon(category.slug)} alt="" width={15} />
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect
+                x="1.25"
+                y="1.25"
+                width="12.5"
+                height="12.5"
+                rx="4.75"
+                stroke={`#${category.color}`}
+                strokeWidth="2.5"
+              />
+            </svg>
+
             <h4>{category.title}</h4>
-            <Select category={category} setCategory={setCategory} isSelectingCategory={isSelectingCategory} />
+            <Select
+              category={category}
+              setCategory={setCategory}
+              isSelectingCategory={isSelectingCategory}
+              setIsSelectingCategory={setIsSelectingCategory}
+            />
           </div>
         </div>
         <ul>

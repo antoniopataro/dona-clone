@@ -22,18 +22,25 @@ function Sidebar() {
     addCategory();
 
     setTitle("");
+    switchToNewCategory();
   }
 
   const addCategory = () => {
+    const slug = "/" + title.toLowerCase().replace(" ", "-");
+
     const category = {
       taskAmout: 0,
       title: title,
-      slug: "/" + title.toLowerCase().replace(" ", "-"),
+      slug: slug,
+      color: "6D6D6D",
     };
 
     setCategories([...categories, category]);
+  };
 
-    setPath("/" + title.toLowerCase().replace(" ", "-"));
+  const switchToNewCategory = () => {
+    const slug = "/" + title.toLowerCase().replace(" ", "-");
+    setPath(slug);
   };
 
   return (
@@ -46,6 +53,7 @@ function Sidebar() {
               taskAmout: category.taskAmout,
               title: category.title,
               slug: category.slug,
+              color: category.color,
             }}
           />
         ))}

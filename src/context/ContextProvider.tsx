@@ -23,6 +23,7 @@ const defaultCategory = [
     taskAmout: 0,
     title: "Home",
     slug: "/",
+    color: "008FFD",
   },
 ];
 
