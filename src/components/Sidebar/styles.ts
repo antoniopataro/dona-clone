@@ -25,6 +25,11 @@ const SidebarStyles = styled.aside`
     align-items: center;
 
     gap: 10px;
+
+    h3 {
+      width: calc(30vw - 220px);
+      overflow: hidden;
+    }
   }
 
   form {

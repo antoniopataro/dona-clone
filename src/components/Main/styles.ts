@@ -95,8 +95,6 @@ const MainStyles = styled.main<Props>`
 
         gap: 20px;
 
-        overflow: hidden;
-
         label {
           width: 30px;
           height: 30px;
@@ -118,9 +116,9 @@ const MainStyles = styled.main<Props>`
 
             background-color: ${(props) => (props.checked ? "black" : "var(--gray)")};
 
-            transform: translateX(-51px);
+            transform: translateX(-35px) scale(0);
 
-            transition: 0.15s ease;
+            transition: 0.25s ease;
             transition-property: opacity transform background-color;
 
             ::before {
@@ -179,12 +177,13 @@ const MainStyles = styled.main<Props>`
         flex-direction: row;
 
         height: 40px;
-        width: 150px;
+        width: fit-content;
 
         align-items: center;
 
         gap: 12px;
         padding: 0px 12px;
+        padding-right: 40px;
         margin-left: 12px;
 
         border-radius: 10px;
@@ -225,6 +224,8 @@ const MainStyles = styled.main<Props>`
           border-radius: 1px;
 
           transform: rotate(-45deg);
+
+          outline: 10px solid var(--bg);
         }
       }
 
@@ -239,10 +240,10 @@ const MainStyles = styled.main<Props>`
             pointer-events: auto;
 
             .checkbox-div {
-              transform: translateX(0px);
+              transform: translateX(0px) scale(1);
               opacity: 1;
 
-              animation: bounce 0.25s ease forwards;
+              animation: ${(props) => (props.checked ? "bounce 0.25s ease forwards" : "")};
 
               @keyframes bounce {
                 0% {

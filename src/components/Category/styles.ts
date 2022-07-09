@@ -15,7 +15,7 @@ const CategoryStyles = styled.a<Props>`
   align-items: center;
   justify-content: space-between;
 
-  padding-left: 33px;
+  padding-left: 20px;
   padding-right: 20px;
 
   border-radius: 20px;
@@ -48,12 +48,33 @@ const CategoryStyles = styled.a<Props>`
   }
 
   .left {
+    position: relative;
+
     display: flex;
     flex-direction: row;
 
     align-items: center;
 
     gap: 20px;
+
+    span {
+      display: grid;
+      place-items: center;
+
+      width: 33px;
+      height: 33px;
+
+      border-radius: 10px;
+
+      outline: 2px solid transparent;
+
+      transition: 0.15s ease;
+      transition-property: background-color;
+
+      :hover {
+        background-color: var(--gray);
+      }
+    }
   }
 
   .task-amout {

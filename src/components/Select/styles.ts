@@ -81,6 +81,10 @@ const SelectStyles = styled.div<Props>`
         pointer-events: none;
       }
 
+      h4 {
+        width: calc(100% - 60px);
+      }
+
       #checkmark {
         position: absolute;
 
