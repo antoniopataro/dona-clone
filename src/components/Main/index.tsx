@@ -5,8 +5,15 @@ import { v4 as uuid } from "uuid";
 import { Context } from "../../context/ContextProvider";
 
 import Task, { TaskProps } from "../Task";
+import { CategoryProps } from "../Category";
+import Select from "../Select";
 
 import donaBlue from "../../assets/donaBlue.svg";
+import donaPurple from "../../assets/donaPurple.svg";
+import donaOrange from "../../assets/donaOrange.svg";
+import donaYellow from "../../assets/donaYellow.svg";
+import donaRed from "../../assets/donaRed.svg";
+import donaGreen from "../../assets/donaGreen.svg";
 import donaGray from "../../assets/donaGray.svg";
 
 import MainStyles from "./styles";
@@ -16,6 +23,8 @@ function Main() {
 
   const [content, setContent] = useState("");
   const [checked, setChecked] = useState(false);
+  const [category, setCategory] = useState<CategoryProps>(categories[0]);
+  const [isSelectingCategory, setIsSelectingCategory] = useState(true);
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -33,7 +42,7 @@ function Main() {
 
   const addTask = () => {
     const newTask: TaskProps = {
-      category: path,
+      category: category.slug,
       checked: checked,
       content: content,
       date: date.toString(),
@@ -43,9 +52,9 @@ function Main() {
     setTasks([...tasks, newTask]);
   };
 
-  const handleChecked = useEffect(() => {
+  const maintainFocus = useEffect(() => {
     inputRef.current?.focus();
-  }, [checked]);
+  }, [checked, category, isSelectingCategory]);
 
   const getDayOfTheWeek = () => {
     switch (date.getDay()) {
@@ -85,6 +94,25 @@ function Main() {
     return;
   });
 
+  const handleIcon = (slug: string) => {
+    switch (slug) {
+      case "/":
+        return donaBlue;
+      case "/personal":
+        return donaPurple;
+      case "/work":
+        return donaOrange;
+      case "/studies":
+        return donaYellow;
+      case "/gym":
+        return donaRed;
+      case "/finances":
+        return donaGreen;
+      default:
+        return donaGray;
+    }
+  };
+
   return (
     <MainStyles checked={checked}>
       <div id="tasks-area-wrapper">
@@ -114,9 +142,10 @@ function Main() {
               />
             </form>
           </div>
-          <div className="right">
-            <img src={donaGray} alt="" width={15} />
-            <h4>No list</h4>
+          <div className="right" onClick={() => setIsSelectingCategory(!isSelectingCategory)}>
+            <img src={handleIcon(category.slug)} alt="" width={15} />
+            <h4>{category.title}</h4>
+            <Select category={category} setCategory={setCategory} isSelectingCategory={isSelectingCategory} />
           </div>
         </div>
         <ul>

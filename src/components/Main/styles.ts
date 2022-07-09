@@ -13,8 +13,6 @@ const MainStyles = styled.main<Props>`
 
   align-items: center;
 
-  overflow: hidden;
-
   #tasks-area-wrapper {
     display: flex;
     flex-direction: column;
@@ -83,8 +81,6 @@ const MainStyles = styled.main<Props>`
 
       background-color: var(--gray);
 
-      overflow: hidden;
-
       transition: 0.15s ease;
       transition-property: background-color box-shadow;
 
@@ -98,6 +94,8 @@ const MainStyles = styled.main<Props>`
         align-items: center;
 
         gap: 20px;
+
+        overflow: hidden;
 
         label {
           width: 30px;
@@ -179,6 +177,8 @@ const MainStyles = styled.main<Props>`
       }
 
       .right {
+        position: relative;
+
         display: flex;
         flex-direction: row;
 
@@ -188,7 +188,7 @@ const MainStyles = styled.main<Props>`
         align-items: center;
 
         gap: 12px;
-        padding: 0 12px;
+        padding: 0px 12px;
         margin-left: 12px;
 
         border-radius: 10px;
@@ -203,6 +203,15 @@ const MainStyles = styled.main<Props>`
 
         transition: 0.15s ease;
         transition-property: opacity;
+
+        h4 {
+          overflow: hidden;
+          white-space: nowrap;
+        }
+
+        img {
+          pointer-events: none;
+        }
       }
 
       :focus-within,
