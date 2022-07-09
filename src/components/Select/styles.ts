@@ -37,7 +37,8 @@ const SelectStyles = styled.div<Props>`
       transform: translateY(-10px);
     }
     100% {
-      opacity: 1;
+      opacity: 0.8;
+      backdrop-filter: blur(20px);
       transform: translateY(0px);
     }
   }

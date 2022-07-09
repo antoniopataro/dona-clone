@@ -7,14 +7,18 @@ interface Props {
 const ColorPickerStyles = styled.div<Props>`
   position: absolute;
 
+  display: flex;
+  flex-direction: column;
+
   top: 20px;
   left: 0;
 
   z-index: 1;
 
-  width: 300px;
+  width: 375px;
   height: fit-content;
 
+  gap: 20px;
   padding: ${(props) => (props.isSelectingColor ? "20px" : "")};
 
   border-radius: 15px;
@@ -33,7 +37,8 @@ const ColorPickerStyles = styled.div<Props>`
       transform: translateY(-10px);
     }
     100% {
-      opacity: 1;
+      opacity: 0.8;
+      backdrop-filter: blur(20px);
       transform: translateY(0px);
     }
   }
