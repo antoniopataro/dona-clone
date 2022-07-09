@@ -44,12 +44,7 @@ function ContextProvider({ children }: ChildrenProps) {
   }, [tasks]);
 
   const updateNumberOfTasks = useEffect(() => {
-    const quantity = tasks.filter((task) => {
-      if (task.category === path) {
-        return task;
-      }
-      return;
-    }).length;
+    const quantity = tasks.filter((task) => task.category === path).length;
 
     const newArray = categories.map((category) => {
       if (category.slug === path) {
@@ -57,8 +52,6 @@ function ContextProvider({ children }: ChildrenProps) {
       }
       return category;
     });
-
-    localStorage.setItem("userCategories", JSON.stringify(newArray));
 
     setCategories(newArray);
   }, [tasks]);
