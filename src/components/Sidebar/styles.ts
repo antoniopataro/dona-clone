@@ -46,10 +46,18 @@ const SidebarStyles = styled.aside`
     align-items: center;
 
     gap: 20px;
-    padding: 0 33px;
+    padding: 0 20px;
 
-    img {
-      aspect-ratio: 1;
+    span {
+      display: grid;
+      place-items: center;
+
+      min-width: 33px;
+      min-height: 33px;
+
+      img {
+        aspect-ratio: 1;
+      }
     }
 
     input {

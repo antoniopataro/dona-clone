@@ -70,7 +70,9 @@ function Sidebar() {
         ))}
       </nav>
       <form onSubmit={handleAddCategory} noValidate>
-        <img src={addIcon} alt="Choose Icon" width={15} />
+        <span>
+          <img src={addIcon} alt="Choose Icon" width={15} />
+        </span>
         <input
           type="text"
           placeholder="Create new category..."
