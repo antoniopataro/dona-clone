@@ -29,7 +29,7 @@ const SelectStyles = styled.div<Props>`
 
   background-color: ${(props) => props.theme.fg};
 
-  animation: ${(props) => (props.isSelectingCategory ? "fadeIn .15s ease forwards" : "")};
+  animation: ${(props) => (props.isSelectingCategory ? "selectFadeIn .15s ease forwards" : "")};
 
   ul {
     display: flex;
@@ -84,7 +84,7 @@ const SelectStyles = styled.div<Props>`
     }
   }
 
-  @keyframes fadeIn {
+  @keyframes selectFadeIn {
     0% {
       opacity: 0;
       transform: translateY(-10px);

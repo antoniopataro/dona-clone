@@ -31,7 +31,7 @@ const TaskStyles = styled.li<Props>`
   transition: 0.25s ease;
   transition-property: opacity transform;
 
-  animation: slideDown 0.25s ease;
+  animation: mainSlideDown 0.25s ease;
 
   .left {
     display: flex;
@@ -67,7 +67,7 @@ const TaskStyles = styled.li<Props>`
         transition: 0.25s ease;
         transition-property: transform background-color;
 
-        animation: ${(props) => (props.checked ? "bounce .25s ease forwards" : "")};
+        animation: ${(props) => (props.checked ? "mainBounce .25s ease forwards" : "")};
 
         ::before {
           content: "";
@@ -203,7 +203,7 @@ const TaskStyles = styled.li<Props>`
     }
   }
 
-  @keyframes slideDown {
+  @keyframes mainSlideDown {
     0% {
       opacity: 0;
       transform: translateY(-10px);
@@ -214,7 +214,7 @@ const TaskStyles = styled.li<Props>`
     }
   }
 
-  @keyframes bounce {
+  @keyframes mainBounce {
     0% {
       transform: scale(1);
     }

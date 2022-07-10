@@ -39,7 +39,7 @@ const MainStyles = styled.main<Props>`
 
       transform: translateX(60px) translateY(0px);
 
-      animation: slideDown 0.25s ease;
+      animation: mainSlideDown 0.25s ease;
 
       img {
         position: absolute;
@@ -241,7 +241,7 @@ const MainStyles = styled.main<Props>`
               transform: translateX(0px) scale(1);
               opacity: 1;
 
-              animation: ${(props) => (props.checked ? "bounce 0.25s ease forwards" : "")};
+              animation: ${(props) => (props.checked ? "mainBounce 0.25s ease forwards" : "")};
             }
           }
 
@@ -358,7 +358,7 @@ const MainStyles = styled.main<Props>`
     }
   }
 
-  @keyframes slideDown {
+  @keyframes mainSlideDown {
     0% {
       transform: translateX(60px) translateY(-10px);
       opacity: 0;
@@ -369,7 +369,7 @@ const MainStyles = styled.main<Props>`
     }
   }
 
-  @keyframes bounce {
+  @keyframes mainBounce {
     0% {
       transform: scale(1);
     }

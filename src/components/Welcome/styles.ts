@@ -60,7 +60,7 @@ const WelcomeStyles = styled.div<Props>`
         : ""};
 
     .modal-top-animation {
-      animation: slideDown 1s ease-out forwards;
+      animation: welcomeSlideDown 1s ease-out forwards;
     }
 
     #modal-top {
@@ -84,7 +84,7 @@ const WelcomeStyles = styled.div<Props>`
       }
 
       .third-image {
-        animation: bounce 0.5s 1.25s ease;
+        animation: welcomeBounce 0.5s 1.25s ease;
       }
 
       .fourth-image {
@@ -100,14 +100,14 @@ const WelcomeStyles = styled.div<Props>`
 
         background-color: white;
 
-        animation: bounce 0.5s 1.25s ease;
+        animation: welcomeBounce 0.5s 1.25s ease;
 
         svg path {
           opacity: 0;
 
           stroke-dasharray: 640;
           stroke-dashoffset: 0;
-          animation: drawStroke 2s 0.25s forwards;
+          animation: welcomeDrawStroke 2s 0.25s forwards;
         }
       }
     }
@@ -125,7 +125,7 @@ const WelcomeStyles = styled.div<Props>`
       gap: 20px;
 
       .span-animation {
-        animation: slideLeft 1s ease forwards;
+        animation: welcomeSlideLeft 1s ease forwards;
       }
 
       span {
@@ -261,7 +261,7 @@ const WelcomeStyles = styled.div<Props>`
     }
   }
 
-  @keyframes bounce {
+  @keyframes welcomeBounce {
     0% {
       transform: scale(1);
     }
@@ -273,7 +273,7 @@ const WelcomeStyles = styled.div<Props>`
     }
   }
 
-  @keyframes slideDown {
+  @keyframes welcomeSlideDown {
     0% {
       opacity: 0;
       transform: translateY(-20px);
@@ -283,7 +283,7 @@ const WelcomeStyles = styled.div<Props>`
       transform: translateY(0px);
     }
   }
-  @keyframes slideLeft {
+  @keyframes welcomeSlideLeft {
     0% {
       opacity: 0;
       transform: translateX(20px);
@@ -294,7 +294,7 @@ const WelcomeStyles = styled.div<Props>`
     }
   }
 
-  @keyframes drawStroke {
+  @keyframes welcomeDrawStroke {
     0% {
       stroke-dashoffset: 640;
       opacity: 0;

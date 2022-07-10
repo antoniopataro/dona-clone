@@ -30,7 +30,7 @@ const CategoryStyles = styled.a<Props>`
   transition: 0.25s ease;
   transition-property: background-color transform opacity;
 
-  animation: slideDown 0.25s ease;
+  animation: categorySlideDown 0.25s ease;
 
   :hover {
     background-color: ${(props) => props.theme.bg};
@@ -47,6 +47,8 @@ const CategoryStyles = styled.a<Props>`
     gap: 20px;
 
     span {
+      position: relative;
+
       display: grid;
       place-items: center;
 
@@ -68,7 +70,8 @@ const CategoryStyles = styled.a<Props>`
           position: absolute;
 
           top: 12px;
-          left: 30px;
+
+          left: 10px;
 
           border-width: 5px;
           border-style: solid;
@@ -76,17 +79,19 @@ const CategoryStyles = styled.a<Props>`
 
           opacity: 0;
 
-          animation: slideDown 0.25s 0.5s ease forwards;
+          animation: categorySlideDown 0.25s 0.5s ease forwards;
         }
 
         ::after {
           content: "Change color";
-
           position: absolute;
 
-          left: 40px;
+          left: 20px;
 
-          width: fit-content;
+          display: grid;
+          place-items: center;
+
+          width: 80px;
 
           padding: 8px 16px;
 
@@ -103,7 +108,7 @@ const CategoryStyles = styled.a<Props>`
           color: ${(props) => props.theme.white};
           background-color: ${(props) => props.theme.black};
 
-          animation: slideDown 0.25s 0.5s ease forwards;
+          animation: categorySlideDown 0.25s 0.5s ease forwards;
         }
       }
     }
@@ -186,7 +191,7 @@ const CategoryStyles = styled.a<Props>`
     border-radius: 10px;
   }
 
-  @keyframes slideDown {
+  @keyframes categorySlideDown {
     0% {
       opacity: 0;
       transform: translateY(-10px);

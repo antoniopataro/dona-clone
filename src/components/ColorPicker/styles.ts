@@ -29,7 +29,7 @@ const ColorPickerStyles = styled.div<Props>`
   cursor: default;
 
   background-color: ${(props) => props.theme.fg};
-  animation: ${(props) => (props.isSelectingColor ? "slideDown .15s ease forwards" : "")};
+  animation: ${(props) => (props.isSelectingColor ? "colorPickerSlideDown .15s ease forwards" : "")};
 
   h4 {
     color: ${(props) => props.theme.text};
@@ -108,7 +108,7 @@ const ColorPickerStyles = styled.div<Props>`
     display: none;
   }
 
-  @keyframes slideDown {
+  @keyframes colorPickerSlideDown {
     0% {
       opacity: 0;
       transform: translateY(-10px);
