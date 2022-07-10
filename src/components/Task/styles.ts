@@ -31,18 +31,7 @@ const TaskStyles = styled.li<Props>`
   transition: 0.25s ease;
   transition-property: opacity transform;
 
-  animation: fadeIn 0.25s ease;
-
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0px);
-    }
-  }
+  animation: slideDown 0.25s ease;
 
   .left {
     display: flex;
@@ -79,18 +68,6 @@ const TaskStyles = styled.li<Props>`
         transition-property: transform background-color;
 
         animation: ${(props) => (props.checked ? "bounce .25s ease forwards" : "")};
-
-        @keyframes bounce {
-          0% {
-            transform: scale(1);
-          }
-          50% {
-            transform: scale(0.9);
-          }
-          100% {
-            transform: scale(1);
-          }
-        }
 
         ::before {
           content: "";
@@ -223,6 +200,29 @@ const TaskStyles = styled.li<Props>`
           }
         }
       }
+    }
+  }
+
+  @keyframes slideDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+
+  @keyframes bounce {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(0.95);
+    }
+    100% {
+      transform: scale(1);
     }
   }
 `;

@@ -30,18 +30,7 @@ const CategoryStyles = styled.a<Props>`
   transition: 0.25s ease;
   transition-property: background-color transform opacity;
 
-  animation: fadeIn 0.25s ease;
-
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0px);
-    }
-  }
+  animation: slideDown 0.25s ease;
 
   :hover {
     background-color: ${(props) => props.theme.bg};
@@ -87,7 +76,7 @@ const CategoryStyles = styled.a<Props>`
 
           opacity: 0;
 
-          animation: fadeIn 0.25s 0.5s ease forwards;
+          animation: slideDown 0.25s 0.5s ease forwards;
         }
 
         ::after {
@@ -114,7 +103,7 @@ const CategoryStyles = styled.a<Props>`
           color: ${(props) => props.theme.white};
           background-color: ${(props) => props.theme.black};
 
-          animation: fadeIn 0.25s 0.5s ease forwards;
+          animation: slideDown 0.25s 0.5s ease forwards;
         }
       }
     }
@@ -195,6 +184,17 @@ const CategoryStyles = styled.a<Props>`
     padding: 7.5px;
 
     border-radius: 10px;
+  }
+
+  @keyframes slideDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
   }
 `;
 

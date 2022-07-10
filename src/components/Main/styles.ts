@@ -39,18 +39,7 @@ const MainStyles = styled.main<Props>`
 
       transform: translateX(60px) translateY(0px);
 
-      animation: slideIn 0.25s ease;
-
-      @keyframes slideIn {
-        0% {
-          transform: translateX(60px) translateY(-10px);
-          opacity: 0;
-        }
-        100% {
-          transform: translateX(60px) translateY(0px);
-          opacity: 1;
-        }
-      }
+      animation: slideDown 0.25s ease;
 
       img {
         position: absolute;
@@ -253,18 +242,6 @@ const MainStyles = styled.main<Props>`
               opacity: 1;
 
               animation: ${(props) => (props.checked ? "bounce 0.25s ease forwards" : "")};
-
-              @keyframes bounce {
-                0% {
-                  transform: scale(1);
-                }
-                50% {
-                  transform: scale(0.9);
-                }
-                100% {
-                  transform: scale(1);
-                }
-              }
             }
           }
 
@@ -378,6 +355,29 @@ const MainStyles = styled.main<Props>`
 
         animation: none;
       }
+    }
+  }
+
+  @keyframes slideDown {
+    0% {
+      transform: translateX(60px) translateY(-10px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(60px) translateY(0px);
+      opacity: 1;
+    }
+  }
+
+  @keyframes bounce {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(0.95);
+    }
+    100% {
+      transform: scale(1);
     }
   }
 `;

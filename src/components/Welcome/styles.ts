@@ -60,18 +60,7 @@ const WelcomeStyles = styled.div<Props>`
         : ""};
 
     .modal-top-animation {
-      animation: modalTop 1s ease-out forwards;
-
-      @keyframes modalTop {
-        0% {
-          opacity: 0;
-          transform: translateY(-20px);
-        }
-        100% {
-          opacity: 1;
-          transform: translateY(0px);
-        }
-      }
+      animation: slideDown 1s ease-out forwards;
     }
 
     #modal-top {
@@ -96,18 +85,6 @@ const WelcomeStyles = styled.div<Props>`
 
       .third-image {
         animation: bounce 0.5s 1.25s ease;
-
-        @keyframes bounce {
-          0% {
-            transform: scale(1);
-          }
-          50% {
-            transform: scale(0.95);
-          }
-          100% {
-            transform: scale(1);
-          }
-        }
       }
 
       .fourth-image {
@@ -123,26 +100,14 @@ const WelcomeStyles = styled.div<Props>`
 
         background-color: white;
 
+        animation: bounce 0.5s 1.25s ease;
+
         svg path {
           opacity: 0;
 
           stroke-dasharray: 640;
           stroke-dashoffset: 0;
-          animation: strokeDraw 2s 0.25s forwards;
-
-          @keyframes strokeDraw {
-            0% {
-              stroke-dashoffset: 640;
-              opacity: 0;
-            }
-            10% {
-              stroke-dashoffset: 640;
-            }
-            100% {
-              stroke-dashoffset: 0;
-              opacity: 1;
-            }
-          }
+          animation: drawStroke 2s 0.25s forwards;
         }
       }
     }
@@ -161,17 +126,6 @@ const WelcomeStyles = styled.div<Props>`
 
       .span-animation {
         animation: slideLeft 1s ease forwards;
-
-        @keyframes slideLeft {
-          0% {
-            opacity: 0;
-            transform: translateX(20px);
-          }
-          100% {
-            opacity: 1;
-            transform: translateX(0px);
-          }
-        }
       }
 
       span {
@@ -304,6 +258,53 @@ const WelcomeStyles = styled.div<Props>`
         right: 0;
         margin: auto;
       }
+    }
+  }
+
+  @keyframes bounce {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(0.95);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes slideDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+  @keyframes slideLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+  }
+
+  @keyframes drawStroke {
+    0% {
+      stroke-dashoffset: 640;
+      opacity: 0;
+    }
+    10% {
+      stroke-dashoffset: 640;
+    }
+    100% {
+      stroke-dashoffset: 0;
+      opacity: 1;
     }
   }
 `;

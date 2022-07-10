@@ -31,18 +31,6 @@ const SelectStyles = styled.div<Props>`
 
   animation: ${(props) => (props.isSelectingCategory ? "fadeIn .15s ease forwards" : "")};
 
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    100% {
-      opacity: 0.8;
-      backdrop-filter: blur(20px);
-      transform: translateY(0px);
-    }
-  }
-
   ul {
     display: flex;
     flex-direction: column;
@@ -93,6 +81,18 @@ const SelectStyles = styled.div<Props>`
 
         right: 30px;
       }
+    }
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    100% {
+      opacity: 0.8;
+      backdrop-filter: blur(20px);
+      transform: translateY(0px);
     }
   }
 `;

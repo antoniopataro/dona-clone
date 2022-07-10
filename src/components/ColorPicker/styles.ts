@@ -29,19 +29,7 @@ const ColorPickerStyles = styled.div<Props>`
   cursor: default;
 
   background-color: ${(props) => props.theme.fg};
-  animation: ${(props) => (props.isSelectingColor ? "fadeIn .15s ease forwards" : "")};
-
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    100% {
-      opacity: 0.8;
-      backdrop-filter: blur(20px);
-      transform: translateY(0px);
-    }
-  }
+  animation: ${(props) => (props.isSelectingColor ? "slideDown .15s ease forwards" : "")};
 
   h4 {
     color: ${(props) => props.theme.text};
@@ -118,6 +106,18 @@ const ColorPickerStyles = styled.div<Props>`
   }
   @media (max-width: 1024px) {
     display: none;
+  }
+
+  @keyframes slideDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    100% {
+      opacity: 0.8;
+      backdrop-filter: blur(20px);
+      transform: translateY(0px);
+    }
   }
 `;
 
