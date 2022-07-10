@@ -18,8 +18,10 @@ import removeIcon from "../../assets/removeIcon.svg";
 
 import TaskStyles from "./styles";
 
+import { lightTheme } from "../../App";
+
 function Task({ task }: TaskComponentProps) {
-  const { categories, tasks, setTasks } = useContext(Context);
+  const { categories, tasks, setTasks, user } = useContext(Context);
 
   const [beingRemoved, setBeingRemoved] = useState("");
   const [checked, setChecked] = useState(task.checked);
@@ -50,7 +52,7 @@ function Task({ task }: TaskComponentProps) {
   }, [checked]);
 
   return (
-    <TaskStyles beingRemoved={beingRemoved === task.id} checked={task.checked}>
+    <TaskStyles theme={lightTheme} beingRemoved={beingRemoved === task.id} checked={task.checked}>
       <div className="left">
         <label>
           <input type="checkbox" defaultChecked={checked} onChange={() => setChecked(!checked)} />

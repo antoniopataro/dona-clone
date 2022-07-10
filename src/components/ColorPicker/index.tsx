@@ -1,8 +1,12 @@
-import React, { useEffect, useState, useRef, useCallback } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
+
+import { Context } from "../../context/ContextProvider";
 
 import useOnClickOutside from "../../hooks/useOnClickOutside";
 
 import ColorPickerStyles from "./styles";
+
+import { lightTheme } from "../../App";
 
 interface ColorPickerProps {
   setColor: React.Dispatch<React.SetStateAction<string>>;
@@ -11,6 +15,8 @@ interface ColorPickerProps {
 }
 
 function ColorPicker({ setColor, isSelectingColor, setIsSelectingColor }: ColorPickerProps) {
+  const { user } = useContext(Context);
+
   const [customColor, setCustomColor] = useState("008FFD");
 
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -49,7 +55,7 @@ function ColorPicker({ setColor, isSelectingColor, setIsSelectingColor }: ColorP
   ];
 
   return (
-    <ColorPickerStyles isSelectingColor={isSelectingColor} ref={wrapperRef}>
+    <ColorPickerStyles theme={lightTheme} isSelectingColor={isSelectingColor} ref={wrapperRef}>
       {isSelectingColor && (
         <>
           <h4>Colors</h4>

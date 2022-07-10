@@ -1,17 +1,23 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef } from "react";
 
 import { Context } from "../../context/ContextProvider";
 
 import Category from "../Category";
 
+import useShortcut from "../../hooks/useShortcut";
+
 import addIcon from "../../assets/addIcon.svg";
 
 import SidebarStyles from "./styles";
 
+import { lightTheme } from "../../App";
+
 function Sidebar() {
-  const { categories, setCategories, setPath } = useContext(Context);
+  const { categories, setCategories, setPath, user } = useContext(Context);
 
   const [title, setTitle] = useState("");
+
+  const inputRef = useRef<HTMLInputElement>(null);
 
   function handleAddCategory(e: React.FormEvent) {
     e.preventDefault();
@@ -43,8 +49,23 @@ function Sidebar() {
     setPath(slug);
   };
 
+  const shortcuts = [
+    {
+      ctrlKey: true,
+      key: "D",
+      handler: () => inputRef.current?.focus(),
+    },
+    {
+      ctrlKey: false,
+      key: "Escape",
+      handler: () => inputRef.current?.blur(),
+    },
+  ];
+
+  useShortcut(shortcuts);
+
   return (
-    <SidebarStyles>
+    <SidebarStyles theme={lightTheme}>
       <nav>
         {categories.map((category) => (
           <Category
@@ -65,6 +86,7 @@ function Sidebar() {
           placeholder="Create new category..."
           onChange={(e) => setTitle(e.target.value)}
           value={title}
+          ref={inputRef}
         />
       </form>
     </SidebarStyles>

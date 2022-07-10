@@ -19,8 +19,10 @@ import removeIcon from "../../assets/removeIcon.svg";
 
 import CategoryStyles from "./styles";
 
+import { lightTheme } from "../../App";
+
 function Category({ category }: CategoryComponentProps) {
-  const { categories, setCategories, setPath, tasks, setTasks, path } = useContext(Context);
+  const { categories, setCategories, setPath, tasks, setTasks, path, user } = useContext(Context);
 
   const [beingRemoved, setBeingRemoved] = useState("");
   const [color, setColor] = useState("008FFD");
@@ -79,6 +81,7 @@ function Category({ category }: CategoryComponentProps) {
 
   return (
     <CategoryStyles
+      theme={lightTheme}
       beingRemoved={beingRemoved === category.slug}
       activeCategory={category.slug === path}
       onClick={() => handleChangePath(category.slug)}

@@ -10,6 +10,8 @@ import checkIcon from "../../assets/checkIcon.svg";
 
 import SelectStyles from "./styles";
 
+import { lightTheme } from "../../App";
+
 interface SelectProps {
   isSelectingCategory: boolean;
   setIsSelectingCategory: React.Dispatch<React.SetStateAction<boolean>>;
@@ -18,14 +20,14 @@ interface SelectProps {
 }
 
 function Select({ isSelectingCategory, setIsSelectingCategory, category, setCategory }: SelectProps) {
-  const { categories } = useContext(Context);
+  const { categories, user } = useContext(Context);
 
   const wrapperRef = useRef(null);
 
   useOnClickOutside(wrapperRef, () => setIsSelectingCategory(false));
 
   return (
-    <SelectStyles isSelectingCategory={isSelectingCategory} ref={wrapperRef}>
+    <SelectStyles theme={lightTheme} isSelectingCategory={isSelectingCategory} ref={wrapperRef}>
       {isSelectingCategory && (
         <ul>
           {categories.map((item) => (
