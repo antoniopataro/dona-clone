@@ -1,7 +1,25 @@
+import React, { useContext } from "react";
+
+import { Context } from "./context/ContextProvider";
+
 import Sidebar from "./components/Sidebar";
 import Main from "./components/Main";
 
+import Welcome from "./components/Welcome";
+
 import styled from "styled-components";
+
+export const lightTheme = {
+  bg: "#EAEDEE",
+  fg: "#FFF",
+  bold: "#d9d9d9",
+  bolder: "#6d6d6d",
+  text: "#000",
+  shadow: "rgba(0,0,0,0.5)",
+  shadowInverted: "rgba(255,255,255,1)",
+  white: "#FFF",
+  black: "#000",
+};
 
 const AppStyles = styled.main`
   display: flex;
@@ -15,7 +33,7 @@ const AppStyles = styled.main`
 
   padding: 40px;
 
-  background-color: var(--bg);
+  background-color: ${(props) => props.theme.bg};
 
   @media (max-width: 768px) {
     display: flex;
@@ -26,10 +44,13 @@ const AppStyles = styled.main`
 import "./App.css";
 
 function App() {
+  const { user } = useContext(Context);
+
   return (
-    <AppStyles>
+    <AppStyles theme={lightTheme}>
       <Sidebar />
       <Main />
+      {!user.name && <Welcome />}
     </AppStyles>
   );
 }
