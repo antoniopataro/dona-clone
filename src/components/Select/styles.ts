@@ -24,10 +24,10 @@ const SelectStyles = styled.div<Props>`
     height: 0;
   }
 
-  border: 1px solid var(--gray);
+  border: 1px solid ${(props) => props.theme.bold};
   box-shadow: 0px 0px 16px 4px rgba(0, 0, 0, 0.1);
 
-  background-color: var(--fg);
+  background-color: ${(props) => props.theme.fg};
 
   animation: ${(props) => (props.isSelectingCategory ? "fadeIn .15s ease forwards" : "")};
 
@@ -75,7 +75,7 @@ const SelectStyles = styled.div<Props>`
       transition-property: background-color;
 
       :hover {
-        background-color: var(--gray);
+        background-color: ${(props) => props.theme.bold};
       }
 
       img {
@@ -84,6 +84,8 @@ const SelectStyles = styled.div<Props>`
 
       h4 {
         width: calc(100% - 60px);
+
+        color: ${(props) => props.theme.text};
       }
 
       #checkmark {

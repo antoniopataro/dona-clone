@@ -25,7 +25,7 @@ const CategoryStyles = styled.a<Props>`
 
   cursor: pointer;
 
-  background-color: ${(props) => (props.activeCategory ? "var(--bg)" : "")};
+  background-color: ${(props) => (props.activeCategory ? props.theme.bg : "")};
 
   transition: 0.25s ease;
   transition-property: background-color transform opacity;
@@ -44,7 +44,7 @@ const CategoryStyles = styled.a<Props>`
   }
 
   :hover {
-    background-color: var(--bg);
+    background-color: ${(props) => props.theme.bg};
   }
 
   .left {
@@ -72,7 +72,7 @@ const CategoryStyles = styled.a<Props>`
       transition-property: background-color;
 
       :hover {
-        background-color: var(--gray);
+        background-color: ${(props) => props.theme.bold};
       }
     }
   }
@@ -88,8 +88,8 @@ const CategoryStyles = styled.a<Props>`
 
     border-radius: 10px;
 
-    color: var(--darkGray);
-    background-color: var(--gray);
+    color: ${(props) => props.theme.bolder};
+    background-color: ${(props) => props.theme.bold};
 
     :hover {
       .remove-category {
@@ -112,7 +112,7 @@ const CategoryStyles = styled.a<Props>`
 
       cursor: pointer;
 
-      background-color: var(--gray);
+      background-color: ${(props) => props.theme.bold};
 
       transition: 0.25s ease;
       transition-property: opacity;
@@ -124,8 +124,21 @@ const CategoryStyles = styled.a<Props>`
   }
 
   @media (max-width: 1024px) {
-    padding: 0px;
-    padding-left: 20px;
+    width: fit-content;
+
+    padding: 20px;
+
+    .left {
+      h3 {
+        display: none;
+      }
+
+      span {
+        :hover {
+          background-color: transparent;
+        }
+      }
+    }
 
     .task-amout {
       display: none;
@@ -133,20 +146,12 @@ const CategoryStyles = styled.a<Props>`
   }
 
   @media (max-width: 768px) {
-    width: 50px;
+    min-width: 50px;
     height: 50px;
 
-    justify-content: center;
+    padding: 7.5px;
 
-    border-radius: 15px;
-
-    padding: 0px;
-
-    .left {
-      h3 {
-        display: none;
-      }
-    }
+    border-radius: 10px;
   }
 `;
 

@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 const SidebarStyles = styled.aside`
+  position: relative;
+
   display: flex;
   flex-direction: column;
 
@@ -14,7 +16,7 @@ const SidebarStyles = styled.aside`
 
   border-radius: 20px;
 
-  background-color: var(--fg);
+  background-color: ${(props) => props.theme.fg};
 
   nav {
     display: flex;
@@ -29,6 +31,8 @@ const SidebarStyles = styled.aside`
     h3 {
       width: calc(30vw - 220px);
       overflow: hidden;
+
+      color: ${(props) => props.theme.text};
     }
   }
 
@@ -58,23 +62,29 @@ const SidebarStyles = styled.aside`
       font-size: 14px;
       font-weight: 400;
 
+      color: ${(props) => props.theme.text};
       background-color: transparent;
     }
   }
 
   @media (max-width: 1024px) {
-    form {
-      padding: 0px;
-      padding-left: 20px;
-    }
-  }
+    position: absolute;
 
-  @media (max-width: 768px) {
-    width: fit-content;
+    z-index: 1;
+
+    bottom: 40px;
+
+    flex-direction: row;
+
+    width: calc(100vw - 80px);
     height: fit-content;
+
+    justify-content: space-between;
 
     gap: 20px;
     padding: 20px;
+
+    box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.1);
 
     border-radius: 15px;
 
@@ -82,21 +92,28 @@ const SidebarStyles = styled.aside`
       display: flex;
       flex-direction: row;
 
-      justify-content: center;
+      width: 100%;
+
+      overflow: scroll;
+
+      ::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+      }
     }
 
     form {
       width: fit-content;
 
-      bottom: 40px;
-      right: 40px;
+      padding: 20px;
+    }
+  }
 
-      padding: 0 20px;
+  @media (max-width: 768px) {
+    padding: 10px;
 
-      justify-content: center;
-
-      border-radius: 15px;
-      background-color: var(--fg);
+    nav {
+      padding: 10px;
     }
   }
 `;

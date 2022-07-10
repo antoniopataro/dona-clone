@@ -30,6 +30,7 @@ const MainStyles = styled.main<Props>`
       display: flex;
       flex-direction: column;
 
+      width: fit-content;
       height: fit-content;
 
       justify-content: center;
@@ -57,16 +58,18 @@ const MainStyles = styled.main<Props>`
         left: -60px;
       }
 
+      h1 {
+        color: ${(props) => props.theme.text};
+      }
+
       h2 {
-        color: var(--darkGray);
+        color: ${(props) => props.theme.bolder};
       }
     }
 
     #task-writter {
       display: flex;
       flex-direction: row;
-
-      z-index: 1;
 
       width: 100%;
       min-height: 70px;
@@ -79,7 +82,7 @@ const MainStyles = styled.main<Props>`
 
       border-radius: 20px;
 
-      background-color: var(--gray);
+      background-color: ${(props) => props.theme.bold};
 
       transition: 0.25s ease;
       transition-property: background-color box-shadow;
@@ -96,6 +99,9 @@ const MainStyles = styled.main<Props>`
         gap: 20px;
 
         label {
+          display: grid;
+          place-items: center;
+
           width: 30px;
           height: 30px;
 
@@ -114,7 +120,7 @@ const MainStyles = styled.main<Props>`
 
             border-radius: 10px;
 
-            background-color: ${(props) => (props.checked ? "black" : "var(--gray)")};
+            background-color: ${(props) => (props.checked ? props.theme.black : props.theme.bold)};
 
             transform: translateX(-35px) scale(0);
 
@@ -165,6 +171,7 @@ const MainStyles = styled.main<Props>`
             font-size: clamp(12px, 1.65vw, 16px);
             font-weight: 400;
 
+            color: ${(props) => props.theme.text};
             background-color: transparent;
           }
         }
@@ -190,8 +197,8 @@ const MainStyles = styled.main<Props>`
 
         cursor: pointer;
 
-        color: var(--darkGray);
-        background-color: var(--bg);
+        color: ${(props) => props.theme.bolder};
+        background-color: ${(props) => props.theme.bg};
 
         opacity: 0;
         pointer-events: none;
@@ -202,6 +209,8 @@ const MainStyles = styled.main<Props>`
         h4 {
           overflow: hidden;
           white-space: nowrap;
+
+          color: ${(props) => props.theme.text};
         }
 
         img {
@@ -218,20 +227,20 @@ const MainStyles = styled.main<Props>`
           width: 4px;
           height: 4px;
 
-          border-bottom: 2px solid var(--darkGray);
-          border-left: 2px solid var(--darkGray);
+          border-bottom: 2px solid ${(props) => props.theme.darkGray};
+          border-left: 2px solid ${(props) => props.theme.darkGray};
 
           border-radius: 1px;
 
           transform: rotate(-45deg);
 
-          outline: 10px solid var(--bg);
+          outline: 10px solid ${(props) => props.theme.bg};
         }
       }
 
       :focus-within,
       :active {
-        background-color: var(--fg);
+        background-color: ${(props) => props.theme.fg};
 
         box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.1);
 
@@ -292,6 +301,50 @@ const MainStyles = styled.main<Props>`
       ::-webkit-scrollbar {
         width: 0;
       }
+
+      .shortcuts {
+        display: flex;
+        flex-direction: column;
+
+        width: 100%;
+        height: 100%;
+
+        align-items: center;
+        justify-content: center;
+
+        gap: 20px;
+
+        .shortcut-wrapper {
+          display: flex;
+          flex-direction: row;
+
+          width: 400px;
+
+          align-items: center;
+
+          gap: 8px;
+
+          color: ${(props) => props.theme.bolder};
+
+          opacity: 0.5;
+
+          .shortcut {
+            display: grid;
+            place-items: center;
+
+            width: 90px;
+
+            padding: 6px 12px;
+
+            font-weight: 600;
+
+            border-radius: 4px;
+
+            color: ${(props) => props.theme.text};
+            background-color: ${(props) => props.theme.bold};
+          }
+        }
+      }
     }
   }
 
@@ -299,37 +352,32 @@ const MainStyles = styled.main<Props>`
     width: 100%;
 
     #tasks-area-wrapper {
-      #task-writter {
-        min-height: 50px;
-        border-radius: 15px;
-      }
+      padding: 0;
 
       header {
         transform: translateX(0px);
         padding-left: 20px;
+      }
 
-        img {
-          display: none;
-        }
+      ul .shortcuts {
+        display: none;
+      }
+
+      ul {
+        overflow: scroll;
+        margin-bottom: 110px;
+        white-space: normal;
       }
     }
   }
 
   @media (max-width: 768px) {
-    #tasks-area-wrapper .category-indicator {
-      display: unset;
-    }
-  }
-
-  @media (max-width: 600px) {
     #tasks-area-wrapper {
-      width: 100%;
-    }
-  }
+      header {
+        transform: translateX(60px);
 
-  @media (max-width: 425px) {
-    #tasks-area-wrapper header {
-      display: none;
+        animation: none;
+      }
     }
   }
 `;

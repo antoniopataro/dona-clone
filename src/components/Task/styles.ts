@@ -26,7 +26,7 @@ const TaskStyles = styled.li<Props>`
   opacity: ${(props) => (props.beingRemoved ? "0" : "1")};
   transform: ${(props) => (props.beingRemoved ? "translateY(-10px)" : "")};
 
-  background-color: var(--fg);
+  background-color: ${(props) => props.theme.fg};
 
   transition: 0.25s ease;
   transition-property: opacity transform;
@@ -62,24 +62,6 @@ const TaskStyles = styled.li<Props>`
 
       input {
         display: none;
-
-        :checked + .checkbox-div {
-          background-color: black;
-
-          animation: bounce 0.25s ease forwards;
-
-          @keyframes bounce {
-            0% {
-              transform: scale(1);
-            }
-            50% {
-              transform: scale(0.9);
-            }
-            100% {
-              transform: scale(1);
-            }
-          }
-        }
       }
 
       .checkbox-div {
@@ -91,10 +73,24 @@ const TaskStyles = styled.li<Props>`
 
         border-radius: 10px;
 
-        background-color: var(--gray);
+        background-color: ${(props) => (props.checked ? props.theme.black : props.theme.bold)};
 
         transition: 0.25s ease;
         transition-property: transform background-color;
+
+        animation: ${(props) => (props.checked ? "bounce .25s ease forwards" : "")};
+
+        @keyframes bounce {
+          0% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(0.9);
+          }
+          100% {
+            transform: scale(1);
+          }
+        }
 
         ::before {
           content: "";
@@ -130,6 +126,8 @@ const TaskStyles = styled.li<Props>`
       word-break: break-word;
       white-space: normal;
 
+      color: ${(props) => props.theme.text};
+
       ::before {
         content: "";
 
@@ -142,7 +140,7 @@ const TaskStyles = styled.li<Props>`
 
         border-radius: 1px;
 
-        background-color: black;
+        background-color: ${(props) => props.theme.text};
 
         transition: 0.25s ease 0.25s;
         transition-property: width;
@@ -168,8 +166,8 @@ const TaskStyles = styled.li<Props>`
 
       border-radius: 10px;
 
-      color: var(--darkGray);
-      background-color: var(--bg);
+      color: ${(props) => props.theme.bolder};
+      background-color: ${(props) => props.theme.bg};
     }
 
     button {
@@ -191,7 +189,7 @@ const TaskStyles = styled.li<Props>`
       transition-property: background-color;
 
       :hover {
-        background-color: var(--gray);
+        background-color: ${(props) => props.theme.bold};
       }
 
       img {
@@ -200,28 +198,30 @@ const TaskStyles = styled.li<Props>`
     }
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 768px) {
     min-height: 50px;
 
     border-radius: 15px;
 
-    .right {
-      gap: 5px;
-
-      .date {
-        display: none;
-      }
-    }
-
-    .left label {
-      width: 20px;
-      height: 20px;
-
-      .checkbox-div {
+    .left {
+      label {
         width: 20px;
         height: 20px;
 
-        border-radius: 5px;
+        .checkbox-div {
+          width: 20px;
+          height: 20px;
+
+          border-radius: 5px;
+
+          ::before {
+            height: 2px;
+            width: 4px;
+
+            border-bottom: 3px solid white;
+            border-left: 3px solid white;
+          }
+        }
       }
     }
   }

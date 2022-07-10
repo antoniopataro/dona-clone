@@ -23,12 +23,12 @@ const ColorPickerStyles = styled.div<Props>`
 
   border-radius: 15px;
 
-  border: ${(props) => (props.isSelectingColor ? "1px solid var(--gray)" : "")};
+  border: ${(props) => (props.isSelectingColor ? `1px solid ${props.theme.bold}` : "")};
   box-shadow: ${(props) => (props.isSelectingColor ? "0px 0px 16px 4px rgba(0, 0, 0, 0.1)" : "")};
 
   cursor: default;
 
-  background-color: var(--fg);
+  background-color: ${(props) => props.theme.fg};
   animation: ${(props) => (props.isSelectingColor ? "fadeIn .15s ease forwards" : "")};
 
   @keyframes fadeIn {
@@ -41,6 +41,10 @@ const ColorPickerStyles = styled.div<Props>`
       backdrop-filter: blur(20px);
       transform: translateY(0px);
     }
+  }
+
+  h4 {
+    color: ${(props) => props.theme.text};
   }
 
   ul {
@@ -66,7 +70,7 @@ const ColorPickerStyles = styled.div<Props>`
       transition-property: outline-color;
 
       :hover {
-        outline-color: var(--gray);
+        outline-color: ${(props) => props.theme.bold};
       }
     }
   }
@@ -89,7 +93,7 @@ const ColorPickerStyles = styled.div<Props>`
 
       border-radius: 10px;
 
-      background-color: var(--gray);
+      background-color: ${(props) => props.theme.bold};
 
       form {
         width: 100%;
@@ -106,10 +110,14 @@ const ColorPickerStyles = styled.div<Props>`
           font-family: "Inter var", sans-serif;
           font-size: clamp(12px, 1.65vw, 14px);
 
+          color: ${(props) => props.theme.text};
           background-color: transparent;
         }
       }
     }
+  }
+  @media (max-width: 1024px) {
+    display: none;
   }
 `;
 
