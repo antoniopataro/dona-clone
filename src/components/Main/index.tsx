@@ -8,12 +8,16 @@ import Task, { TaskProps } from "../Task";
 import { CategoryProps } from "../Category";
 import Select from "../Select";
 
+import useShortcut from "../../hooks/useShortcut";
+
 import donaBlue from "../../assets/donaBlue.svg";
 
 import MainStyles from "./styles";
 
+import { lightTheme } from "../../App";
+
 function Main() {
-  const { tasks, setTasks, categories, path } = useContext(Context);
+  const { tasks, setTasks, categories, path, user } = useContext(Context);
 
   const [content, setContent] = useState("");
   const [checked, setChecked] = useState(false);
@@ -56,6 +60,8 @@ function Main() {
 
   const getDayOfTheWeek = () => {
     switch (date.getDay()) {
+      case 0:
+        return "Sunday";
       case 1:
         return "Monday";
       case 2:
@@ -68,8 +74,8 @@ function Main() {
         return "Friday";
       case 6:
         return "Saturday";
-      case 7:
-        return "Sunday";
+      default:
+        return "";
     }
   };
 
@@ -89,13 +95,35 @@ function Main() {
   const currentMonth = date.toString().split(" ")[1];
   const currentDay = date.toString().split(" ")[2];
 
+  const getUserOSCommand = () => {
+    if (navigator.userAgent.indexOf("Mac") != -1) return "Cmd";
+    return "Ctrl";
+  };
+
+  const shortcuts = [
+    {
+      ctrlKey: true,
+      key: "S",
+      handler: () => inputRef.current?.focus(),
+    },
+    {
+      ctrlKey: false,
+      key: "Escape",
+      handler: () => inputRef.current?.blur(),
+    },
+  ];
+
+  useShortcut(shortcuts);
+
   return (
-    <MainStyles checked={checked}>
+    <MainStyles theme={lightTheme} checked={checked}>
       <div id="tasks-area-wrapper">
         {path === "/" && (
           <header>
             <img src={donaBlue} alt="Dona Logo" width={35} />
-            <h1>Good {getTimeOfTheDay()}</h1>
+            <h1>
+              Good {getTimeOfTheDay()}, {user.name}
+            </h1>
             <h2>
               It's {getDayOfTheWeek()}, {currentMonth} {currentDay}
             </h2>
@@ -141,6 +169,22 @@ function Main() {
           </div>
         </div>
         <ul>
+          {tasks.length === 0 && (
+            <div className="shortcuts">
+              <div className="shortcut-wrapper">
+                <span className="shortcut">{getUserOSCommand()} + S</span>
+                <h3>to start writing a new task</h3>
+              </div>
+              <div className="shortcut-wrapper">
+                <span className="shortcut">{getUserOSCommand()} + D</span>
+                <h3>to start writing a new category</h3>
+              </div>
+              <div className="shortcut-wrapper">
+                <span className="shortcut">Enter</span>
+                <h3>to add the current task</h3>
+              </div>
+            </div>
+          )}
           {filteredTasks.reverse().map((task) => (
             <Task
               task={{
