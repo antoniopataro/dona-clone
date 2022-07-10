@@ -12,6 +12,12 @@ interface ContextProps {
   setPath: React.Dispatch<React.SetStateAction<string>>;
   tasks: TaskProps[];
   setTasks: React.Dispatch<React.SetStateAction<TaskProps[]>>;
+  user: UserProps;
+  setUser: React.Dispatch<React.SetStateAction<UserProps>>;
+}
+
+interface UserProps {
+  name: string;
 }
 
 interface ChildrenProps {
@@ -27,14 +33,24 @@ const defaultCategory = [
   },
 ];
 
+const defaultUser = {
+  name: "",
+};
+
 function ContextProvider({ children }: ChildrenProps) {
   const initialPath = "/";
   const initialCategories = JSON.parse(localStorage.getItem("userCategories") || JSON.stringify(defaultCategory));
   const initialTasks = JSON.parse(localStorage.getItem("userTasks") || "[]");
+  const initialUser = JSON.parse(localStorage.getItem("userPreferences") || JSON.stringify(defaultUser));
 
   const [path, setPath] = useState(initialPath);
   const [categories, setCategories] = useState<CategoryProps[]>(initialCategories);
   const [tasks, setTasks] = useState<TaskProps[]>(initialTasks);
+  const [user, setUser] = useState<UserProps>(initialUser);
+
+  const udpateUser = useEffect(() => {
+    localStorage.setItem("userPreferences", JSON.stringify(user));
+  }, [user]);
 
   const updateCategories = useEffect(() => {
     localStorage.setItem("userCategories", JSON.stringify(categories));
@@ -58,7 +74,7 @@ function ContextProvider({ children }: ChildrenProps) {
   }, [tasks]);
 
   return (
-    <Context.Provider value={{ tasks, setTasks, categories, setCategories, path, setPath }}>
+    <Context.Provider value={{ tasks, setTasks, categories, setCategories, path, setPath, user, setUser }}>
       {children}
     </Context.Provider>
   );
