@@ -139,22 +139,6 @@ function Main() {
           </div>
         </div>
         <ul>
-          {tasks.length === 0 && (
-            <div className="shortcuts">
-              <div className="shortcut-wrapper">
-                <span className="shortcut">{getUserOS() === "Mac" ? "Cmd" : "Ctrl"} + S</span>
-                <h3>to start writing a new task</h3>
-              </div>
-              <div className="shortcut-wrapper">
-                <span className="shortcut">{getUserOS() === "Mac" ? "Cmd" : "Ctrl"} + D</span>
-                <h3>to start writing a new category</h3>
-              </div>
-              <div className="shortcut-wrapper">
-                <span className="shortcut">Enter</span>
-                <h3>to add the current task</h3>
-              </div>
-            </div>
-          )}
           {filteredTasks.reverse().map((task) => (
             <Task
               task={{

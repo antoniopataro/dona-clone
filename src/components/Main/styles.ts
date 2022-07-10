@@ -278,50 +278,6 @@ const MainStyles = styled.main<Props>`
       ::-webkit-scrollbar {
         width: 0;
       }
-
-      .shortcuts {
-        display: flex;
-        flex-direction: column;
-
-        width: 100%;
-        height: 100%;
-
-        align-items: center;
-        justify-content: center;
-
-        gap: 20px;
-
-        .shortcut-wrapper {
-          display: flex;
-          flex-direction: row;
-
-          width: 400px;
-
-          align-items: center;
-
-          gap: 8px;
-
-          color: ${(props) => props.theme.bolder};
-
-          opacity: 0.5;
-
-          .shortcut {
-            display: grid;
-            place-items: center;
-
-            width: 90px;
-
-            padding: 6px 12px;
-
-            font-weight: 600;
-
-            border-radius: 4px;
-
-            color: ${(props) => props.theme.text};
-            background-color: ${(props) => props.theme.bold};
-          }
-        }
-      }
     }
   }
 
