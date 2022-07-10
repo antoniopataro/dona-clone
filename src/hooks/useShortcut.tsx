@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 
 interface ShortcutProps {
   ctrlKey: boolean;
@@ -7,25 +7,25 @@ interface ShortcutProps {
 }
 
 function useShortcut(shortcuts: ShortcutProps[]) {
+  const functionHandler = useCallback((e: any) => {
+    const key = e.key.toLowerCase();
+    const ctrl = e.ctrlKey;
+
+    shortcuts.forEach((shortcut: ShortcutProps) => {
+      if (ctrl === shortcut.ctrlKey && key === shortcut.key.toLowerCase()) {
+        e.preventDefault();
+        shortcut.handler();
+      }
+    });
+  }, []);
+
   useEffect(() => {
-    const functionHandler = (e: any) => {
-      const key = e.key.toLowerCase();
-      const ctrl = e.ctrlKey;
-
-      shortcuts.forEach((shortcut: ShortcutProps) => {
-        if (ctrl === shortcut.ctrlKey && key === shortcut.key.toLowerCase()) {
-          e.preventDefault();
-          shortcut.handler();
-        }
-      });
-    };
-
     document.addEventListener("keydown", (e) => functionHandler(e));
 
     return () => {
       document.removeEventListener("keydown", (e) => functionHandler(e));
     };
-  }, [shortcuts]);
+  }, [functionHandler]);
 }
 
 export default useShortcut;
