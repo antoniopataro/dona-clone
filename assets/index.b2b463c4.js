@@ -516,7 +516,7 @@ Error generating stack: `+i.message+`
   transition: 0.25s ease;
   transition-property: opacity transform;
 
-  animation: mainSlideDown 0.25s ease;
+  animation: taskSlideDown 0.25s ease;
 
   .left {
     display: flex;
@@ -552,7 +552,7 @@ Error generating stack: `+i.message+`
         transition: 0.25s ease;
         transition-property: transform background-color;
 
-        animation: ${e=>e.checked?"mainBounce .25s ease forwards":""};
+        animation: ${e=>e.checked?"taskBounce .25s ease forwards":""};
 
         ::before {
           content: "";
@@ -688,7 +688,7 @@ Error generating stack: `+i.message+`
     }
   }
 
-  @keyframes mainSlideDown {
+  @keyframes taskSlideDown {
     0% {
       opacity: 0;
       transform: translateY(-10px);
@@ -699,7 +699,7 @@ Error generating stack: `+i.message+`
     }
   }
 
-  @keyframes mainBounce {
+  @keyframes taskBounce {
     0% {
       transform: scale(1);
     }
