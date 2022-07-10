@@ -2,13 +2,15 @@ import React, { useRef, useContext, useState, useEffect } from "react";
 
 import { v4 as uuid } from "uuid";
 
-import { Context } from "../../context/ContextProvider";
-
-import Task, { TaskProps } from "../Task";
-import { CategoryProps } from "../Category";
+import Task from "../Task";
 import Select from "../Select";
 
 import useShortcut from "../../hooks/useShortcut";
+
+import { CategoriesContext, CategoryProps } from "../../contexts/CategoriesContext";
+import { PathContext } from "../../contexts/PathContext";
+import { TasksContext, TaskProps } from "../../contexts/TasksContext";
+import { UserContext } from "../../contexts/UserContext";
 
 import donaBlue from "../../assets/donaBlue.svg";
 
@@ -16,89 +18,51 @@ import MainStyles from "./styles";
 
 import { lightTheme } from "../../App";
 
+import getUserOS from "../../functions/getUserOS";
+import { getTimeOfDay, getCurrentDay, getCurrentWeekDay, getCurrentMonth } from "../../functions/getDate";
+
 function Main() {
-  const { tasks, setTasks, categories, path, user } = useContext(Context);
+  const { categories } = useContext(CategoriesContext);
+  const { path } = useContext(PathContext);
+  const { addTask, tasks } = useContext(TasksContext);
+  const { user } = useContext(UserContext);
 
   const [content, setContent] = useState("");
   const [checked, setChecked] = useState(false);
   const [category, setCategory] = useState<CategoryProps>(categories[0]);
   const [isSelectingCategory, setIsSelectingCategory] = useState(false);
 
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  const date = new Date();
-
   function handleAddTask(e: React.FormEvent) {
     e.preventDefault();
 
     if (!content) return;
 
-    addTask();
+    const date = new Date();
 
-    setContent("");
-  }
-
-  const addTask = () => {
     const newTask: TaskProps = {
-      category: category.slug,
+      category: category,
       checked: checked,
       content: content,
       date: date.toString(),
       id: uuid(),
     };
 
-    setTasks([...tasks, newTask]);
-  };
+    addTask(newTask);
 
-  const maintainFocusOnTaskWriterInteraction = useEffect(() => {
+    setContent("");
+  }
+
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
     inputRef.current?.focus();
-  }, [checked, category, isSelectingCategory]);
+  }, [checked, isSelectingCategory]);
 
-  const preventFocusOnLoad = useEffect(() => {
+  useEffect(() => {
     inputRef.current?.blur();
   }, []);
 
-  const getDayOfTheWeek = () => {
-    switch (date.getDay()) {
-      case 0:
-        return "Sunday";
-      case 1:
-        return "Monday";
-      case 2:
-        return "Thuesday";
-      case 3:
-        return "Wednesday";
-      case 4:
-        return "Thursday";
-      case 5:
-        return "Friday";
-      case 6:
-        return "Saturday";
-      default:
-        return "";
-    }
-  };
-
-  const getTimeOfTheDay = () => {
-    const hours = date.getHours();
-
-    if (hours < 12) {
-      return "morning";
-    } else if (hours < 18) {
-      return "afternoon";
-    } else {
-      return "evening";
-    }
-  };
-
-  const filteredTasks = tasks.filter((task) => task.category === path);
-  const currentMonth = date.toString().split(" ")[1];
-  const currentDay = date.toString().split(" ")[2];
-
-  const getUserOSCommand = () => {
-    if (navigator.userAgent.indexOf("Mac") != -1) return "Cmd";
-    return "Ctrl";
-  };
+  const filteredTasks = tasks.filter((task) => task.category.slug === path);
 
   const shortcuts = [
     {
@@ -115,6 +79,12 @@ function Main() {
 
   useShortcut(shortcuts);
 
+  useEffect(() => {
+    const categoryBasedOnCurrentPath = categories.filter((category) => category.slug === path)[0];
+
+    setCategory(categoryBasedOnCurrentPath);
+  }, [path, categories]);
+
   return (
     <MainStyles theme={lightTheme} checked={checked}>
       <div id="tasks-area-wrapper">
@@ -122,10 +92,10 @@ function Main() {
           <header>
             <img src={donaBlue} alt="Dona Logo" width={35} />
             <h1>
-              Good {getTimeOfTheDay()}, {user.name}
+              Good {getTimeOfDay()}, {user.name}
             </h1>
             <h2>
-              It's {getDayOfTheWeek()}, {currentMonth} {currentDay}
+              It's {getCurrentWeekDay()}, {getCurrentMonth()} {getCurrentDay()}
             </h2>
           </header>
         )}
@@ -172,11 +142,11 @@ function Main() {
           {tasks.length === 0 && (
             <div className="shortcuts">
               <div className="shortcut-wrapper">
-                <span className="shortcut">{getUserOSCommand()} + S</span>
+                <span className="shortcut">{getUserOS() === "Mac" ? "Cmd" : "Ctrl"} + S</span>
                 <h3>to start writing a new task</h3>
               </div>
               <div className="shortcut-wrapper">
-                <span className="shortcut">{getUserOSCommand()} + D</span>
+                <span className="shortcut">{getUserOS() === "Mac" ? "Cmd" : "Ctrl"} + D</span>
                 <h3>to start writing a new category</h3>
               </div>
               <div className="shortcut-wrapper">

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import { Context } from "./context/ContextProvider";
+import { UserContext } from "./contexts/UserContext";
 
 import Sidebar from "./components/Sidebar";
 import Main from "./components/Main";
@@ -44,7 +44,7 @@ const AppStyles = styled.main`
 import "./App.css";
 
 function App() {
-  const { user } = useContext(Context);
+  const { user } = useContext(UserContext);
 
   return (
     <AppStyles theme={lightTheme}>

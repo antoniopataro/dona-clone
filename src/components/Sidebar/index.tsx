@@ -1,10 +1,11 @@
 import React, { useState, useContext, useRef } from "react";
 
-import { Context } from "../../context/ContextProvider";
-
 import Category from "../Category";
 
 import useShortcut from "../../hooks/useShortcut";
+
+import { PathContext } from "../../contexts/PathContext";
+import { CategoriesContext } from "../../contexts/CategoriesContext";
 
 import addIcon from "../../assets/addIcon.svg";
 
@@ -13,7 +14,8 @@ import SidebarStyles from "./styles";
 import { lightTheme } from "../../App";
 
 function Sidebar() {
-  const { categories, setCategories, setPath, user } = useContext(Context);
+  const { categories, addCategory } = useContext(CategoriesContext);
+  const { changePath } = useContext(PathContext);
 
   const [title, setTitle] = useState("");
 
@@ -25,29 +27,18 @@ function Sidebar() {
     if (!title) return;
     if (categories.map((category) => category.title).includes(title)) return;
 
-    addCategory();
-
-    setTitle("");
-    switchToNewCategory();
-  }
-
-  const addCategory = () => {
     const slug = "/" + title.toLowerCase().replace(" ", "-");
 
     const category = {
-      taskAmout: 0,
       title: title,
       slug: slug,
       color: "6D6D6D",
     };
 
-    setCategories([...categories, category]);
-  };
-
-  const switchToNewCategory = () => {
-    const slug = "/" + title.toLowerCase().replace(" ", "-");
-    setPath(slug);
-  };
+    addCategory(category);
+    setTitle("");
+    changePath(slug);
+  }
 
   const shortcuts = [
     {
@@ -71,7 +62,6 @@ function Sidebar() {
           <Category
             key={category.slug}
             category={{
-              taskAmout: category.taskAmout,
               title: category.title,
               slug: category.slug,
               color: category.color,

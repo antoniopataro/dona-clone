@@ -1,15 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 
-import { Context } from "../../context/ContextProvider";
+import { CategoriesContext } from "../../contexts/CategoriesContext";
+import { PathContext } from "../../contexts/PathContext";
+import { TasksContext } from "../../contexts/TasksContext";
 
 import ColorPicker from "../ColorPicker";
 
-export interface CategoryProps {
-  taskAmout: number;
-  title: string;
-  slug: string;
-  color: string;
-}
+import { CategoryProps } from "../../contexts/CategoriesContext";
 
 interface CategoryComponentProps {
   category: CategoryProps;
@@ -22,69 +19,57 @@ import CategoryStyles from "./styles";
 import { lightTheme } from "../../App";
 
 function Category({ category }: CategoryComponentProps) {
-  const { categories, setCategories, setPath, tasks, setTasks, path, user } = useContext(Context);
+  const { removeCategory, updateCategoryColor } = useContext(CategoriesContext);
+  const { path, changePath } = useContext(PathContext);
+  const { tasks, removeTask } = useContext(TasksContext);
 
   const [beingRemoved, setBeingRemoved] = useState("");
   const [color, setColor] = useState("008FFD");
+  const [slugBeingUpdated, setSlugBeingUpdated] = useState("");
   const [isSelectingColor, setIsSelectingColor] = useState(false);
-  const [isHavingColorUpdated, setIsHavingColorUpdated] = useState("");
-
-  function handleChangePath(slug: string) {
-    setPath(slug);
-  }
 
   function handleRemoveCategory(slug: string, e: React.MouseEvent) {
     e.stopPropagation();
 
     if (slug === "/") return;
 
+    waitForAnimationAndRemove(slug);
+
+    changePath("/");
+  }
+
+  const waitForAnimationAndRemove = (slug: string) => {
     setBeingRemoved(slug);
 
     setTimeout(() => {
       removeCategory(slug);
       removeTasks(slug);
     }, 250);
-
-    setPath("/");
-  }
-
-  const removeCategory = (slug: string) => {
-    const categoryRemovedArray = categories.filter((category) => category.slug !== slug);
-
-    setCategories(categoryRemovedArray);
   };
 
   const removeTasks = (slug: string) => {
-    const taskRemovedArray = tasks.filter((task) => task.category !== slug);
-
-    setTasks(taskRemovedArray);
+    tasks.forEach((task) => (task.category.slug === slug ? removeTask(task.id) : ""));
   };
 
   function handleUpdateColor(slug: string, e: React.MouseEvent) {
     e.stopPropagation();
 
     setIsSelectingColor(!isSelectingColor);
-
-    setIsHavingColorUpdated(slug);
+    setSlugBeingUpdated(slug);
   }
 
-  const updateCategoryColor = useEffect(() => {
-    setCategories(
-      categories.map((category) => {
-        if (category.slug === isHavingColorUpdated) {
-          return { ...category, color: color };
-        }
-        return category;
-      }),
-    );
+  useEffect(() => {
+    updateCategoryColor(slugBeingUpdated, color);
   }, [color]);
+
+  const taskAmount = tasks.filter((task) => task.category.slug === category.slug).length;
 
   return (
     <CategoryStyles
       theme={lightTheme}
       beingRemoved={beingRemoved === category.slug}
       activeCategory={category.slug === path}
-      onClick={() => handleChangePath(category.slug)}
+      onClick={() => changePath(category.slug)}
     >
       <div className="left">
         <span onClick={(e) => handleUpdateColor(category.slug, e)}>
@@ -108,7 +93,7 @@ function Category({ category }: CategoryComponentProps) {
         />
       </div>
       <span className="task-amout">
-        <h4>{category.taskAmout}</h4>
+        <h4>{taskAmount}</h4>
         {category.slug !== "/" && (
           <button className="remove-category" onClick={(e) => handleRemoveCategory(category.slug, e)}>
             <img src={removeIcon} alt="Remove Category" width={12} />

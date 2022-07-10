@@ -1,12 +1,6 @@
 import React, { useState, useContext } from "react";
 
-import { Context } from "../../context/ContextProvider";
-
-import donaBlue from "../../assets/donaBlue.svg";
-import macCommand from "../../assets/welcome-icons/macCommand.png";
-import donaLists from "../../assets/welcome-icons/donaLists.png";
-
-import WelcomeStyles from "./styles";
+import { UserContext } from "../../contexts/UserContext";
 
 interface WelcomeProps {
   title: string;
@@ -14,16 +8,22 @@ interface WelcomeProps {
   image: string;
 }
 
+import donaBlue from "../../assets/donaBlue.svg";
+import macCommand from "../../assets/welcome-icons/macCommand.png";
+import donaLists from "../../assets/welcome-icons/donaLists.png";
+
+import WelcomeStyles from "./styles";
+
 function Welcome() {
-  const { user, setUser } = useContext(Context);
+  const { registerUser } = useContext(UserContext);
 
   const [activeWelcomePage, setActiveWelcomePage] = useState(1);
-  const [userName, setUserName] = useState("");
+  const [name, setName] = useState("");
   const [animating, setAnimating] = useState(true);
 
   function handleContinue() {
-    if (userName) {
-      setUser({ ...user, name: userName });
+    if (name) {
+      registerUser(name);
       return;
     }
 
@@ -86,7 +86,7 @@ function Welcome() {
             <h2>{handleData().title}</h2>
             <h3>{handleData().subtitle}</h3>
             {activeWelcomePage === 4 && (
-              <input type="text" placeholder="Type it here..." onChange={(e) => setUserName(e.target.value)} />
+              <input type="text" placeholder="Type it here..." onChange={(e) => setName(e.target.value)} />
             )}
           </span>
           <button onClick={handleContinue}>Continue</button>

@@ -1,16 +1,8 @@
 import React, { useContext, useRef } from "react";
 
-import { Context } from "../../context/ContextProvider";
-
-import { CategoryProps } from "../Category";
-
 import useOnClickOutside from "../../hooks/useOnClickOutside";
 
-import checkIcon from "../../assets/checkIcon.svg";
-
-import SelectStyles from "./styles";
-
-import { lightTheme } from "../../App";
+import { CategoriesContext, CategoryProps } from "../../contexts/CategoriesContext";
 
 interface SelectProps {
   isSelectingCategory: boolean;
@@ -19,8 +11,14 @@ interface SelectProps {
   setCategory: React.Dispatch<React.SetStateAction<CategoryProps>>;
 }
 
+import checkIcon from "../../assets/checkIcon.svg";
+
+import SelectStyles from "./styles";
+
+import { lightTheme } from "../../App";
+
 function Select({ isSelectingCategory, setIsSelectingCategory, category, setCategory }: SelectProps) {
-  const { categories, user } = useContext(Context);
+  const { categories } = useContext(CategoriesContext);
 
   const wrapperRef = useRef(null);
 

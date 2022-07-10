@@ -1,12 +1,6 @@
-import React, { useEffect, useState, useRef, useContext } from "react";
-
-import { Context } from "../../context/ContextProvider";
+import React, { useEffect, useState, useRef } from "react";
 
 import useOnClickOutside from "../../hooks/useOnClickOutside";
-
-import ColorPickerStyles from "./styles";
-
-import { lightTheme } from "../../App";
 
 interface ColorPickerProps {
   setColor: React.Dispatch<React.SetStateAction<string>>;
@@ -14,45 +8,45 @@ interface ColorPickerProps {
   setIsSelectingColor: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function ColorPicker({ setColor, isSelectingColor, setIsSelectingColor }: ColorPickerProps) {
-  const { user } = useContext(Context);
+import ColorPickerStyles from "./styles";
 
+import { lightTheme } from "../../App";
+
+const colors = [
+  "0564A4",
+  "0C8FF1",
+  "0ABAFA",
+  "0BB8AA",
+  "00B873",
+  "DDBC10",
+  "FCF7BD",
+  "FF705D",
+  "F8003C",
+  "BE0A19",
+  "B90F8B",
+  "F56ED8",
+  "7E45F7",
+  "4A40EE",
+  "94959F",
+  "7B7168",
+];
+
+function ColorPicker({ setColor, isSelectingColor, setIsSelectingColor }: ColorPickerProps) {
   const [customColor, setCustomColor] = useState("008FFD");
 
   const wrapperRef = useRef<HTMLDivElement>(null);
-
   useOnClickOutside(wrapperRef, () => setIsSelectingColor(false));
 
   function handleSelectColor(color: string, e?: React.FormEvent) {
     e?.preventDefault();
 
     setColor(color);
-
     setIsSelectingColor(!isSelectingColor);
   }
 
-  const placeholderColor = useEffect(() => {
+  useEffect(() => {
     if (customColor === "") setCustomColor("008FFD");
   }, [customColor]);
-
-  const colors = [
-    "0564A4",
-    "0C8FF1",
-    "0ABAFA",
-    "0BB8AA",
-    "00B873",
-    "DDBC10",
-    "FCF7BD",
-    "FF705D",
-    "F8003C",
-    "BE0A19",
-    "B90F8B",
-    "F56ED8",
-    "7E45F7",
-    "4A40EE",
-    "94959F",
-    "7B7168",
-  ];
 
   return (
     <ColorPickerStyles theme={lightTheme} isSelectingColor={isSelectingColor} ref={wrapperRef}>

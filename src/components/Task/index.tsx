@@ -1,14 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 
-import { Context } from "../../context/ContextProvider";
+import { CategoriesContext } from "../../contexts/CategoriesContext";
+import { TasksContext } from "../../contexts/TasksContext";
 
-export interface TaskProps {
-  category: string;
-  checked: boolean;
-  content: string;
-  date: string;
-  id: string;
-}
+import { TaskProps } from "../../contexts/TasksContext";
 
 interface TaskComponentProps {
   task: TaskProps;
@@ -21,34 +16,24 @@ import TaskStyles from "./styles";
 import { lightTheme } from "../../App";
 
 function Task({ task }: TaskComponentProps) {
-  const { categories, tasks, setTasks, user } = useContext(Context);
+  const { removeTask, updateCheckedStatus } = useContext(TasksContext);
 
   const [beingRemoved, setBeingRemoved] = useState("");
   const [checked, setChecked] = useState(task.checked);
 
   function handleRemoveTask(id: string) {
-    const removedTaskArray = tasks.filter((task) => task.id !== id);
-
     setBeingRemoved(id);
-
-    waitForAnimationAndRemove(removedTaskArray);
+    waitForAnimationAndRemove(id);
   }
 
-  const waitForAnimationAndRemove = (removedTaskArray: TaskProps[]) => {
+  const waitForAnimationAndRemove = (id: string) => {
     setTimeout(() => {
-      setTasks(removedTaskArray);
+      removeTask(id);
     }, 250);
   };
 
-  const updateCheckedStatus = useEffect(() => {
-    setTasks(
-      tasks.map((item) => {
-        if (item.id === task.id) {
-          return { ...task, checked: checked };
-        }
-        return item;
-      }),
-    );
+  useEffect(() => {
+    updateCheckedStatus(task, checked);
   }, [checked]);
 
   return (
@@ -70,7 +55,7 @@ function Task({ task }: TaskComponentProps) {
             width="12.5"
             height="12.5"
             rx="4.75"
-            stroke={`#${categories.filter((category) => category.slug === task.category)[0].color}`}
+            stroke={`#${task.category.color}`}
             strokeWidth="2.5"
           />
         </svg>
