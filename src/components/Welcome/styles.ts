@@ -90,8 +90,60 @@ const WelcomeStyles = styled.div<Props>`
         background-color: white;
       }
 
-      .third-image {
+      .second-image {
         width: 300px;
+      }
+
+      .third-image {
+        animation: bounce 0.5s 1.25s ease;
+
+        @keyframes bounce {
+          0% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(0.95);
+          }
+          100% {
+            transform: scale(1);
+          }
+        }
+      }
+
+      .fourth-image {
+        display: grid;
+        place-items: center;
+
+        width: 100px;
+        height: 100px;
+
+        border-radius: 20px;
+
+        box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.25);
+
+        background-color: white;
+
+        svg path {
+          opacity: 0;
+
+          stroke-dasharray: 640;
+          stroke-dashoffset: 0;
+          animation: strokeDraw 2s 0.25s forwards;
+
+          @keyframes strokeDraw {
+            0% {
+              stroke-dashoffset: 640;
+              opacity: 0;
+            }
+            10% {
+              stroke-dashoffset: 640;
+            }
+            100% {
+              stroke-dashoffset: 0;
+              opacity: 1;
+            }
+          }
+        }
       }
     }
 
@@ -168,28 +220,79 @@ const WelcomeStyles = styled.div<Props>`
         }
       }
 
-      button {
-        width: fit-content;
+      .nav-buttons {
+        display: flex;
+        flex-direction: row;
 
-        outline: none;
-        border: none;
+        gap: 10px;
 
-        padding: 12px 24px;
+        button {
+          width: fit-content;
 
-        font-family: "Inter var", sans-serif;
+          outline: none;
+          border: none;
 
-        border-radius: 10px;
+          padding: 12px 24px;
 
-        cursor: pointer;
+          font-family: "Inter var", sans-serif;
 
-        color: white;
-        background-color: #008ffd;
+          border-radius: 10px;
 
-        transition: 0.25s ease;
-        transition-property: background-color;
+          cursor: pointer;
 
-        :hover {
-          background-color: #0072ca;
+          color: white;
+          background-color: #008ffd;
+
+          transition: 0.25s ease;
+          transition-property: background-color;
+
+          :hover {
+            background-color: #0072ca;
+          }
+        }
+
+        a {
+          display: flex;
+          flex-direction: row;
+
+          width: fit-content;
+
+          gap: 10px;
+          padding: 12px 24px;
+
+          outline: none;
+          border: 1px solid transparent;
+          border-color: #008ffd;
+
+          font-family: "Inter var", sans-serif;
+          font-size: 14px;
+          text-decoration: none;
+
+          border-radius: 10px;
+
+          cursor: pointer;
+
+          color: #008ffd;
+          background-color: transparent;
+
+          transition: 0.25s ease;
+          transition-property: border-color color background-color;
+
+          :hover {
+            border-color: #0072ca;
+            color: #0072ca;
+            background-color: #d9d9d9;
+
+            svg {
+              fill: #0072ca;
+            }
+          }
+
+          svg {
+            position: relative;
+
+            fill: #008ffd;
+          }
         }
       }
 
