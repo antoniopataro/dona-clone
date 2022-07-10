@@ -80,7 +80,7 @@ Error generating stack: `+i.message+`
   cursor: default;
 
   background-color: ${e=>e.theme.fg};
-  animation: ${e=>e.isSelectingColor?"slideDown .15s ease forwards":""};
+  animation: ${e=>e.isSelectingColor?"colorPickerSlideDown .15s ease forwards":""};
 
   h4 {
     color: ${e=>e.theme.text};
@@ -159,7 +159,7 @@ Error generating stack: `+i.message+`
     display: none;
   }
 
-  @keyframes slideDown {
+  @keyframes colorPickerSlideDown {
     0% {
       opacity: 0;
       transform: translateY(-10px);
@@ -195,7 +195,7 @@ Error generating stack: `+i.message+`
   transition: 0.25s ease;
   transition-property: background-color transform opacity;
 
-  animation: slideDown 0.25s ease;
+  animation: categorySlideDown 0.25s ease;
 
   :hover {
     background-color: ${e=>e.theme.bg};
@@ -212,6 +212,8 @@ Error generating stack: `+i.message+`
     gap: 20px;
 
     span {
+      position: relative;
+
       display: grid;
       place-items: center;
 
@@ -233,7 +235,8 @@ Error generating stack: `+i.message+`
           position: absolute;
 
           top: 12px;
-          left: 30px;
+
+          left: 10px;
 
           border-width: 5px;
           border-style: solid;
@@ -241,17 +244,19 @@ Error generating stack: `+i.message+`
 
           opacity: 0;
 
-          animation: slideDown 0.25s 0.5s ease forwards;
+          animation: categorySlideDown 0.25s 0.5s ease forwards;
         }
 
         ::after {
           content: "Change color";
-
           position: absolute;
 
-          left: 40px;
+          left: 20px;
 
-          width: fit-content;
+          display: grid;
+          place-items: center;
+
+          width: 80px;
 
           padding: 8px 16px;
 
@@ -268,7 +273,7 @@ Error generating stack: `+i.message+`
           color: ${e=>e.theme.white};
           background-color: ${e=>e.theme.black};
 
-          animation: slideDown 0.25s 0.5s ease forwards;
+          animation: categorySlideDown 0.25s 0.5s ease forwards;
         }
       }
     }
@@ -351,7 +356,7 @@ Error generating stack: `+i.message+`
     border-radius: 10px;
   }
 
-  @keyframes slideDown {
+  @keyframes categorySlideDown {
     0% {
       opacity: 0;
       transform: translateY(-10px);
@@ -511,7 +516,7 @@ Error generating stack: `+i.message+`
   transition: 0.25s ease;
   transition-property: opacity transform;
 
-  animation: slideDown 0.25s ease;
+  animation: mainSlideDown 0.25s ease;
 
   .left {
     display: flex;
@@ -547,7 +552,7 @@ Error generating stack: `+i.message+`
         transition: 0.25s ease;
         transition-property: transform background-color;
 
-        animation: ${e=>e.checked?"bounce .25s ease forwards":""};
+        animation: ${e=>e.checked?"mainBounce .25s ease forwards":""};
 
         ::before {
           content: "";
@@ -683,7 +688,7 @@ Error generating stack: `+i.message+`
     }
   }
 
-  @keyframes slideDown {
+  @keyframes mainSlideDown {
     0% {
       opacity: 0;
       transform: translateY(-10px);
@@ -694,7 +699,7 @@ Error generating stack: `+i.message+`
     }
   }
 
-  @keyframes bounce {
+  @keyframes mainBounce {
     0% {
       transform: scale(1);
     }
@@ -730,7 +735,7 @@ Error generating stack: `+i.message+`
 
   background-color: ${e=>e.theme.fg};
 
-  animation: ${e=>e.isSelectingCategory?"fadeIn .15s ease forwards":""};
+  animation: ${e=>e.isSelectingCategory?"selectFadeIn .15s ease forwards":""};
 
   ul {
     display: flex;
@@ -785,7 +790,7 @@ Error generating stack: `+i.message+`
     }
   }
 
-  @keyframes fadeIn {
+  @keyframes selectFadeIn {
     0% {
       opacity: 0;
       transform: translateY(-10px);
@@ -831,7 +836,7 @@ Error generating stack: `+i.message+`
 
       transform: translateX(60px) translateY(0px);
 
-      animation: slideDown 0.25s ease;
+      animation: mainSlideDown 0.25s ease;
 
       img {
         position: absolute;
@@ -1033,7 +1038,7 @@ Error generating stack: `+i.message+`
               transform: translateX(0px) scale(1);
               opacity: 1;
 
-              animation: ${e=>e.checked?"bounce 0.25s ease forwards":""};
+              animation: ${e=>e.checked?"mainBounce 0.25s ease forwards":""};
             }
           }
 
@@ -1150,7 +1155,7 @@ Error generating stack: `+i.message+`
     }
   }
 
-  @keyframes slideDown {
+  @keyframes mainSlideDown {
     0% {
       transform: translateX(60px) translateY(-10px);
       opacity: 0;
@@ -1161,7 +1166,7 @@ Error generating stack: `+i.message+`
     }
   }
 
-  @keyframes bounce {
+  @keyframes mainBounce {
     0% {
       transform: scale(1);
     }
@@ -1216,7 +1221,7 @@ Error generating stack: `+i.message+`
     background: ${e=>e.activeWelcomePage===4?"linear-gradient(200deg, rgba(180,174,250,1) 0%, rgba(255, 255, 255, 1) 50%)":""};
 
     .modal-top-animation {
-      animation: slideDown 1s ease-out forwards;
+      animation: welcomeSlideDown 1s ease-out forwards;
     }
 
     #modal-top {
@@ -1240,7 +1245,7 @@ Error generating stack: `+i.message+`
       }
 
       .third-image {
-        animation: bounce 0.5s 1.25s ease;
+        animation: welcomeBounce 0.5s 1.25s ease;
       }
 
       .fourth-image {
@@ -1256,14 +1261,14 @@ Error generating stack: `+i.message+`
 
         background-color: white;
 
-        animation: bounce 0.5s 1.25s ease;
+        animation: welcomeBounce 0.5s 1.25s ease;
 
         svg path {
           opacity: 0;
 
           stroke-dasharray: 640;
           stroke-dashoffset: 0;
-          animation: drawStroke 2s 0.25s forwards;
+          animation: welcomeDrawStroke 2s 0.25s forwards;
         }
       }
     }
@@ -1281,7 +1286,7 @@ Error generating stack: `+i.message+`
       gap: 20px;
 
       .span-animation {
-        animation: slideLeft 1s ease forwards;
+        animation: welcomeSlideLeft 1s ease forwards;
       }
 
       span {
@@ -1417,7 +1422,7 @@ Error generating stack: `+i.message+`
     }
   }
 
-  @keyframes bounce {
+  @keyframes welcomeBounce {
     0% {
       transform: scale(1);
     }
@@ -1429,7 +1434,7 @@ Error generating stack: `+i.message+`
     }
   }
 
-  @keyframes slideDown {
+  @keyframes welcomeSlideDown {
     0% {
       opacity: 0;
       transform: translateY(-20px);
@@ -1439,7 +1444,7 @@ Error generating stack: `+i.message+`
       transform: translateY(0px);
     }
   }
-  @keyframes slideLeft {
+  @keyframes welcomeSlideLeft {
     0% {
       opacity: 0;
       transform: translateX(20px);
@@ -1450,7 +1455,7 @@ Error generating stack: `+i.message+`
     }
   }
 
-  @keyframes drawStroke {
+  @keyframes welcomeDrawStroke {
     0% {
       stroke-dashoffset: 640;
       opacity: 0;
