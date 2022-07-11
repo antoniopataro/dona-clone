@@ -14,9 +14,16 @@ const SidebarStyles = styled.aside`
   gap: 10px;
   padding: 40px;
 
+  overflow: scroll;
+
   border-radius: 20px;
 
   background-color: ${(props) => props.theme.fg};
+
+  ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
 
   nav {
     display: flex;
