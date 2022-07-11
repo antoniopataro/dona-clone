@@ -39,7 +39,7 @@ const MainStyles = styled.main<Props>`
 
       transform: translateX(60px) translateY(0px);
 
-      animation: mainSlideDown 0.25s ease;
+      animation: mainHeaderSlideDown 0.25s ease;
 
       img {
         position: absolute;
@@ -75,6 +75,8 @@ const MainStyles = styled.main<Props>`
 
       transition: 0.25s ease;
       transition-property: background-color box-shadow;
+
+      animation: mainSlideDown 0.25s ease;
 
       .left {
         display: flex;
@@ -231,7 +233,7 @@ const MainStyles = styled.main<Props>`
       :active {
         background-color: ${(props) => props.theme.fg};
 
-        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.05);
 
         .left {
           label {
@@ -315,6 +317,17 @@ const MainStyles = styled.main<Props>`
   }
 
   @keyframes mainSlideDown {
+    0% {
+      transform: translateY(-10px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+  }
+
+  @keyframes mainHeaderSlideDown {
     0% {
       transform: translateX(60px) translateY(-10px);
       opacity: 0;
