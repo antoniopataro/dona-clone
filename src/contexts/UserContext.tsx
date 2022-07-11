@@ -20,7 +20,7 @@ const defaultUser = {
 };
 
 function UserProvider({ children }: Props) {
-  const initialUser = JSON.parse(localStorage.getItem("userPreferences") || JSON.stringify(defaultUser));
+  const initialUser = JSON.parse(localStorage.getItem("userPreferencesDonaClone") || JSON.stringify(defaultUser));
 
   const [user, setUser] = useState<UserProps>(initialUser);
 
@@ -29,7 +29,7 @@ function UserProvider({ children }: Props) {
   };
 
   const udpateUser = useEffect(() => {
-    localStorage.setItem("userPreferences", JSON.stringify(user));
+    localStorage.setItem("userPreferencesDonaClone", JSON.stringify(user));
   }, [user]);
 
   return <UserContext.Provider value={{ user, registerUser }}>{children}</UserContext.Provider>;

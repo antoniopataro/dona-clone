@@ -24,7 +24,7 @@ interface Props {
 }
 
 function TasksProvider({ children }: Props) {
-  const initialTasks = JSON.parse(localStorage.getItem("userTasks") || "[]");
+  const initialTasks = JSON.parse(localStorage.getItem("userTasksDonaClone") || "[]");
 
   const [tasks, setTasks] = useState<TaskProps[]>(initialTasks);
 
@@ -48,7 +48,7 @@ function TasksProvider({ children }: Props) {
   };
 
   const updateLocalStorage = useEffect(() => {
-    localStorage.setItem("userTasks", JSON.stringify(tasks));
+    localStorage.setItem("userTasksDonaClone", JSON.stringify(tasks));
   }, [tasks]);
 
   return (

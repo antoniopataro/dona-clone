@@ -29,7 +29,9 @@ const defaultCategory = [
 ];
 
 function CategoriesProvider({ children }: Props) {
-  const initialCategories = JSON.parse(localStorage.getItem("userCategories") || JSON.stringify(defaultCategory));
+  const initialCategories = JSON.parse(
+    localStorage.getItem("userCategoriesDonaClone") || JSON.stringify(defaultCategory),
+  );
 
   const [categories, setCategories] = useState<CategoryProps[]>(initialCategories);
 
@@ -53,7 +55,7 @@ function CategoriesProvider({ children }: Props) {
   };
 
   const updateCategories = useEffect(() => {
-    localStorage.setItem("userCategories", JSON.stringify(categories));
+    localStorage.setItem("userCategoriesDonaClone", JSON.stringify(categories));
   }, [categories]);
 
   return (
