@@ -34,14 +34,37 @@ const colors = [
 function ColorPicker({ setColor, isSelectingColor, setIsSelectingColor }: ColorPickerProps) {
   const [customColor, setCustomColor] = useState("008FFD");
 
+  const [animation, setAnimation] = useState<React.CSSProperties>();
+
+  const handleCloseCategoryPicker = () => {
+    if (!isSelectingColor) {
+      setAnimation({
+        animation: "colorPickerSlideDown .25s ease forwards",
+      });
+      return;
+    }
+
+    waitForAnimationAndClose();
+  };
+
+  const waitForAnimationAndClose = () => {
+    setAnimation({
+      animation: "colorPickerSlideUp .25s ease forwards",
+    });
+
+    setTimeout(() => {
+      setIsSelectingColor(false);
+    }, 250);
+  };
+
   const wrapperRef = useRef<HTMLDivElement>(null);
-  useOnClickOutside(wrapperRef, () => setIsSelectingColor(false));
+  useOnClickOutside(wrapperRef, handleCloseCategoryPicker);
 
   function handleSelectColor(color: string, e?: React.FormEvent) {
     e?.preventDefault();
 
     setColor(color);
-    setIsSelectingColor(!isSelectingColor);
+    handleCloseCategoryPicker();
   }
 
   useEffect(() => {
@@ -49,7 +72,7 @@ function ColorPicker({ setColor, isSelectingColor, setIsSelectingColor }: ColorP
   }, [customColor]);
 
   return (
-    <ColorPickerStyles theme={lightTheme} isSelectingColor={isSelectingColor} ref={wrapperRef}>
+    <ColorPickerStyles theme={lightTheme} isSelectingColor={isSelectingColor} ref={wrapperRef} style={{ ...animation }}>
       {isSelectingColor && (
         <>
           <h4>Colors</h4>

@@ -29,7 +29,6 @@ const ColorPickerStyles = styled.div<Props>`
   cursor: default;
 
   background-color: ${(props) => props.theme.fg};
-  animation: ${(props) => (props.isSelectingColor ? "colorPickerSlideDown .15s ease forwards" : "")};
 
   h4 {
     color: ${(props) => props.theme.text};
@@ -81,6 +80,8 @@ const ColorPickerStyles = styled.div<Props>`
 
       border-radius: 10px;
 
+      box-shadow: inset 0px 1px 1px rgba(255, 255, 255, 0.25), 0px 1px 1px rgba(0, 0, 0, 0.25);
+
       background-color: ${(props) => props.theme.bold};
 
       form {
@@ -114,9 +115,20 @@ const ColorPickerStyles = styled.div<Props>`
       transform: translateY(-10px);
     }
     100% {
-      opacity: 0.8;
+      opacity: 1;
       backdrop-filter: blur(20px);
       transform: translateY(0px);
+    }
+  }
+
+  @keyframes colorPickerSlideUp {
+    0% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-10px);
     }
   }
 `;
