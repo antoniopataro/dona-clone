@@ -18,7 +18,6 @@ import MainStyles from "./styles";
 
 import { lightTheme } from "../../App";
 
-import getUserOS from "../../functions/getUserOS";
 import { getTimeOfDay, getCurrentDay, getCurrentWeekDay, getCurrentMonth } from "../../functions/getDate";
 
 function Main() {
