@@ -90,8 +90,7 @@ const SelectStyles = styled.div<Props>`
       transform: translateY(-10px);
     }
     100% {
-      opacity: 0.8;
-      backdrop-filter: blur(20px);
+      opacity: 1;
       transform: translateY(0px);
     }
   }
