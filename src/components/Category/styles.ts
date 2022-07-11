@@ -64,52 +64,6 @@ const CategoryStyles = styled.a<Props>`
 
       :hover {
         background-color: ${(props) => props.theme.bold};
-
-        ::before {
-          content: " ";
-          position: absolute;
-
-          top: 12px;
-
-          left: 10px;
-
-          border-width: 5px;
-          border-style: solid;
-          border-color: transparent black transparent transparent;
-
-          opacity: 0;
-
-          animation: categorySlideDown 0.25s 0.5s ease forwards;
-        }
-
-        ::after {
-          content: "Change color";
-          position: absolute;
-
-          left: 20px;
-
-          display: grid;
-          place-items: center;
-
-          width: 80px;
-
-          padding: 8px 16px;
-
-          border-radius: 4px;
-
-          box-shadow: 0px 0px 16px 4px rgba(0, 0, 0, 0.25);
-
-          opacity: 0;
-
-          font-family: "Inter var", sans-serif;
-          font-size: 12px;
-          font-weight: 500;
-
-          color: ${(props) => props.theme.white};
-          background-color: ${(props) => props.theme.black};
-
-          animation: categorySlideDown 0.25s 0.5s ease forwards;
-        }
       }
     }
   }
@@ -199,6 +153,17 @@ const CategoryStyles = styled.a<Props>`
     100% {
       opacity: 1;
       transform: translateY(0px);
+    }
+  }
+
+  @keyframes categorySlideUp {
+    0% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-10px);
     }
   }
 `;
