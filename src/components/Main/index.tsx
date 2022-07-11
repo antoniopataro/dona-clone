@@ -99,7 +99,7 @@ function Main() {
           </header>
         )}
         <h1 className="category-indicator">{categories.filter((category) => category.slug === path)[0]?.title}</h1>
-        <div id="task-writter" onClick={() => inputRef.current?.focus()}>
+        <div id="task-writer" onClick={() => inputRef.current?.focus()}>
           <div className="left">
             <label>
               <input type="checkbox" defaultChecked={checked} onChange={() => setChecked(!checked)} />

@@ -56,7 +56,7 @@ const MainStyles = styled.main<Props>`
       }
     }
 
-    #task-writter {
+    #task-writer {
       display: flex;
       flex-direction: row;
 
