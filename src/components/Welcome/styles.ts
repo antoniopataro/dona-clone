@@ -60,7 +60,7 @@ const WelcomeStyles = styled.div<Props>`
         : ""};
 
     .modal-top-animation {
-      animation: welcomeSlideDown 1s ease-out forwards;
+      animation: welcomeSlideDown 0.5s ease-out forwards;
     }
 
     #modal-top {
@@ -70,8 +70,6 @@ const WelcomeStyles = styled.div<Props>`
       height: 50%;
 
       img {
-        padding: 20px;
-
         border-radius: 20px;
 
         box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.25);
@@ -81,9 +79,11 @@ const WelcomeStyles = styled.div<Props>`
 
       .second-image {
         width: 300px;
+        padding: 20px;
       }
 
       .third-image {
+        padding: 25px;
         animation: welcomeBounce 0.5s 1.25s ease;
       }
 
@@ -102,12 +102,17 @@ const WelcomeStyles = styled.div<Props>`
 
         animation: welcomeBounce 0.5s 1.25s ease;
 
-        svg path {
-          opacity: 0;
+        svg {
+          width: 50px;
+          height: 50px;
 
-          stroke-dasharray: 640;
-          stroke-dashoffset: 0;
-          animation: welcomeDrawStroke 2s 0.25s forwards;
+          path {
+            opacity: 0;
+
+            stroke-dasharray: 640;
+            stroke-dashoffset: 0;
+            animation: welcomeDrawStroke 1s 0.25s forwards;
+          }
         }
       }
     }
@@ -124,8 +129,8 @@ const WelcomeStyles = styled.div<Props>`
 
       gap: 20px;
 
-      .span-animation {
-        animation: welcomeSlideLeft 1s ease forwards;
+      .slideLeft {
+        animation: welcomeSlideLeft 0.5s ease forwards;
       }
 
       span {
@@ -194,6 +199,8 @@ const WelcomeStyles = styled.div<Props>`
 
           cursor: pointer;
 
+          box-shadow: inset 0px 1px 1px rgba(255, 255, 255, 0.25), 0px 1px 1px rgba(0, 0, 0, 0.25);
+
           color: white;
           background-color: #008ffd;
 
@@ -215,8 +222,7 @@ const WelcomeStyles = styled.div<Props>`
           padding: 12px 24px;
 
           outline: none;
-          border: 1px solid transparent;
-          border-color: #008ffd;
+          border: none;
 
           font-family: "Inter var", sans-serif;
           font-size: 14px;
@@ -229,13 +235,13 @@ const WelcomeStyles = styled.div<Props>`
           color: #008ffd;
           background-color: transparent;
 
+          box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+
           transition: 0.25s ease;
-          transition-property: border-color color background-color;
+          transition-property: color background-color;
 
           :hover {
-            border-color: #0072ca;
             color: #0072ca;
-            background-color: #d9d9d9;
 
             svg {
               fill: #0072ca;
@@ -246,6 +252,9 @@ const WelcomeStyles = styled.div<Props>`
             position: relative;
 
             fill: #008ffd;
+
+            transition: 0.15s ease;
+            transition-property: fill;
           }
         }
       }

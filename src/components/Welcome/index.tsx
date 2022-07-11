@@ -8,7 +8,7 @@ interface WelcomeProps {
   image: string;
 }
 
-import donaBlue from "../../assets/donaBlue.svg";
+import donaLogo from "../../assets/welcome-icons/donaLogo.png";
 import macCommand from "../../assets/welcome-icons/macCommand.png";
 import donaLists from "../../assets/welcome-icons/donaLists.png";
 
@@ -39,7 +39,7 @@ function Welcome() {
         return {
           title: "Welcome to Dona Clone",
           subtitle: "Dona is a back to-do list focused on fast and delightful user experience.",
-          image: donaBlue,
+          image: donaLogo,
         };
       case 2:
         return {
@@ -88,7 +88,7 @@ function Welcome() {
       <div id="modal">
         <div id="modal-top" className={animating ? "modal-top-animation" : ""}>
           {activeWelcomePage !== 4 && (
-            <img src={handleData().image} alt="Dona" width={100} className={resolveClassName()} />
+            <img src={handleData().image} alt="" width={100} className={resolveClassName()} />
           )}
           {activeWelcomePage === 4 && (
             <span className={resolveClassName()}>
@@ -96,7 +96,7 @@ function Welcome() {
                 <path
                   d="M6 16.9091L24.7439 35.3121C25.1328 35.6941 25.756 35.6941 26.145 35.3121L56 6"
                   stroke="#6d6d6d"
-                  stroke-width="10"
+                  stroke-width="8"
                   stroke-linecap="round"
                 />
               </svg>
@@ -104,14 +104,14 @@ function Welcome() {
           )}
         </div>
         <div id="modal-bottom">
-          <span className={animating ? "span-animation " : ""}>
+          <span className={animating ? "slideLeft" : ""}>
             <h2>{handleData().title}</h2>
             <h3>{handleData().subtitle}</h3>
             {activeWelcomePage === 4 && (
               <input type="text" placeholder="Type it here..." onChange={(e) => setName(e.target.value)} />
             )}
           </span>
-          <span className="nav-buttons">
+          <span className={animating ? "slideLeft nav-buttons" : "nav-buttons"}>
             <button onClick={handleContinue}>Continue</button>
             {activeWelcomePage === 4 && (
               <a href="https://github.com/antoniopataro/dona-clone" target="_blank">
