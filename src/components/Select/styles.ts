@@ -94,6 +94,10 @@ const SelectStyles = styled.div<Props>`
       transform: translateY(0px);
     }
   }
+
+  @media (max-width: 768px) {
+    left: -100px;
+  }
 `;
 
 export default SelectStyles;

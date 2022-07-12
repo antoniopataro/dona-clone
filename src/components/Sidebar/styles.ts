@@ -96,7 +96,7 @@ const SidebarStyles = styled.aside`
 
     justify-content: space-between;
 
-    gap: 20px;
+    gap: 0px;
     padding: 20px;
 
     box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.1);
@@ -107,7 +107,8 @@ const SidebarStyles = styled.aside`
       display: flex;
       flex-direction: row;
 
-      width: 100%;
+      min-width: 70px;
+      width: fit-content;
 
       overflow: scroll;
 
@@ -118,17 +119,21 @@ const SidebarStyles = styled.aside`
     }
 
     form {
-      width: fit-content;
+      width: 100%;
 
-      padding: 20px;
+      padding: 10px;
     }
   }
 
   @media (max-width: 768px) {
-    padding: 10px;
+    padding: 0px;
 
     nav {
       padding: 10px;
+    }
+
+    form {
+      gap: 10px;
     }
   }
 `;

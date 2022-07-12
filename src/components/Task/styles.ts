@@ -213,6 +213,24 @@ const TaskStyles = styled.li<Props>`
         }
       }
     }
+
+    .right {
+      .date {
+        display: none;
+      }
+
+      button {
+        width: 25px;
+        height: 25px;
+
+        img {
+          width: 15px;
+          height: 15px;
+        }
+      }
+
+      gap: 10px;
+    }
   }
 
   @keyframes taskSlideDown {

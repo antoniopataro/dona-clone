@@ -316,6 +316,15 @@ const WelcomeStyles = styled.div<Props>`
       opacity: 1;
     }
   }
+
+  @media (max-width: 768px) {
+    #modal {
+      width: 100vw;
+      height: 100vh;
+
+      border-radius: 0;
+    }
+  }
 `;
 
 export default WelcomeStyles;

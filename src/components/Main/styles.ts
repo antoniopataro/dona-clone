@@ -287,11 +287,58 @@ const MainStyles = styled.main<Props>`
     width: 100%;
 
     #tasks-area-wrapper {
+      width: 100%;
+
       padding: 0;
 
       header {
         transform: translateX(0px);
         padding-left: 20px;
+      }
+
+      #task-writer {
+        min-height: 50px;
+        padding: 20px;
+
+        border-radius: 15px;
+
+        .left {
+          label {
+            width: 20px;
+            height: 20px;
+
+            .checkbox-div {
+              width: 20px;
+              height: 20px;
+
+              border-radius: 5px;
+
+              transform: translateX(-20px) scale(0);
+            }
+          }
+        }
+
+        form {
+          transform: translateX(-40px);
+        }
+
+        .right {
+          display: none;
+        }
+      }
+
+      :focus,
+      :active {
+        .left {
+          label {
+            .checkbox-div {
+              transform: translateX(0px) scale(1);
+              opacity: 1;
+
+              animation: ${(props) => (props.checked ? "mainBounce 0.25s ease forwards" : "")};
+            }
+          }
+        }
       }
 
       ul .shortcuts {
