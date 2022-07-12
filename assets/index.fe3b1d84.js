@@ -735,6 +735,8 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
   .react-calendar {
     position: absolute;
 
+    z-index: 1;
+
     top: 20px;
     right: 0px;
 
