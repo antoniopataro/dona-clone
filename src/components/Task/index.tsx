@@ -1,6 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 
-import { CategoriesContext } from "../../contexts/CategoriesContext";
+import Calendar from "react-calendar";
+
+import useOnClickOutside from "../../hooks/useOnClickOutside";
+
 import { TasksContext } from "../../contexts/TasksContext";
 
 import { TaskProps } from "../../contexts/TasksContext";
@@ -16,10 +19,11 @@ import TaskStyles from "./styles";
 import { lightTheme } from "../../App";
 
 function Task({ task }: TaskComponentProps) {
-  const { removeTask, updateCheckedStatus } = useContext(TasksContext);
+  const { removeTask, updateCheckedStatus, updateDate } = useContext(TasksContext);
 
   const [beingRemoved, setBeingRemoved] = useState("");
   const [checked, setChecked] = useState(task.checked);
+  const [isSelectingDate, setIsSelectingDate] = useState(false);
 
   function handleRemoveTask(id: string) {
     setBeingRemoved(id);
@@ -32,12 +36,22 @@ function Task({ task }: TaskComponentProps) {
     }, 250);
   };
 
+  const handleUpdateDate = (task: TaskProps, date: Date) => {
+    setIsSelectingDate(false);
+    updateDate(task, date.toString());
+  };
+
   useEffect(() => {
     updateCheckedStatus(task, checked);
   }, [checked]);
 
   return (
-    <TaskStyles theme={lightTheme} beingRemoved={beingRemoved === task.id} checked={task.checked}>
+    <TaskStyles
+      isSelectingDate={isSelectingDate}
+      theme={lightTheme}
+      beingRemoved={beingRemoved === task.id}
+      checked={task.checked}
+    >
       <div className="left">
         <label>
           <input type="checkbox" defaultChecked={checked} onChange={() => setChecked(!checked)} />
@@ -47,7 +61,10 @@ function Task({ task }: TaskComponentProps) {
       </div>
 
       <div className="right">
-        <h4 className="date">{`${task.date.split(" ")[1]} ${task.date.split(" ")[2]}`}</h4>
+        <h4 className="date" onClick={() => setIsSelectingDate(!isSelectingDate)}>{`${task.date.split(" ")[1]} ${
+          task.date.split(" ")[2]
+        }`}</h4>
+        <Calendar onClickDay={(e) => handleUpdateDate(task, e)} />
         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect
             x="1.25"
