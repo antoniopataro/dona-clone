@@ -259,6 +259,8 @@ const TaskStyles = styled.li<Props>`
   .react-calendar {
     position: absolute;
 
+    z-index: 1;
+
     top: 20px;
     right: 0px;
 
