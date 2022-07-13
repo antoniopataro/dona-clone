@@ -18,6 +18,7 @@ interface TasksContextProps {
   removeTask: (id: string) => void;
   updateCheckedStatus: (updatedTask: TaskProps, checked: boolean) => void;
   updateDate: (updatedTask: TaskProps, date: string) => void;
+  updateTaskColor: (slugBeingUpdated: string, color: string) => void;
 }
 
 interface Props {
@@ -59,12 +60,23 @@ function TasksProvider({ children }: Props) {
     );
   };
 
-  const updateLocalStorage = useEffect(() => {
+  const updateTaskColor = (slugBeingUpdated: string, color: string) => {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) => {
+        if (task.category.slug === slugBeingUpdated) {
+          return { ...task, category: { ...task.category, color: color } };
+        }
+        return task;
+      }),
+    );
+  };
+
+  const updateTasks = useEffect(() => {
     localStorage.setItem("userTasksDonaClone", JSON.stringify(tasks));
   }, [tasks]);
 
   return (
-    <TasksContext.Provider value={{ tasks, addTask, removeTask, updateCheckedStatus, updateDate }}>
+    <TasksContext.Provider value={{ tasks, addTask, removeTask, updateCheckedStatus, updateDate, updateTaskColor }}>
       {children}
     </TasksContext.Provider>
   );

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useContext, useRef } from "react";
 
 import Category from "../Category";
 
@@ -17,12 +17,13 @@ function Sidebar() {
   const { categories, addCategory } = useContext(CategoriesContext);
   const { changePath } = useContext(PathContext);
 
-  const [title, setTitle] = useState("");
-
+  const formRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   function handleAddCategory(e: React.FormEvent) {
     e.preventDefault();
+
+    const title = inputRef.current?.value;
 
     if (!title) return;
     if (categories.map((category) => category.title).includes(title)) return;
@@ -36,7 +37,7 @@ function Sidebar() {
     };
 
     addCategory(category);
-    setTitle("");
+    formRef.current?.reset();
     changePath(slug);
   }
 
@@ -69,17 +70,11 @@ function Sidebar() {
           />
         ))}
       </nav>
-      <form onSubmit={handleAddCategory} noValidate>
+      <form onSubmit={handleAddCategory} noValidate ref={formRef}>
         <span>
           <img src={addIcon} alt="Choose Icon" width={15} />
         </span>
-        <input
-          type="text"
-          placeholder="Create new category..."
-          onChange={(e) => setTitle(e.target.value)}
-          value={title}
-          ref={inputRef}
-        />
+        <input type="text" placeholder="Create new category..." ref={inputRef} />
       </form>
     </SidebarStyles>
   );

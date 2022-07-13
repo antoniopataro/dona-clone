@@ -26,13 +26,17 @@ function Main() {
   const { addTask, tasks } = useContext(TasksContext);
   const { user } = useContext(UserContext);
 
-  const [content, setContent] = useState("");
   const [checked, setChecked] = useState(false);
   const [category, setCategory] = useState<CategoryProps>(categories[0]);
   const [isSelectingCategory, setIsSelectingCategory] = useState(false);
 
+  const formRef = useRef<HTMLFormElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
   function handleAddTask(e: React.FormEvent) {
     e.preventDefault();
+
+    const content = inputRef.current?.value;
 
     if (!content) return;
 
@@ -48,10 +52,8 @@ function Main() {
 
     addTask(newTask);
 
-    setContent("");
+    formRef.current?.reset();
   }
-
-  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -105,14 +107,8 @@ function Main() {
               <input type="checkbox" defaultChecked={checked} onChange={() => setChecked(!checked)} />
               <div className="checkbox-div" />
             </label>
-            <form noValidate onSubmit={handleAddTask}>
-              <input
-                type="text"
-                placeholder="Write a new task..."
-                onChange={(e) => setContent(e.target.value)}
-                value={content}
-                ref={inputRef}
-              />
+            <form noValidate onSubmit={handleAddTask} ref={formRef}>
+              <input type="text" placeholder="Write a new task..." ref={inputRef} />
             </form>
           </div>
           <div className="right" onClick={() => setIsSelectingCategory(!isSelectingCategory)}>

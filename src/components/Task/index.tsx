@@ -1,12 +1,8 @@
-import React, { useContext, useEffect, useState, useRef } from "react";
+import React, { memo, useContext, useState } from "react";
 
 import Calendar from "react-calendar";
 
-import useOnClickOutside from "../../hooks/useOnClickOutside";
-
-import { TasksContext } from "../../contexts/TasksContext";
-
-import { TaskProps } from "../../contexts/TasksContext";
+import { TasksContext, TaskProps } from "../../contexts/TasksContext";
 
 interface TaskComponentProps {
   task: TaskProps;
@@ -41,20 +37,21 @@ function Task({ task }: TaskComponentProps) {
     updateDate(task, date.toString());
   };
 
-  useEffect(() => {
-    updateCheckedStatus(task, checked);
-  }, [checked]);
+  function handleCheckedStatus() {
+    setChecked(!checked);
+    updateCheckedStatus(task, !checked);
+  }
 
   return (
     <TaskStyles
-      isSelectingDate={isSelectingDate}
-      theme={lightTheme}
       beingRemoved={beingRemoved === task.id}
       checked={task.checked}
+      isSelectingDate={isSelectingDate}
+      theme={lightTheme}
     >
       <div className="left">
         <label>
-          <input type="checkbox" defaultChecked={checked} onChange={() => setChecked(!checked)} />
+          <input type="checkbox" defaultChecked={checked} onChange={() => handleCheckedStatus()} />
           <div className="checkbox-div" />
         </label>
         <h3>{task.content}</h3>
@@ -64,7 +61,7 @@ function Task({ task }: TaskComponentProps) {
         <h4 className="date" onClick={() => setIsSelectingDate(!isSelectingDate)}>{`${task.date.split(" ")[1]} ${
           task.date.split(" ")[2]
         }`}</h4>
-        <Calendar onClickDay={(e) => handleUpdateDate(task, e)} />
+        {isSelectingDate && <Calendar onClickDay={(e) => handleUpdateDate(task, e)} />}
         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect
             x="1.25"

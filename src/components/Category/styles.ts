@@ -20,9 +20,6 @@ const CategoryStyles = styled.a<Props>`
 
   border-radius: 20px;
 
-  opacity: ${(props) => (props.beingRemoved ? "0" : "1")};
-  transform: ${(props) => (props.beingRemoved ? "translateY(-10px)" : "")};
-
   cursor: pointer;
 
   background-color: ${(props) => (props.activeCategory ? props.theme.bg : "")};
@@ -30,7 +27,7 @@ const CategoryStyles = styled.a<Props>`
   transition: 0.25s ease;
   transition-property: background-color transform opacity;
 
-  animation: categorySlideDown 0.25s ease;
+  animation: ${(props) => (props.beingRemoved ? "categorySlideUp" : "categorySlideDown")} 0.25s ease;
 
   :hover {
     background-color: ${(props) => props.theme.bg};

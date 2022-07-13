@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 
 import useOnClickOutside from "../../hooks/useOnClickOutside";
 
 interface ColorPickerProps {
-  setColor: React.Dispatch<React.SetStateAction<string>>;
+  updateColor: (color: string) => void;
   isSelectingColor: boolean;
   setIsSelectingColor: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -31,7 +31,7 @@ const colors = [
   "7B7168",
 ];
 
-function ColorPicker({ setColor, isSelectingColor, setIsSelectingColor }: ColorPickerProps) {
+function ColorPicker({ updateColor, isSelectingColor, setIsSelectingColor }: ColorPickerProps) {
   const [customColor, setCustomColor] = useState("008FFD");
 
   const [animation, setAnimation] = useState<React.CSSProperties>();
@@ -63,13 +63,11 @@ function ColorPicker({ setColor, isSelectingColor, setIsSelectingColor }: ColorP
   function handleSelectColor(color: string, e?: React.FormEvent) {
     e?.preventDefault();
 
-    setColor(color);
+    setCustomColor(color);
+
+    updateColor(color);
     handleCloseCategoryPicker();
   }
-
-  useEffect(() => {
-    if (customColor === "") setCustomColor("008FFD");
-  }, [customColor]);
 
   return (
     <ColorPickerStyles theme={lightTheme} isSelectingColor={isSelectingColor} ref={wrapperRef} style={{ ...animation }}>
@@ -106,13 +104,13 @@ function ColorPicker({ setColor, isSelectingColor, setIsSelectingColor }: ColorP
                   width="12.5"
                   height="12.5"
                   rx="4.75"
-                  stroke={`#${customColor}`}
-                  fill={`#${customColor}`}
+                  stroke={customColor ? `#${customColor}` : "#008FFD"}
+                  fill={customColor ? `#${customColor}` : "#008FFD"}
                   strokeWidth="2.5"
                 />
               </svg>
               <form noValidate onSubmit={(e) => handleSelectColor(customColor, e)}>
-                <input type="text" placeholder={customColor} onChange={(e) => setCustomColor(e.target.value)} />
+                <input type="text" placeholder={"008FFD"} onChange={(e) => setCustomColor(e.target.value)} />
               </form>
             </div>
           </div>

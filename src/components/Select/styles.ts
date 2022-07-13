@@ -9,6 +9,8 @@ const SelectStyles = styled.div<Props>`
 
   position: absolute;
 
+  z-index: 1;
+
   top: 50px;
   left: 0;
 
@@ -29,7 +31,7 @@ const SelectStyles = styled.div<Props>`
 
   background-color: ${(props) => props.theme.fg};
 
-  animation: ${(props) => (props.isSelectingCategory ? "selectFadeIn .15s ease forwards" : "")};
+  animation: ${(props) => (props.isSelectingCategory ? "selectFadeIn " : "")} 0.25s ease;
 
   ul {
     display: flex;

@@ -24,15 +24,12 @@ const TaskStyles = styled.li<Props>`
 
   border-radius: 20px;
 
-  opacity: ${(props) => (props.beingRemoved ? "0" : "1")};
-  transform: ${(props) => (props.beingRemoved ? "translateY(-10px)" : "")};
-
   background-color: ${(props) => props.theme.fg};
 
   transition: 0.25s ease;
   transition-property: opacity transform;
 
-  animation: taskSlideDown 0.25s ease;
+  animation: ${(props) => (props.beingRemoved ? "taskSlideUp" : "taskSlideDown")} 0.25s ease;
 
   .left {
     display: flex;
@@ -243,6 +240,16 @@ const TaskStyles = styled.li<Props>`
       transform: translateY(0px);
     }
   }
+  @keyframes taskSlideUp {
+    0% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+  }
 
   @keyframes taskBounce {
     0% {
@@ -273,7 +280,6 @@ const TaskStyles = styled.li<Props>`
 
     opacity: ${(props) => (props.isSelectingDate ? "1" : "0")};
     transform: ${(props) => (props.isSelectingDate ? "translateY(0px)" : "translateY(-10px)")};
-    pointer-events: ${(props) => (props.isSelectingDate ? "auto" : "none")};
 
     border: 1px solid ${(props) => props.theme.bold};
     border-radius: 20px;
@@ -283,6 +289,8 @@ const TaskStyles = styled.li<Props>`
     cursor: default;
 
     background-color: white;
+
+    animation: ${(props) => (props.isSelectingDate ? "taskSlideDown" : "taskSlideUp")} 0.25s ease;
 
     transition: 0.25s ease;
     transition-property: opacity transform;

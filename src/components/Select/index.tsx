@@ -1,7 +1,5 @@
 import React, { useContext, useRef } from "react";
 
-import useOnClickOutside from "../../hooks/useOnClickOutside";
-
 import { CategoriesContext, CategoryProps } from "../../contexts/CategoriesContext";
 
 interface SelectProps {
@@ -21,8 +19,6 @@ function Select({ isSelectingCategory, setIsSelectingCategory, category, setCate
   const { categories } = useContext(CategoriesContext);
 
   const wrapperRef = useRef(null);
-
-  useOnClickOutside(wrapperRef, () => setIsSelectingCategory(false));
 
   return (
     <SelectStyles theme={lightTheme} isSelectingCategory={isSelectingCategory} ref={wrapperRef}>

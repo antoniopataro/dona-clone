@@ -30,6 +30,8 @@ const ColorPickerStyles = styled.div<Props>`
 
   background-color: ${(props) => props.theme.fg};
 
+  animation: ${(props) => (props.isSelectingColor ? "colorPickerSlideDown" : "colorPickerSlideUp")} 0.25s ease;
+
   h4 {
     color: ${(props) => props.theme.text};
   }
@@ -80,7 +82,7 @@ const ColorPickerStyles = styled.div<Props>`
 
       border-radius: 10px;
 
-      box-shadow: inset 0px 1px 1px rgba(255, 255, 255, 0.25), 0px 1px 1px rgba(0, 0, 0, 0.25);
+      box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.25), 1px 1px 1px rgba(0, 0, 0, 0.25);
 
       background-color: ${(props) => props.theme.bold};
 
@@ -105,6 +107,7 @@ const ColorPickerStyles = styled.div<Props>`
       }
     }
   }
+
   @media (max-width: 1024px) {
     display: none;
   }

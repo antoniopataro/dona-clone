@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 
 import { CategoriesContext } from "../../contexts/CategoriesContext";
 import { PathContext } from "../../contexts/PathContext";
@@ -21,10 +21,9 @@ import { lightTheme } from "../../App";
 function Category({ category }: CategoryComponentProps) {
   const { removeCategory, updateCategoryColor } = useContext(CategoriesContext);
   const { path, changePath } = useContext(PathContext);
-  const { tasks, removeTask } = useContext(TasksContext);
+  const { tasks, removeTask, updateTaskColor } = useContext(TasksContext);
 
   const [beingRemoved, setBeingRemoved] = useState("");
-  const [color, setColor] = useState("008FFD");
   const [slugBeingUpdated, setSlugBeingUpdated] = useState("");
   const [isSelectingColor, setIsSelectingColor] = useState(false);
 
@@ -58,9 +57,11 @@ function Category({ category }: CategoryComponentProps) {
     setSlugBeingUpdated(slug);
   }
 
-  useEffect(() => {
+  const updateColor = (color: string) => {
+    setIsSelectingColor(false);
     updateCategoryColor(slugBeingUpdated, color);
-  }, [color]);
+    updateTaskColor(slugBeingUpdated, color);
+  };
 
   const taskAmount = tasks.filter((task) => task.category.slug === category.slug).length;
 
@@ -86,11 +87,13 @@ function Category({ category }: CategoryComponentProps) {
           </svg>
         </span>
         <h3>{category.title}</h3>
-        <ColorPicker
-          setColor={setColor}
-          isSelectingColor={isSelectingColor}
-          setIsSelectingColor={setIsSelectingColor}
-        />
+        {isSelectingColor && (
+          <ColorPicker
+            updateColor={updateColor}
+            isSelectingColor={isSelectingColor}
+            setIsSelectingColor={setIsSelectingColor}
+          />
+        )}
       </div>
       <span className="task-amout">
         <h4>{taskAmount}</h4>
