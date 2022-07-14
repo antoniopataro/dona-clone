@@ -13,7 +13,6 @@ const TaskStyles = styled.li<Props>`
   flex-direction: row;
 
   width: 100%;
-  min-height: 70px;
 
   align-items: center;
   justify-content: space-between;
@@ -24,10 +23,10 @@ const TaskStyles = styled.li<Props>`
 
   border-radius: 20px;
 
-  background-color: ${(props) => props.theme.fg};
+  background-color: ${(props) => (props.checked ? props.theme.bold : props.theme.fg)};
 
   transition: 0.25s ease;
-  transition-property: opacity transform;
+  transition-property: background-color opacity transform;
 
   animation: ${(props) => (props.beingRemoved ? "taskSlideUp" : "taskSlideDown")} 0.25s ease;
 
@@ -35,11 +34,13 @@ const TaskStyles = styled.li<Props>`
     display: flex;
     flex-direction: row;
 
+    width: 100%;
+    height: fit-content;
+
     align-items: center;
 
     gap: 20px;
-
-    padding-right: 20px;
+    padding: 10px 0;
 
     label {
       width: 30px;
@@ -92,10 +93,7 @@ const TaskStyles = styled.li<Props>`
     h3 {
       position: relative;
 
-      display: grid;
-      place-items: center;
-
-      max-width: 300px;
+      width: 100%;
       height: fit-content;
 
       word-break: break-word;
@@ -108,6 +106,7 @@ const TaskStyles = styled.li<Props>`
 
         position: absolute;
 
+        top: 50%;
         left: 0;
 
         width: ${(props) => (props.checked ? "100%" : "0%")};
@@ -129,9 +128,14 @@ const TaskStyles = styled.li<Props>`
     display: flex;
     flex-direction: row;
 
+    width: fit-content;
+
+    white-space: nowrap;
+
     align-items: center;
 
     gap: 27px;
+    padding-left: 27px;
 
     .date {
       display: grid;
@@ -185,11 +189,14 @@ const TaskStyles = styled.li<Props>`
   }
 
   @media (max-width: 768px) {
-    min-height: 50px;
-
     border-radius: 15px;
 
+    padding-left: 15px;
+
     .left {
+      gap: 15px;
+      padding: 5px;
+
       label {
         width: 20px;
         height: 20px;
@@ -212,6 +219,8 @@ const TaskStyles = styled.li<Props>`
     }
 
     .right {
+      padding-left: 10px;
+
       .date {
         display: none;
       }

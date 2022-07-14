@@ -61,10 +61,10 @@ const MainStyles = styled.main<Props>`
       flex-direction: row;
 
       width: 100%;
-      min-height: 70px;
 
       align-items: center;
 
+      padding: 10px;
       padding-left: 20px;
       padding-right: 15px;
       margin-bottom: 10px;
@@ -88,6 +88,7 @@ const MainStyles = styled.main<Props>`
         align-items: center;
 
         gap: 20px;
+        padding: 10px 0;
 
         label {
           display: grid;
@@ -292,32 +293,19 @@ const MainStyles = styled.main<Props>`
       padding: 0;
 
       header {
-        transform: translateX(0px);
-        padding-left: 20px;
+        padding-left: 0;
+
+        transform: translateX(50px) translateY(0px);
+
+        img {
+          left: -50px;
+
+          width: 30px;
+          height: 30px;
+        }
       }
 
       #task-writer {
-        min-height: 50px;
-        padding: 20px;
-
-        border-radius: 15px;
-
-        .left {
-          label {
-            width: 20px;
-            height: 20px;
-
-            .checkbox-div {
-              width: 20px;
-              height: 20px;
-
-              border-radius: 5px;
-
-              transform: translateX(-20px) scale(0);
-            }
-          }
-        }
-
         form {
           transform: translateX(-40px);
         }
@@ -341,10 +329,6 @@ const MainStyles = styled.main<Props>`
         }
       }
 
-      ul .shortcuts {
-        display: none;
-      }
-
       ul {
         overflow: scroll;
         margin-bottom: 110px;
@@ -356,9 +340,49 @@ const MainStyles = styled.main<Props>`
   @media (max-width: 768px) {
     #tasks-area-wrapper {
       header {
-        transform: translateX(60px);
+        transform: translateX(40px) translateY(0px);
 
-        animation: none;
+        img {
+          left: -40px;
+
+          width: 25px;
+          height: 25px;
+        }
+      }
+
+      #task-writer {
+        border-radius: 15px;
+
+        padding-left: 15px;
+
+        .left {
+          gap: 15px;
+          padding: 5px;
+
+          label {
+            width: 20px;
+            height: 20px;
+
+            .checkbox-div {
+              width: 20px;
+              height: 20px;
+
+              border-radius: 5px;
+
+              transform: translateX(-15px) scale(0);
+            }
+          }
+
+          form {
+            transform: translateX(-35px);
+          }
+        }
+      }
+
+      ul {
+        overflow: scroll;
+        margin-bottom: 70px;
+        white-space: normal;
       }
     }
   }
