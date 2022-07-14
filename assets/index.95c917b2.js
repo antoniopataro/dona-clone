@@ -499,7 +499,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
 
   border-radius: 20px;
 
-  background-color: ${e=>e.checked?e.theme.bold:e.theme.fg};
+  background-color: ${e=>e.theme.fg};
 
   transition: 0.25s ease;
   transition-property: background-color opacity transform;
