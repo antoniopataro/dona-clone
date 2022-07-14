@@ -23,7 +23,7 @@ const TaskStyles = styled.li<Props>`
 
   border-radius: 20px;
 
-  background-color: ${(props) => (props.checked ? props.theme.bold : props.theme.fg)};
+  background-color: ${(props) => props.theme.fg};
 
   transition: 0.25s ease;
   transition-property: background-color opacity transform;
