@@ -6,6 +6,10 @@ interface ColorPickerProps {
   updateColor: (color: string) => void;
   isSelectingColor: boolean;
   setIsSelectingColor: React.Dispatch<React.SetStateAction<boolean>>;
+  clickPosition: {
+    top: number;
+    left: number;
+  };
 }
 
 import ColorPickerStyles from "./styles";
@@ -31,7 +35,7 @@ const colors = [
   "7B7168",
 ];
 
-function ColorPicker({ updateColor, isSelectingColor, setIsSelectingColor }: ColorPickerProps) {
+function ColorPicker({ updateColor, isSelectingColor, setIsSelectingColor, clickPosition }: ColorPickerProps) {
   const [customColor, setCustomColor] = useState("008FFD");
 
   const [animation, setAnimation] = useState<React.CSSProperties>();
@@ -70,7 +74,13 @@ function ColorPicker({ updateColor, isSelectingColor, setIsSelectingColor }: Col
   }
 
   return (
-    <ColorPickerStyles theme={lightTheme} isSelectingColor={isSelectingColor} ref={wrapperRef} style={{ ...animation }}>
+    <ColorPickerStyles
+      clickPosition={clickPosition}
+      theme={lightTheme}
+      isSelectingColor={isSelectingColor}
+      ref={wrapperRef}
+      style={{ ...animation }}
+    >
       {isSelectingColor && (
         <>
           <h4>Colors</h4>

@@ -26,6 +26,7 @@ function Category({ category }: CategoryComponentProps) {
   const [beingRemoved, setBeingRemoved] = useState("");
   const [slugBeingUpdated, setSlugBeingUpdated] = useState("");
   const [isSelectingColor, setIsSelectingColor] = useState(false);
+  const [clickPosition, setClickPosition] = useState({ top: 0, left: 0 });
 
   function handleRemoveCategory(slug: string, e: React.MouseEvent) {
     e.stopPropagation();
@@ -52,6 +53,11 @@ function Category({ category }: CategoryComponentProps) {
 
   function handleUpdateColor(slug: string, e: React.MouseEvent) {
     e.stopPropagation();
+
+    const top = e.clientY;
+    const left = e.clientX;
+
+    setClickPosition({ top: top, left: left });
 
     setIsSelectingColor(!isSelectingColor);
     setSlugBeingUpdated(slug);
@@ -89,6 +95,7 @@ function Category({ category }: CategoryComponentProps) {
         <h3>{category.title}</h3>
         {isSelectingColor && (
           <ColorPicker
+            clickPosition={clickPosition}
             updateColor={updateColor}
             isSelectingColor={isSelectingColor}
             setIsSelectingColor={setIsSelectingColor}

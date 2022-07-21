@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
 const SidebarStyles = styled.aside`
-  position: relative;
-
   display: flex;
   flex-direction: column;
 
@@ -16,6 +14,11 @@ const SidebarStyles = styled.aside`
 
   overflow: scroll;
 
+  ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
   border-radius: 20px;
 
   background-color: ${(props) => props.theme.fg};
@@ -26,28 +29,24 @@ const SidebarStyles = styled.aside`
   }
 
   nav {
+    display: flex;
+    flex-direction: column;
+
     width: 100%;
 
-    ul {
-      display: flex;
-      flex-direction: column;
+    align-items: center;
 
+    gap: 10px;
+
+    #category-outer-div {
       width: 100%;
 
-      align-items: center;
+      h3 {
+        width: calc(30vw - 220px);
+        overflow: hidden;
 
-      gap: 10px;
-
-      li {
-        list-style: none;
+        color: ${(props) => props.theme.text};
       }
-    }
-
-    h3 {
-      width: calc(30vw - 220px);
-      overflow: hidden;
-
-      color: ${(props) => props.theme.text};
     }
   }
 
@@ -56,7 +55,7 @@ const SidebarStyles = styled.aside`
     flex-direction: row;
 
     width: 100%;
-    height: 70px;
+    min-height: 70px;
 
     align-items: center;
 

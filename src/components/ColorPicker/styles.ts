@@ -2,6 +2,10 @@ import styled from "styled-components";
 
 interface Props {
   isSelectingColor: boolean;
+  clickPosition: {
+    top: number;
+    left: number;
+  };
 }
 
 const ColorPickerStyles = styled.div<Props>`
@@ -10,10 +14,10 @@ const ColorPickerStyles = styled.div<Props>`
   display: flex;
   flex-direction: column;
 
-  top: 20px;
-  left: 0;
+  top: ${(props) => props.clickPosition.top}px;
+  left: ${(props) => props.clickPosition.left}px;
 
-  z-index: 1;
+  z-index: 2;
 
   width: 375px;
   height: fit-content;

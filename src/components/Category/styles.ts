@@ -15,8 +15,7 @@ const CategoryStyles = styled.a<Props>`
   align-items: center;
   justify-content: space-between;
 
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 0 20px;
 
   border-radius: 20px;
 
@@ -34,18 +33,16 @@ const CategoryStyles = styled.a<Props>`
   }
 
   .left {
-    position: relative;
-
     display: flex;
     flex-direction: row;
+
+    width: 100%;
 
     align-items: center;
 
     gap: 20px;
 
     span {
-      position: relative;
-
       display: grid;
       place-items: center;
 
@@ -71,8 +68,8 @@ const CategoryStyles = styled.a<Props>`
     display: grid;
     place-items: center;
 
-    width: 30px;
-    height: 30px;
+    min-width: 30px;
+    min-height: 30px;
 
     border-radius: 10px;
 

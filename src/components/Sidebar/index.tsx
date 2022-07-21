@@ -70,32 +70,35 @@ function Sidebar() {
 
   return (
     <SidebarStyles theme={lightTheme}>
-      <nav>
-        <DragDropContext onDragEnd={handleChangeCategoriesOrder}>
-          <Droppable droppableId="droppable-categories">
-            {(provided) => (
-              <ul {...provided.droppableProps} ref={provided.innerRef}>
-                {categories.map((category, index) => (
-                  <Draggable key={category.slug} draggableId={category.slug} index={index}>
-                    {(provided) => (
-                      <li {...provided.draggableProps} ref={provided.innerRef} {...provided.dragHandleProps}>
-                        <Category
-                          category={{
-                            title: category.title,
-                            slug: category.slug,
-                            color: category.color,
-                          }}
-                        />
-                      </li>
-                    )}
-                  </Draggable>
-                ))}
-                {provided.placeholder}
-              </ul>
-            )}
-          </Droppable>
-        </DragDropContext>
-      </nav>
+      <DragDropContext onDragEnd={handleChangeCategoriesOrder}>
+        <Droppable droppableId="droppable-categories">
+          {(provided) => (
+            <nav {...provided.droppableProps} ref={provided.innerRef}>
+              {categories.map((category, index) => (
+                <Draggable key={category.slug} draggableId={category.slug} index={index}>
+                  {(provided) => (
+                    <div
+                      {...provided.draggableProps}
+                      ref={provided.innerRef}
+                      {...provided.dragHandleProps}
+                      id="category-outer-div"
+                    >
+                      <Category
+                        category={{
+                          title: category.title,
+                          slug: category.slug,
+                          color: category.color,
+                        }}
+                      />
+                    </div>
+                  )}
+                </Draggable>
+              ))}
+              {provided.placeholder}
+            </nav>
+          )}
+        </Droppable>
+      </DragDropContext>
       <form onSubmit={handleAddCategory} noValidate ref={formRef}>
         <span>
           <img src={addIcon} alt="Choose Icon" width={15} />
