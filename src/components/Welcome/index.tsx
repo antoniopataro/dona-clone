@@ -96,8 +96,8 @@ function Welcome() {
                 <path
                   d="M6 16.9091L24.7439 35.3121C25.1328 35.6941 25.756 35.6941 26.145 35.3121L56 6"
                   stroke="#6d6d6d"
-                  stroke-width="8"
-                  stroke-linecap="round"
+                  strokeWidth="8"
+                  strokeLinecap="round"
                 />
               </svg>
             </span>
