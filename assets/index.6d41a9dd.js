@@ -265,6 +265,7 @@ Error generating stack: `+a.message+`
   justify-content: space-between;
 
   padding: 0 20px;
+  margin-top: 10px;
 
   border-radius: 20px;
 
@@ -444,8 +445,6 @@ Error generating stack: `+a.message+`
     width: 100%;
 
     align-items: center;
-
-    gap: 10px;
 
     #category-outer-div {
       width: 100%;
