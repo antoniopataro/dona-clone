@@ -50,7 +50,7 @@ const SidebarStyles = styled.aside`
     }
   }
 
-  form {
+  #add-category-form {
     display: flex;
     flex-direction: row;
 

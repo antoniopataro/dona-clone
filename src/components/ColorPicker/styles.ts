@@ -72,12 +72,22 @@ const ColorPickerStyles = styled.div<Props>`
     display: flex;
     flex-direction: row;
 
+    width: 100%;
+    height: fit-content;
+
     align-items: center;
     justify-content: space-between;
+
+    h4 {
+      height: fit-content;
+    }
 
     #custom-color {
       display: flex;
       flex-direction: row;
+
+      width: fit-content;
+      height: fit-content;
 
       align-items: center;
 
@@ -86,18 +96,25 @@ const ColorPickerStyles = styled.div<Props>`
 
       border-radius: 10px;
 
-      box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.25), 1px 1px 1px rgba(0, 0, 0, 0.25);
+      box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.25), inset -1px -1px 1px rgba(0, 0, 0, 0.25);
 
       background-color: ${(props) => props.theme.bold};
 
       form {
+        display: flex;
+        flex-direction: row;
+
         width: 100%;
         height: fit-content;
 
+        align-items: center;
+
+        gap: 10px;
         padding: 0;
 
         input {
           width: 60px;
+          height: fit-content;
 
           outline: none;
           border: none;

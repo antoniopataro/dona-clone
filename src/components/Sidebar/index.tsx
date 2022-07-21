@@ -99,7 +99,7 @@ function Sidebar() {
           )}
         </Droppable>
       </DragDropContext>
-      <form onSubmit={handleAddCategory} noValidate ref={formRef}>
+      <form id="add-category-form" onSubmit={handleAddCategory} noValidate ref={formRef}>
         <span>
           <img src={addIcon} alt="Choose Icon" width={15} />
         </span>

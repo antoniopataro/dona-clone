@@ -107,19 +107,21 @@ function ColorPicker({ updateColor, isSelectingColor, setIsSelectingColor, click
           <div id="custom-color-wrapper">
             <h4>Custom color</h4>
             <div id="custom-color">
-              <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect
-                  x="1.25"
-                  y="1.25"
-                  width="12.5"
-                  height="12.5"
-                  rx="4.75"
-                  stroke={customColor ? `#${customColor}` : "#008FFD"}
-                  fill={customColor ? `#${customColor}` : "#008FFD"}
-                  strokeWidth="2.5"
-                />
-              </svg>
               <form noValidate onSubmit={(e) => handleSelectColor(customColor, e)}>
+                <span>
+                  <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect
+                      x="1.25"
+                      y="1.25"
+                      width="12.5"
+                      height="12.5"
+                      rx="4.75"
+                      stroke={customColor ? `#${customColor}` : "#008FFD"}
+                      fill={customColor ? `#${customColor}` : "#008FFD"}
+                      strokeWidth="2.5"
+                    />
+                  </svg>
+                </span>
                 <input type="text" placeholder={"008FFD"} onChange={(e) => setCustomColor(e.target.value)} />
               </form>
             </div>
