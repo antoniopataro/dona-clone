@@ -91,7 +91,9 @@ function Main() {
   function handleChangeTasksOrder(result: DropResult) {
     if (!result.destination) return;
 
-    const items = Array.from(tasks);
+    const currentListTasks = tasks.filter((task) => task.category.slug === path);
+
+    const items = Array.from(currentListTasks);
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination!.index, 0, reorderedItem);
 

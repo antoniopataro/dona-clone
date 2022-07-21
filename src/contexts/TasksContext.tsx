@@ -75,7 +75,17 @@ function TasksProvider({ children }: Props) {
   };
 
   const changeTasksOrder = (result: TaskProps[]) => {
-    setTasks(result);
+    var index = 0;
+
+    setTasks(
+      tasks.map((task) => {
+        if (task.category.slug === result[0].category.slug) {
+          task = result[index];
+          index++;
+        }
+        return task;
+      }),
+    );
   };
 
   const updateTasks = useEffect(() => {
