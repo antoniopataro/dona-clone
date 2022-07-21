@@ -36,8 +36,6 @@ const SidebarStyles = styled.aside`
 
     align-items: center;
 
-    gap: 10px;
-
     #category-outer-div {
       width: 100%;
 

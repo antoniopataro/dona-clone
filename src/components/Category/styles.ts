@@ -16,6 +16,7 @@ const CategoryStyles = styled.a<Props>`
   justify-content: space-between;
 
   padding: 0 20px;
+  margin-top: 10px;
 
   border-radius: 20px;
 
