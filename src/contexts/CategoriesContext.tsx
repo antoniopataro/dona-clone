@@ -15,6 +15,7 @@ interface CategoriesContextProps {
   addCategory: (category: CategoryProps) => void;
   removeCategory: (slug: string) => void;
   updateCategoryColor: (slugBeingUpdated: string, color: string) => void;
+  changeCategoriesOrder: (result: CategoryProps[]) => void;
 }
 
 interface Props {
@@ -56,12 +57,18 @@ function CategoriesProvider({ children }: Props) {
     );
   };
 
+  const changeCategoriesOrder = (result: CategoryProps[]) => {
+    setCategories(result);
+  };
+
   const updateCategories = useEffect(() => {
     localStorage.setItem("userCategoriesDonaClone", JSON.stringify(categories));
   }, [categories]);
 
   return (
-    <CategoriesContext.Provider value={{ categories, addCategory, removeCategory, updateCategoryColor }}>
+    <CategoriesContext.Provider
+      value={{ categories, addCategory, removeCategory, updateCategoryColor, changeCategoriesOrder }}
+    >
       {children}
     </CategoriesContext.Provider>
   );

@@ -1,5 +1,7 @@
 import React, { useContext, useRef } from "react";
 
+import { Droppable, Draggable, DragDropContext, DropResult } from "react-beautiful-dnd";
+
 import Category from "../Category";
 
 import useShortcut from "../../hooks/useShortcut";
@@ -14,7 +16,7 @@ import SidebarStyles from "./styles";
 import { lightTheme } from "../../App";
 
 function Sidebar() {
-  const { categories, addCategory } = useContext(CategoriesContext);
+  const { categories, addCategory, changeCategoriesOrder } = useContext(CategoriesContext);
   const { changePath } = useContext(PathContext);
 
   const formRef = useRef<HTMLFormElement>(null);
@@ -56,19 +58,43 @@ function Sidebar() {
 
   useShortcut(shortcuts);
 
+  function handleChangeCategoriesOrder(result: DropResult) {
+    if (!result.destination) return;
+
+    const items = Array.from(categories);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination!.index, 0, reorderedItem);
+
+    changeCategoriesOrder(items);
+  }
+
   return (
     <SidebarStyles theme={lightTheme}>
       <nav>
-        {categories.map((category) => (
-          <Category
-            key={category.slug}
-            category={{
-              title: category.title,
-              slug: category.slug,
-              color: category.color,
-            }}
-          />
-        ))}
+        <DragDropContext onDragEnd={handleChangeCategoriesOrder}>
+          <Droppable droppableId="droppable-categories">
+            {(provided) => (
+              <ul {...provided.droppableProps} ref={provided.innerRef}>
+                {categories.map((category, index) => (
+                  <Draggable key={category.slug} draggableId={category.slug} index={index}>
+                    {(provided) => (
+                      <li {...provided.draggableProps} ref={provided.innerRef} {...provided.dragHandleProps}>
+                        <Category
+                          category={{
+                            title: category.title,
+                            slug: category.slug,
+                            color: category.color,
+                          }}
+                        />
+                      </li>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </ul>
+            )}
+          </Droppable>
+        </DragDropContext>
       </nav>
       <form onSubmit={handleAddCategory} noValidate ref={formRef}>
         <span>

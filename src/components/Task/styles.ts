@@ -21,6 +21,8 @@ const TaskStyles = styled.li<Props>`
   padding-left: 20px;
   padding-right: 32px;
 
+  margin-top: 10px;
+
   border-radius: 20px;
 
   background-color: ${(props) => props.theme.fg};

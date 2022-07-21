@@ -4,6 +4,8 @@ export const TasksContext = createContext({} as TasksContextProps);
 
 import { CategoryProps } from "./CategoriesContext";
 
+import { DropResult } from "react-beautiful-dnd";
+
 export interface TaskProps {
   category: CategoryProps;
   checked: boolean;
@@ -19,6 +21,7 @@ interface TasksContextProps {
   updateCheckedStatus: (updatedTask: TaskProps, checked: boolean) => void;
   updateDate: (updatedTask: TaskProps, date: string) => void;
   updateTaskColor: (slugBeingUpdated: string, color: string) => void;
+  changeTasksOrder: (result: TaskProps[]) => void;
 }
 
 interface Props {
@@ -31,7 +34,7 @@ function TasksProvider({ children }: Props) {
   const [tasks, setTasks] = useState<TaskProps[]>(initialTasks);
 
   const addTask = (newTask: TaskProps) => {
-    setTasks((prevTasks) => [...prevTasks, newTask]);
+    setTasks((prevTasks) => [newTask, ...prevTasks]);
   };
 
   const removeTask = (id: string) => {
@@ -71,12 +74,18 @@ function TasksProvider({ children }: Props) {
     );
   };
 
+  const changeTasksOrder = (result: TaskProps[]) => {
+    setTasks(result);
+  };
+
   const updateTasks = useEffect(() => {
     localStorage.setItem("userTasksDonaClone", JSON.stringify(tasks));
   }, [tasks]);
 
   return (
-    <TasksContext.Provider value={{ tasks, addTask, removeTask, updateCheckedStatus, updateDate, updateTaskColor }}>
+    <TasksContext.Provider
+      value={{ tasks, addTask, removeTask, updateCheckedStatus, updateDate, updateTaskColor, changeTasksOrder }}
+    >
       {children}
     </TasksContext.Provider>
   );

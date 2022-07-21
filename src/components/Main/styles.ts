@@ -67,7 +67,6 @@ const MainStyles = styled.main<Props>`
       padding: 10px;
       padding-left: 20px;
       padding-right: 15px;
-      margin-bottom: 10px;
 
       border-radius: 20px;
 
@@ -275,8 +274,6 @@ const MainStyles = styled.main<Props>`
 
       overflow: scroll;
       white-space: nowrap;
-
-      gap: 10px;
 
       ::-webkit-scrollbar {
         width: 0;

@@ -1,5 +1,7 @@
 import React, { useRef, useContext, useState, useEffect } from "react";
 
+import { DragDropContext, Droppable, Draggable, DropResult } from "react-beautiful-dnd";
+
 import { v4 as uuid } from "uuid";
 
 import Task from "../Task";
@@ -23,7 +25,7 @@ import { getTimeOfDay, getCurrentDay, getCurrentWeekDay, getCurrentMonth } from 
 function Main() {
   const { categories } = useContext(CategoriesContext);
   const { path } = useContext(PathContext);
-  const { addTask, tasks } = useContext(TasksContext);
+  const { tasks, addTask, changeTasksOrder } = useContext(TasksContext);
   const { user } = useContext(UserContext);
 
   const [checked, setChecked] = useState(false);
@@ -86,6 +88,16 @@ function Main() {
     setCategory(categoryBasedOnCurrentPath);
   }, [path, categories]);
 
+  function handleChangeTasksOrder(result: DropResult) {
+    if (!result.destination) return;
+
+    const items = Array.from(tasks);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination!.index, 0, reorderedItem);
+
+    changeTasksOrder(items);
+  }
+
   return (
     <MainStyles theme={lightTheme} checked={checked}>
       <div id="tasks-area-wrapper">
@@ -133,20 +145,32 @@ function Main() {
             />
           </div>
         </div>
-        <ul>
-          {filteredTasks.reverse().map((task) => (
-            <Task
-              task={{
-                category: task.category,
-                checked: task.checked,
-                content: task.content,
-                date: task.date,
-                id: task.id,
-              }}
-              key={task.id}
-            />
-          ))}
-        </ul>
+        <DragDropContext onDragEnd={handleChangeTasksOrder}>
+          <Droppable droppableId="droppable-tasks">
+            {(provided) => (
+              <ul {...provided.droppableProps} ref={provided.innerRef}>
+                {filteredTasks.map((task, index) => (
+                  <Draggable key={task.id} draggableId={task.id} index={index}>
+                    {(provided) => (
+                      <div {...provided.draggableProps} ref={provided.innerRef} {...provided.dragHandleProps}>
+                        <Task
+                          task={{
+                            category: task.category,
+                            checked: task.checked,
+                            content: task.content,
+                            date: task.date,
+                            id: task.id,
+                          }}
+                        />
+                      </div>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </ul>
+            )}
+          </Droppable>
+        </DragDropContext>
       </div>
     </MainStyles>
   );

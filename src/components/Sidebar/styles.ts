@@ -26,14 +26,22 @@ const SidebarStyles = styled.aside`
   }
 
   nav {
-    display: flex;
-    flex-direction: column;
-
     width: 100%;
 
-    align-items: center;
+    ul {
+      display: flex;
+      flex-direction: column;
 
-    gap: 10px;
+      width: 100%;
+
+      align-items: center;
+
+      gap: 10px;
+
+      li {
+        list-style: none;
+      }
+    }
 
     h3 {
       width: calc(30vw - 220px);
