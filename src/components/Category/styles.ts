@@ -22,7 +22,7 @@ const CategoryStyles = styled.a<Props>`
 
   cursor: pointer;
 
-  background-color: ${(props) => (props.activeCategory ? props.theme.bg : "")};
+  background-color: ${(props) => (props.activeCategory ? props.theme.bg : "white")};
 
   transition: 0.25s ease;
   transition-property: background-color transform opacity;
