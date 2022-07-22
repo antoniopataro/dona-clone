@@ -1,18 +1,16 @@
 import React, { useContext, useState } from "react";
 
-import { CategoriesContext } from "../../contexts/CategoriesContext";
-import { PathContext } from "../../contexts/PathContext";
-import { TasksContext } from "../../contexts/TasksContext";
+import { CategoriesContext, CategoryProps } from "@contexts/CategoriesContext";
+import { PathContext } from "@contexts/PathContext";
+import { TasksContext } from "@contexts/TasksContext";
 
 import ColorPicker from "../ColorPicker";
-
-import { CategoryProps } from "../../contexts/CategoriesContext";
 
 interface CategoryComponentProps {
   category: CategoryProps;
 }
 
-import removeIcon from "../../assets/removeIcon.svg";
+import removeIcon from "@assets/removeIcon.svg";
 
 import CategoryStyles from "./styles";
 

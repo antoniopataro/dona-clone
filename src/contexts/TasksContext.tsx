@@ -4,8 +4,6 @@ export const TasksContext = createContext({} as TasksContextProps);
 
 import { CategoryProps } from "./CategoriesContext";
 
-import { DropResult } from "react-beautiful-dnd";
-
 export interface TaskProps {
   category: CategoryProps;
   checked: boolean;

@@ -1,14 +1,14 @@
-import React, { memo, useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 
 import Calendar from "react-calendar";
 
-import { TasksContext, TaskProps } from "../../contexts/TasksContext";
+import { TasksContext, TaskProps } from "@contexts/TasksContext";
 
 interface TaskComponentProps {
   task: TaskProps;
 }
 
-import removeIcon from "../../assets/removeIcon.svg";
+import removeIcon from "@assets/removeIcon.svg";
 
 import TaskStyles from "./styles";
 

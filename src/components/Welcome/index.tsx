@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 
-import { UserContext } from "../../contexts/UserContext";
+import { UserContext } from "@contexts/UserContext";
 
 interface WelcomeProps {
   title: string;
@@ -8,9 +8,9 @@ interface WelcomeProps {
   image: string;
 }
 
-import donaLogo from "../../assets/welcome-icons/donaLogo.png";
-import macCommand from "../../assets/welcome-icons/macCommand.png";
-import donaLists from "../../assets/welcome-icons/donaLists.png";
+import donaLogo from "@assets/welcome-icons/donaLogo.png";
+import macCommand from "@assets/welcome-icons/macCommand.png";
+import donaLists from "@assets/welcome-icons/donaLists.png";
 
 import WelcomeStyles from "./styles";
 

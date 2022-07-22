@@ -6,10 +6,10 @@ import Category from "../Category";
 
 import useShortcut from "../../hooks/useShortcut";
 
-import { PathContext } from "../../contexts/PathContext";
-import { CategoriesContext } from "../../contexts/CategoriesContext";
+import { PathContext } from "@contexts/PathContext";
+import { CategoriesContext } from "@contexts/CategoriesContext";
 
-import addIcon from "../../assets/addIcon.svg";
+import addIcon from "@assets/addIcon.svg";
 
 import SidebarStyles from "./styles";
 

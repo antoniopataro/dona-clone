@@ -1,7 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 
-import { TasksContext } from "./TasksContext";
-
 export const CategoriesContext = createContext({} as CategoriesContextProps);
 
 export interface CategoryProps {

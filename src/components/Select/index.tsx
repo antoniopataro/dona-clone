@@ -9,7 +9,7 @@ interface SelectProps {
   setCategory: React.Dispatch<React.SetStateAction<CategoryProps>>;
 }
 
-import checkIcon from "../../assets/checkIcon.svg";
+import checkIcon from "@assets/checkIcon.svg";
 
 import SelectStyles from "./styles";
 

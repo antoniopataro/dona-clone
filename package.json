@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "de v": "vite tsconfig-paths/register",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "deploy": "gh-pages -d dist"
@@ -19,12 +19,14 @@
     "react-calendar": "^3.7.0",
     "react-dom": "^18.0.0",
     "styled-components": "^5.3.5",
-    "uuidv4": "^6.2.13"
+    "uuidv4": "^6.2.13",
+    "vite-tsconfig-paths": "^3.5.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@vitejs/plugin-react": "^1.3.0",
+    "tsconfig-paths": "^4.0.0",
     "typescript": "^4.6.3",
     "vite": "^2.9.9"
   }

@@ -9,12 +9,12 @@ import Select from "../Select";
 
 import useShortcut from "../../hooks/useShortcut";
 
-import { CategoriesContext, CategoryProps } from "../../contexts/CategoriesContext";
-import { PathContext } from "../../contexts/PathContext";
-import { TasksContext, TaskProps } from "../../contexts/TasksContext";
-import { UserContext } from "../../contexts/UserContext";
+import { CategoriesContext, CategoryProps } from "@contexts/CategoriesContext";
+import { PathContext } from "@contexts/PathContext";
+import { TasksContext, TaskProps } from "@contexts/TasksContext";
+import { UserContext } from "@contexts/UserContext";
 
-import donaBlue from "../../assets/donaBlue.svg";
+import donaBlue from "@assets/donaBlue.svg";
 
 import MainStyles from "./styles";
 
