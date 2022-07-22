@@ -61,7 +61,7 @@ function Task({ task }: TaskComponentProps) {
         <h4 className="date" onClick={() => setIsSelectingDate(!isSelectingDate)}>{`${task.date.split(" ")[1]} ${
           task.date.split(" ")[2]
         }`}</h4>
-        {isSelectingDate && <Calendar onClickDay={(e) => handleUpdateDate(task, e)} />}
+        {isSelectingDate && <Calendar locale="en-US" onClickDay={(e) => handleUpdateDate(task, e)} />}
         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect
             x="1.25"
