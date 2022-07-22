@@ -15,3 +15,6 @@ Feel free to share thoughts to me and get in touch.
 - `ReactJS` with `Typescript`;
 - `styled-components`;
 - `UUID`;
+- `React Calendar`;
+- `React Router DOM`;
+- `React Beautiful DND`;
