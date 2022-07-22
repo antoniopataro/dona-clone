@@ -271,7 +271,7 @@ Error generating stack: `+a.message+`
 
   cursor: pointer;
 
-  background-color: ${e=>e.activeCategory?e.theme.bg:""};
+  background-color: ${e=>e.activeCategory?e.theme.bg:"white"};
 
   transition: 0.25s ease;
   transition-property: background-color transform opacity;
@@ -1067,7 +1067,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
   .react-calendar--selectRange .react-calendar__tile--hover {
     background-color: #e6e6e6;
   }
-`;function eI({task:e}){const{removeTask:t,updateCheckedStatus:r,updateDate:n}=E.exports.useContext(Il),[i,a]=E.exports.useState(""),[o,l]=E.exports.useState(e.checked),[u,s]=E.exports.useState(!1);function d(g){a(g),c(g)}const c=g=>{setTimeout(()=>{t(g)},250)},f=(g,y)=>{s(!1),n(g,y.toString())};function p(){l(!o),r(e,!o)}return ae(ZP,{beingRemoved:i===e.id,checked:e.checked,isSelectingDate:u,theme:Jr,children:[ae("div",{className:"left",children:[ae("label",{children:[k("input",{type:"checkbox",defaultChecked:o,onChange:()=>p()}),k("div",{className:"checkbox-div"})]}),k("h3",{children:e.content})]}),ae("div",{className:"right",children:[k("h4",{className:"date",onClick:()=>s(!u),children:`${e.date.split(" ")[1]} ${e.date.split(" ")[2]}`}),u&&k(JP,{onClickDay:g=>f(e,g)}),k("svg",{width:"15",height:"15",viewBox:"0 0 15 15",fill:"none",xmlns:"http://www.w3.org/2000/svg",children:k("rect",{x:"1.25",y:"1.25",width:"12.5",height:"12.5",rx:"4.75",stroke:`#${e.category.color}`,strokeWidth:"2.5"})}),k("button",{onClick:()=>d(e.id),children:k("img",{src:gy,alt:"",width:15})})]})]})}var tI="/dona-clone/assets/checkIcon.97d19678.svg";const rI=Ir.div`
+`;function eI({task:e}){const{removeTask:t,updateCheckedStatus:r,updateDate:n}=E.exports.useContext(Il),[i,a]=E.exports.useState(""),[o,l]=E.exports.useState(e.checked),[u,s]=E.exports.useState(!1);function d(g){a(g),c(g)}const c=g=>{setTimeout(()=>{t(g)},250)},f=(g,y)=>{s(!1),n(g,y.toString())};function p(){l(!o),r(e,!o)}return ae(ZP,{beingRemoved:i===e.id,checked:e.checked,isSelectingDate:u,theme:Jr,children:[ae("div",{className:"left",children:[ae("label",{children:[k("input",{type:"checkbox",defaultChecked:o,onChange:()=>p()}),k("div",{className:"checkbox-div"})]}),k("h3",{children:e.content})]}),ae("div",{className:"right",children:[k("h4",{className:"date",onClick:()=>s(!u),children:`${e.date.split(" ")[1]} ${e.date.split(" ")[2]}`}),u&&k(JP,{locale:"en-US",onClickDay:g=>f(e,g)}),k("svg",{width:"15",height:"15",viewBox:"0 0 15 15",fill:"none",xmlns:"http://www.w3.org/2000/svg",children:k("rect",{x:"1.25",y:"1.25",width:"12.5",height:"12.5",rx:"4.75",stroke:`#${e.category.color}`,strokeWidth:"2.5"})}),k("button",{onClick:()=>d(e.id),children:k("img",{src:gy,alt:"",width:15})})]})]})}var tI="/dona-clone/assets/checkIcon.97d19678.svg";const rI=Ir.div`
   visibility: ${e=>e.isSelectingCategory?"":"hidden"};
 
   position: absolute;
