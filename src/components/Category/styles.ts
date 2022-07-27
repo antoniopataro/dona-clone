@@ -120,6 +120,8 @@ const CategoryStyles = styled.a<Props>`
       }
 
       span {
+        pointer-events: none;
+
         :hover {
           background-color: transparent;
         }
