@@ -88,7 +88,9 @@ const SidebarStyles = styled.aside`
   }
 
   @media (max-width: 1024px) {
-    position: absolute;
+    display: none;
+
+    /* position: absolute;
 
     z-index: 1;
 
@@ -127,10 +129,10 @@ const SidebarStyles = styled.aside`
       width: 100%;
 
       padding: 10px;
-    }
+    } */
   }
 
-  @media (max-width: 768px) {
+  /* @media (max-width: 768px) {
     padding: 0px;
 
     nav {
@@ -140,7 +142,7 @@ const SidebarStyles = styled.aside`
     form {
       gap: 10px;
     }
-  }
+  } */
 `;
 
 export default SidebarStyles;
