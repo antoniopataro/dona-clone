@@ -2,21 +2,25 @@ https://user-images.githubusercontent.com/87823281/180578327-e0075a3f-9d2f-4d7c-
 
 # 📃 ️Dona Clone
 
-This project is a clone of [Dona](https://dona.ai/), which is a To-Do List application focused on design. I've always liked their design and decided to recreate their app.
+This project is a clone of [Dona](https://dona.ai/), which is a To-Do List application focused on design in a restrict beta version. I've always liked their design and decided to recreate their app.
 
 This is also kinda of a refactor of an old To-Do App I've made, which you can see [here](https://github.com/antoniopataro/todo-app).
 
 ### ⚙️ Technologies
 
-I created this project using `Vite` as its plugin. Chose `React` as framework and used `Typescript`, of course.
+- `Vite` [↗](https://vitejs.dev/) as plugin
+- `Typescript` [↗](https://www.typescriptlang.org/) as language
+- `ReactJS` [↗](https://reactjs.org/) as framework
+- `Styled Components` [↗](https://styled-components.com/) as styling framework
+- `uuid` [↗](https://v5.reactrouter.com/) to generate random IDs
+- `react-calendar` [↗](https://projects.wojtekmaj.pl/react-calendar) to manage the calendar component
+- `react-beautiful-dnd` [↗](https://react-beautiful-dnd.netlify.app/?path=/story/*) to handle drag and drop
 
-Styled the project using `styled-components`, used `uuidv4` for unique IDs to each task or list, `react-beautiful-dnd` for Drag and Drop and `react-calendar` to build the calendar feature.
-
-Since it is a clone, I decided to store everything inside user browser's `localStorage` and leave Back-End matters aside.
-
-<div style="display: inline_block"><br>
-<img align="center" title="ReactJS" alt="ReactJS" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg">
-  <img align="center" title="Typescript" alt="Typescript" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-plain.svg">
-  <img align="center" title="Styled Components" alt="Styled Components" height="30" width="40" src="https://user-images.githubusercontent.com/87823281/180796443-4c332fa5-94c7-4aa2-a9b3-775d16e62f62.svg">
-  <img align="center" title="React Beautiful DND" alt="React Beautiful DND" height="30" width="40" src="https://user-images.githubusercontent.com/87823281/180798426-f22cef71-bfd3-43d7-a044-7e1d263bb150.svg">
+<div style="display: inline_block" align="center"><br>
+  <a href="https://vitejs.dev/" target="_blank">
+      <img align="center" title="ViteJS" alt="ViteJS" height="45" width="40" src="https://user-images.githubusercontent.com/87823281/182053707-047fc95d-6891-427b-9a98-065b20a25a30.svg"></a>
+<a href="https://www.typescriptlang.org/" target="_blank">
+  <img align="center" title="Typescript" alt="Typescript" height="45" width="40" src="https://user-images.githubusercontent.com/87823281/181045174-aeefe104-3966-491c-8d95-23f43050dbd0.svg"></a>
+    <a href="https://reactjs.org/" target="_blank">
+  <img align="center" title="ReactJS" alt="ReactJS" height="45" width="40" src="https://user-images.githubusercontent.com/87823281/181045172-a17b3a91-5442-4487-927e-0bd2920458b0.svg"></a>
 </div>
