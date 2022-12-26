@@ -110,14 +110,14 @@ const CategoryStyles = styled.a<Props>`
   }
 
   @media (max-width: 1024px) {
-    width: fit-content;
+    // width: fit-content;
 
     padding: 20px;
 
     .left {
-      h3 {
-        display: none;
-      }
+      // h3 {
+      //   display: none;
+      // }
 
       span {
         pointer-events: none;

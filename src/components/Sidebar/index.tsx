@@ -16,7 +16,7 @@ import SidebarStyles from "./styles";
 import { lightTheme } from "../../App";
 
 function Sidebar() {
-  const { categories, addCategory, changeCategoriesOrder } = useContext(CategoriesContext);
+  const { categories, addCategory, changeCategoriesOrder, sidebarOpened, setSidebarOpened } = useContext(CategoriesContext);
   const { changePath } = useContext(PathContext);
 
   const formRef = useRef<HTMLFormElement>(null);
@@ -69,43 +69,91 @@ function Sidebar() {
   }
 
   return (
-    <SidebarStyles theme={lightTheme}>
-      <DragDropContext onDragEnd={handleChangeCategoriesOrder}>
-        <Droppable droppableId="droppable-categories">
-          {(provided) => (
-            <nav {...provided.droppableProps} ref={provided.innerRef}>
-              {categories.map((category, index) => (
-                <Draggable key={category.slug} draggableId={category.slug} index={index}>
-                  {(provided) => (
-                    <div
-                      {...provided.draggableProps}
-                      ref={provided.innerRef}
-                      {...provided.dragHandleProps}
-                      id="category-outer-div"
-                    >
-                      <Category
-                        category={{
-                          title: category.title,
-                          slug: category.slug,
-                          color: category.color,
-                        }}
-                      />
-                    </div>
-                  )}
-                </Draggable>
-              ))}
-              {provided.placeholder}
-            </nav>
-          )}
-        </Droppable>
-      </DragDropContext>
-      <form id="add-category-form" onSubmit={handleAddCategory} noValidate ref={formRef}>
-        <span>
-          <img src={addIcon} alt="Choose Icon" width={15} />
-        </span>
-        <input type="text" placeholder="Create new category..." ref={inputRef} />
-      </form>
-    </SidebarStyles>
+    <div id="sidebar-wrapper">
+        <SidebarStyles id="desktop-sidebar" theme={lightTheme}>
+          <DragDropContext onDragEnd={handleChangeCategoriesOrder}>
+            <Droppable droppableId="droppable-categories">
+              {(provided) => (
+                <nav {...provided.droppableProps} ref={provided.innerRef}>
+                  {categories.map((category, index) => (
+                    <Draggable key={category.slug} draggableId={category.slug} index={index}>
+                      {(provided) => (
+                        <div
+                          {...provided.draggableProps}
+                          ref={provided.innerRef}
+                          {...provided.dragHandleProps}
+                          id="category-outer-div"
+                        >
+                          <Category
+                            category={{
+                              title: category.title,
+                              slug: category.slug,
+                              color: category.color,
+                            }}
+                          />
+                        </div>
+                      )}
+                    </Draggable>
+                  ))}
+                  {provided.placeholder}
+                </nav>
+              )}
+            </Droppable>
+          </DragDropContext>
+          <form id="add-category-form" onSubmit={handleAddCategory} noValidate ref={formRef}>
+            <span>
+              <img src={addIcon} alt="Choose Icon" width={15} />
+            </span>
+            <input type="text" placeholder="Create new category..." ref={inputRef} />
+          </form>
+        </SidebarStyles>
+
+        <SidebarStyles id="mobile-sidebar" style={sidebarOpened? {display:"block"}: {display:"none"}} theme={lightTheme}>
+        <div onClick={()=>{
+          setSidebarOpened(false)
+        }} id="close-sidebar-icon">
+          <div>
+          <h2>X</h2>
+          </div>
+        </div>
+        <DragDropContext onDragEnd={handleChangeCategoriesOrder}>
+          <Droppable droppableId="droppable-categories">
+            {(provided) => (
+              <nav id="categories-nav" {...provided.droppableProps} ref={provided.innerRef}>
+                {categories.map((category, index) => (
+                  <Draggable key={category.slug} draggableId={category.slug} index={index}>
+                    {(provided) => (
+                      <div
+                        {...provided.draggableProps}
+                        ref={provided.innerRef}
+                        {...provided.dragHandleProps}
+                        id="category-outer-div"
+                      >
+                        <Category
+                          category={{
+                            title: category.title,
+                            slug: category.slug,
+                            color: category.color,
+                          }}
+                        />
+                      </div>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </nav>
+            )}
+          </Droppable>
+        </DragDropContext>
+        <form id="add-category-form" onSubmit={handleAddCategory} noValidate ref={formRef}>
+          <span>
+            <img src={addIcon} alt="Choose Icon" width={15} />
+          </span>
+          <input type="text" placeholder="Create new category..." ref={inputRef} />
+        </form>
+        </SidebarStyles>
+    </div>
+    
   );
 }
 

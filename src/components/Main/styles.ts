@@ -146,8 +146,6 @@ const MainStyles = styled.main<Props>`
 
           overflow: hidden;
 
-          transform: translateX(-50px);
-
           transition: 0.25s ease;
           transition-property: transform;
 
@@ -167,6 +165,8 @@ const MainStyles = styled.main<Props>`
           }
         }
       }
+
+  
 
       .right {
         position: relative;
@@ -300,16 +300,7 @@ const MainStyles = styled.main<Props>`
         }
       }
 
-      #task-writer {
-        form {
-          transform: translateX(-40px);
-        }
-
-        .right {
-          display: none;
-        }
-      }
-
+     
       :focus,
       :active {
         .left {
@@ -326,13 +317,73 @@ const MainStyles = styled.main<Props>`
 
       ul {
         overflow: scroll;
-        margin-bottom: 110px;
+       
         white-space: normal;
       }
     }
   }
 
+  @media (min-width: 768px){
+    #task-writer-mobile-wrapper {
+      display: none;  
+    } 
+    #task-writer-desktop-wrapper{
+      #task-writer{
+        form {
+          transform: translateX(-50px);
+        }
+      }
+    }
+  }
+
   @media (max-width: 768px) {
+    #task-writer-desktop-wrapper{
+      #task-writer{
+        display: none;
+        form {
+          transform: translateX(-50px);
+        }
+      }
+    }
+
+    #task-writer-mobile-wrapper{
+      display: flex;
+      justify-content: center;
+      position: absolute;
+      bottom: 40px;
+      left: 0px;
+      right: 0px;
+      margin: auto;
+      width: 100vw;
+      padding: 5px;
+      #task-writer-inner-div{
+        display: flex;
+        gap: 20px;
+        width: 100%;
+        justify-content: center;
+      }
+      #task-writer{
+        border-radius: 25px;
+        width: 75%;
+        
+      }
+      #hamburger-wrapper{
+        width: 60px;
+        height: 60px;
+        border-radius: 100%;
+        border: none;
+        background-color: #fff;
+        align-items: center;
+        justify-content: center;
+
+      }
+    }
+
+    #category-select-wrapper{
+      margin-left: -30px;
+      margin-right: -30px;
+    }
+
     #tasks-area-wrapper {
       header {
         transform: translateX(40px) translateY(0px);
@@ -346,7 +397,6 @@ const MainStyles = styled.main<Props>`
       }
 
       #task-writer {
-        border-radius: 15px;
 
         padding-left: 15px;
 
@@ -368,15 +418,12 @@ const MainStyles = styled.main<Props>`
             }
           }
 
-          form {
-            transform: translateX(-35px);
-          }
+         
         }
       }
 
       ul {
         overflow: scroll;
-        margin-bottom: 70px;
         white-space: normal;
       }
     }

@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 const SidebarStyles = styled.aside`
+
+  
   display: flex;
   flex-direction: column;
 
@@ -19,13 +21,28 @@ const SidebarStyles = styled.aside`
     height: 0;
   }
 
-  border-radius: 20px;
+  @media (min-width:1024px){
+    border-radius: 20px;
+  }
+
+  
+
 
   background-color: ${(props) => props.theme.fg};
 
   ::-webkit-scrollbar {
     width: 0;
     height: 0;
+  }
+
+  @media (max-width:1024px){
+    nav{
+      #category-outer-div{
+        h3{
+          width: 100% !important;
+        }
+      }
+    }
   }
 
   nav {
@@ -87,8 +104,47 @@ const SidebarStyles = styled.aside`
     }
   }
 
+  @media (min-width: 1024px){
+    #mobile-sidebar{
+      display: none;
+    }
+  }
+
   @media (max-width: 1024px) {
+
+    #desktop-sidebar{
+      display: none;
+    }
     display: none;
+
+    
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    z-index: 1;
+
+    #close-sidebar-icon{
+      position: absolute;
+      right: 30px;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgb(217, 217, 217);
+      border-radius: 50%;
+      h2{
+        color: #fff;
+      }
+    }
+
+    #categories-nav{
+      margin-top: 70px;
+    }
+
 
     /* position: absolute;
 

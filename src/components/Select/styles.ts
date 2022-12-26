@@ -5,16 +5,32 @@ interface Props {
 }
 
 const SelectStyles = styled.div<Props>`
+
+  @media (min-width: 768px) {
+    position: absolute;
+    width: 225px;
+    ul{
+      li{
+        #checkmark{
+          position: absolute;
+        }
+      }
+    }
+  }
+
+  media (max-width: 768px){
+
+  }
   visibility: ${(props) => (props.isSelectingCategory ? "" : "hidden")};
 
-  position: absolute;
+ 
 
   z-index: 1;
 
   top: 50px;
   left: 0;
-
-  width: 225px;
+  width: 100%;
+  
   max-height: 400px;
 
   border-radius: 15px;
@@ -79,7 +95,7 @@ const SelectStyles = styled.div<Props>`
       }
 
       #checkmark {
-        position: absolute;
+       
 
         right: 30px;
       }

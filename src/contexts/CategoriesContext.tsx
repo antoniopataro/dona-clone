@@ -14,6 +14,8 @@ interface CategoriesContextProps {
   removeCategory: (slug: string) => void;
   updateCategoryColor: (slugBeingUpdated: string, color: string) => void;
   changeCategoriesOrder: (result: CategoryProps[]) => void;
+  sidebarOpened: boolean;
+  setSidebarOpened: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface Props {
@@ -27,12 +29,20 @@ const defaultCategory = [
     slug: "/",
     color: "008FFD",
   },
+  {
+    taskAmout: 1,
+    title: "Friends & Family",
+    slug: "/friends",
+    color: "000000",
+  },
 ];
 
 function CategoriesProvider({ children }: Props) {
   const initialCategories = JSON.parse(
     localStorage.getItem("userCategoriesDonaClone") || JSON.stringify(defaultCategory),
   );
+
+  const [sidebarOpened, setSidebarOpened] = useState(false);
 
   const [categories, setCategories] = useState<CategoryProps[]>(initialCategories);
 
@@ -65,7 +75,7 @@ function CategoriesProvider({ children }: Props) {
 
   return (
     <CategoriesContext.Provider
-      value={{ categories, addCategory, removeCategory, updateCategoryColor, changeCategoriesOrder }}
+      value={{ categories, addCategory, removeCategory, updateCategoryColor, changeCategoriesOrder, sidebarOpened, setSidebarOpened}}
     >
       {children}
     </CategoriesContext.Provider>
