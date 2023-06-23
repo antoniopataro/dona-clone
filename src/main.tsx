@@ -1,13 +1,18 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
 
-import ContextProvider from "./contexts/ContextProvider";
+import { Provider } from "react-redux";
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <ContextProvider>
-      <App />
-    </ContextProvider>
-  </React.StrictMode>,
+import { HashRouter } from "react-router-dom";
+
+import Routes from "@routes/index";
+import store from "@store/index";
+
+import "@styles/index.css";
+
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+  <Provider store={store}>
+    <HashRouter>
+      <Routes />
+    </HashRouter>
+  </Provider>
 );
