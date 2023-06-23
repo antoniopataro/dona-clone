@@ -31,6 +31,8 @@ jobs:
 
       - name: build
         run: bun run build
+        env:
+          VITE_APP_NAME: ${{ secrets.VITE_APP_NAME }}
 
       - name: upload production-ready build files
         uses: actions/upload-artifact@v3
