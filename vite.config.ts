@@ -6,7 +6,7 @@ import tsConfigPaths from "vite-tsconfig-paths";
 // https://vitejs.dev/config/
 export default defineConfig({
   base: "/dona-clone",
-  mode: "development",
+  mode: "production",
   plugins: [react(), tsConfigPaths()],
   server: {
     port: 4000,
