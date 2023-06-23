@@ -28,7 +28,10 @@ import {
   updateList,
 } from "@store/modules/lists/actions";
 import { selectLists } from "@store/modules/lists/selectors";
+import { selectUser } from "@store/modules/user/selectors";
 import { AddList, List as ListProps, Task } from "@store/modules/lists/types";
+
+import getTime from "@utils/get-time";
 
 import { CheckIcon, PlusIcon } from "@heroicons/react/24/outline";
 
@@ -40,7 +43,6 @@ import {
   Draggable,
   DropResult,
 } from "react-beautiful-dnd";
-import { selectUser } from "@store/modules/user/selectors";
 
 const defaultList: AddList = {
   color: "#1992FA",
@@ -261,7 +263,7 @@ function List() {
       <div className="mx-auto flex w-full flex-col md:max-w-sm lg:max-w-md xl:max-w-2xl">
         {list &&
           (list.slug === "" ? (
-            <div className="hidden w-fit flex-col gap-1 sm:flex">
+            <div className="hidden w-full flex-col gap-1 sm:flex">
               <span className="w-fit text-sm text-text/50">
                 {new Date().toLocaleString("en-US", {
                   weekday: "long",
@@ -270,10 +272,10 @@ function List() {
                 })}
                 .
               </span>
-              <div className="flex w-fit items-center gap-2">
+              <div className="flex w-full items-center gap-2">
                 <Logo color={list.color} size={16} />
-                <span className="h-8 truncate text-2xl font-medium text-text">
-                  Good morning, {user.username ? user.username : "User"}.
+                <span className="h-8 w-fit truncate text-2xl font-medium text-text">
+                  Good {getTime()}, {user.username ? user.username : "User"}.
                 </span>
               </div>
             </div>
