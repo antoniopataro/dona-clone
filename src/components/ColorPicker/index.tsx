@@ -1,134 +1,118 @@
-import React, { useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
-import useOnClickOutside from "../../hooks/useOnClickOutside";
+import Logo from "@components/Logo";
 
-interface ColorPickerProps {
-  updateColor: (color: string) => void;
-  isSelectingColor: boolean;
-  setIsSelectingColor: React.Dispatch<React.SetStateAction<boolean>>;
-  clickPosition: {
-    top: number;
-    left: number;
-  };
+import {
+  blue,
+  red,
+  green,
+  orange,
+  yellow,
+  amber,
+  cyan,
+  gray,
+} from "tailwindcss/colors";
+
+import useOnClickOutside from "@hooks/useOnClickOutside";
+
+interface Props {
+  color?: string;
+  changeColor: (color: string) => void;
+  closeColorPicker: (e?: MouseEvent | TouchEvent) => void;
+  parentRef: React.RefObject<HTMLDivElement>;
 }
 
-import ColorPickerStyles from "./styles";
+function ColorPicker({
+  color,
+  changeColor,
+  closeColorPicker,
+  parentRef,
+}: Props) {
+  const [customColor, setCustomColor] = useState(color ?? "");
 
-import { lightTheme } from "../../App";
+  const colorPickerRef = useRef<HTMLDivElement>(null);
 
-const colors = [
-  "0564A4",
-  "0C8FF1",
-  "0ABAFA",
-  "0BB8AA",
-  "00B873",
-  "DDBC10",
-  "FCF7BD",
-  "FF705D",
-  "F8003C",
-  "BE0A19",
-  "B90F8B",
-  "F56ED8",
-  "7E45F7",
-  "4A40EE",
-  "94959F",
-  "7B7168",
-];
+  const colors = [
+    blue[500],
+    red[500],
+    green[500],
+    orange[500],
+    yellow[500],
+    amber[500],
+    cyan[500],
+    gray[500],
+  ];
 
-function ColorPicker({ updateColor, isSelectingColor, setIsSelectingColor, clickPosition }: ColorPickerProps) {
-  const [customColor, setCustomColor] = useState("008FFD");
+  useEffect(() => {
+    if (!colorPickerRef.current || !parentRef.current) return;
 
-  const [animation, setAnimation] = useState<React.CSSProperties>();
+    colorPickerRef.current.focus();
 
-  const handleCloseCategoryPicker = () => {
-    if (!isSelectingColor) {
-      setAnimation({
-        animation: "colorPickerSlideDown .25s ease forwards",
-      });
+    const parentRect = parentRef.current!.getBoundingClientRect();
+
+    colorPickerRef.current.style.width = `${parentRect.width}px`;
+    colorPickerRef.current.style.top = `${parentRect.top}px`;
+    colorPickerRef.current.style.left = `${parentRect.left}px`;
+
+    if (
+      colorPickerRef.current.getBoundingClientRect().top >
+      window.innerHeight / 2 + colorPickerRef.current.offsetHeight
+    ) {
+      colorPickerRef.current.style.transform = `translateY(-${
+        colorPickerRef.current.offsetHeight + 8 + 8 + 24
+      }px)`;
       return;
     }
+  }, []);
 
-    waitForAnimationAndClose();
-  };
+  useOnClickOutside(colorPickerRef, closeColorPicker);
 
-  const waitForAnimationAndClose = () => {
-    setAnimation({
-      animation: "colorPickerSlideUp .25s ease forwards",
-    });
-
-    setTimeout(() => {
-      setIsSelectingColor(false);
-    }, 250);
-  };
-
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  useOnClickOutside(wrapperRef, handleCloseCategoryPicker);
-
-  function handleSelectColor(color: string, e?: React.FormEvent) {
-    e?.preventDefault();
-
-    setCustomColor(color);
-
-    updateColor(color);
-    handleCloseCategoryPicker();
-  }
-
-  return (
-    <ColorPickerStyles
-      clickPosition={clickPosition}
-      theme={lightTheme}
-      isSelectingColor={isSelectingColor}
-      ref={wrapperRef}
-      style={{ ...animation }}
+  return createPortal(
+    <div
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+      }}
+      ref={colorPickerRef}
+      className="absolute z-10 flex h-fit w-full flex-col divide-y divide-background rounded-lg bg-white p-1 ring-1 ring-background"
     >
-      {isSelectingColor && (
-        <>
-          <h4>Colors</h4>
-          <div className="colors">
-            <ul>
-              {colors.map((color) => (
-                <li key={color} onClick={() => handleSelectColor(color)}>
-                  <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect
-                      x="1.25"
-                      y="1.25"
-                      width="12.5"
-                      height="12.5"
-                      rx="4.75"
-                      stroke={`#${color}`}
-                      fill={`#${color}`}
-                      strokeWidth="2.5"
-                    />
-                  </svg>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div id="custom-color-wrapper">
-            <h4>Custom color</h4>
-            <div id="custom-color">
-              <form noValidate onSubmit={(e) => handleSelectColor(customColor, e)}>
-                <span>
-                  <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect
-                      x="1.25"
-                      y="1.25"
-                      width="12.5"
-                      height="12.5"
-                      rx="4.75"
-                      stroke={customColor ? `#${customColor}` : "#008FFD"}
-                      fill={customColor ? `#${customColor}` : "#008FFD"}
-                      strokeWidth="2.5"
-                    />
-                  </svg>
-                </span>
-                <input type="text" placeholder={"008FFD"} onChange={(e) => setCustomColor(e.target.value)} />
-              </form>
-            </div>
-          </div>
-        </>
-      )}
-    </ColorPickerStyles>
+      <span className="w-fit p-2 text-xs text-text/50">Colors</span>
+      <ul className="flex flex-wrap gap-2 px-2 py-3">
+        {colors.map((color) => (
+          <span
+            key={color}
+            onClick={() => changeColor(color)}
+            role="button"
+            tabIndex={0}
+            className="grid aspect-square h-8 w-8 cursor-default place-items-center rounded-lg transition-all hover:bg-black/5"
+          >
+            <Logo color={color} size={16} />
+          </span>
+        ))}
+      </ul>
+      <div className="flex w-full items-center gap-4 p-2">
+        <span className="whitespace-nowrap text-xs text-text/50">
+          Custom Color:{" "}
+        </span>
+        <div className="flex h-8 w-full items-center gap-2 overflow-hidden rounded-lg bg-black/5 px-3">
+          <Logo color={customColor} size={12} />
+          <input
+            onChange={(e) => setCustomColor(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                changeColor(customColor);
+              }
+            }}
+            placeholder="#1992FA"
+            type="text"
+            value={customColor}
+            className="w-full truncate bg-transparent py-2 text-sm text-text outline-none"
+          />
+        </div>
+      </div>
+    </div>,
+    document.body
   );
 }
 

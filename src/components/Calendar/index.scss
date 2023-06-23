@@ -1,0 +1,129 @@
+.react-calendar {
+  flex: unset !important;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  padding: 4px;
+  border: 1px solid #f2f2f2;
+  border-radius: 8px;
+  cursor: default;
+  background-color: #ffffff;
+
+  &__navigation {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 8px 16px;
+
+    :hover {
+      background-color: rgba(0, 0, 0, 0.05) !important;
+    }
+
+    &__arrow {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      color: #808080;
+      cursor: default !important;
+      transition: background-color 0.25s ease-in-out;
+    }
+
+    &__label {
+      pointer-events: none !important;
+      display: flex;
+      border-radius: 8px;
+      overflow: hidden;
+      font-size: 12px;
+      color: #404040;
+      white-space: nowrap;
+
+      span {
+        width: 100%;
+        height: 100%;
+        padding: 4px 0;
+      }
+    }
+  }
+
+  &__month-view__weekdays {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    text-transform: capitalize;
+    font-weight: 500;
+    font-size: 12px;
+    padding: 8px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    color: #404040;
+
+    &__weekday {
+      text-align: center;
+
+      abbr {
+        text-decoration: none;
+      }
+    }
+  }
+
+  &__month-view__days {
+    flex: unset !important;
+    display: grid !important;
+    grid-template-columns: repeat(7, 1fr) !important;
+    width: 100%;
+    padding: 12px 8px;
+    gap: 8px;
+  }
+
+  &__tile {
+    display: flex;
+    flex: unset !important;
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 12px;
+    cursor: default !important;
+    transition: background-color 0.25s ease-in-out;
+    overflow: hidden;
+    border-radius: 8px;
+
+    :hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    abbr {
+      display: flex;
+      width: 32px !important;
+      height: 32px !important;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      overflow: hidden;
+      text-decoration: none;
+      transition: background-color 0.25s ease-in-out;
+    }
+
+    &--now {
+      border: 2px solid #008ffd !important;
+      border-radius: 8px;
+      font-weight: 500;
+      color: #008ffd;
+    }
+
+    &--hasActive {
+      border-radius: 8px;
+      color: red;
+    }
+
+    &--active {
+      border-radius: 8px;
+      background: #008ffd !important;
+      font-weight: 500;
+      color: white;
+    }
+  }
+
+  &__month-view__days__day--neighboringMonth {
+    color: #cccccc !important;
+  }
+}
