@@ -1,26 +1,31 @@
-https://user-images.githubusercontent.com/87823281/180578327-e0075a3f-9d2f-4d7c-88e9-d1185914c9c9.mp4
+# dona-clone
 
-# 📃 ️Dona Clone
+this project is a clone of [dona](https://dona.ai/), which is a to-do list focused on user experience i like - in early access for a while now. i've always liked their design and, therefore, decided to recreate it with react.js and typescript.
 
-This project is a clone of [Dona](https://dona.ai/), which is a To-Do List application focused on design in a restrict beta version. I've always liked their design and decided to recreate their app.
+this current version is a refactor of one i finished mid-2022, which in turn is a refactor of my first to-do apps [(somewhere around here).](https://github.com/antoniopataro/my-sandbox)
 
-This is also kinda of a refactor of an old To-Do App I've made, which you can see [here](https://github.com/antoniopataro/todo-app).
+feel free to open issues, make suggestions, and get in contact with me.
 
-### ⚙️ Technologies
+### how to run
+if you don't want to use the main [deployed version in github-pages](https://antoniopataro.github.io/dona-clone/) and want to run it locally, you can follow these steps:
 
-- `Vite` [↗](https://vitejs.dev/) as plugin
-- `Typescript` [↗](https://www.typescriptlang.org/) as language
-- `ReactJS` [↗](https://reactjs.org/) as framework
-- `Styled Components` [↗](https://styled-components.com/) as styling framework
-- `uuid` [↗](https://v5.reactrouter.com/) to generate random IDs
-- `react-calendar` [↗](https://projects.wojtekmaj.pl/react-calendar) to manage the calendar component
-- `react-beautiful-dnd` [↗](https://react-beautiful-dnd.netlify.app/?path=/story/*) to handle drag and drop
+1. clone the repository w/ `git clone git@github.com:antoniopataro/dona-clone.git`
+2. install its dependencies w/ `npm install` or other package manager you might wanna use
+3. either run `npm run dev` for a development version or `npm run build && npm run preview` for a production preview version
 
-<div style="display: inline_block" align="center"><br>
-  <a href="https://vitejs.dev/" target="_blank">
-      <img align="center" title="ViteJS" alt="ViteJS" height="45" width="40" src="https://user-images.githubusercontent.com/87823281/182053707-047fc95d-6891-427b-9a98-065b20a25a30.svg"></a>
-<a href="https://www.typescriptlang.org/" target="_blank">
-  <img align="center" title="Typescript" alt="Typescript" height="45" width="40" src="https://user-images.githubusercontent.com/87823281/181045174-aeefe104-3966-491c-8d95-23f43050dbd0.svg"></a>
-    <a href="https://reactjs.org/" target="_blank">
-  <img align="center" title="ReactJS" alt="ReactJS" height="45" width="40" src="https://user-images.githubusercontent.com/87823281/181045172-a17b3a91-5442-4487-927e-0bd2920458b0.svg"></a>
-</div>
+fun fact: i've not only used [bun](https://github.com/oven-sh/bun) in development mode, but also in the app's deploy for gh-pages (dependencies install and build proccess) - if you wanna use it locally, install bun with `curl https://bun.sh/install | bash` and run the scripts above with `bun` instead of `npm` - if you're interested in the workflow, check its [deploy.yml.](https://github.com/antoniopataro/dona-clone/blob/main/.github/workflows/deploy.yml)
+
+### stack and dependencies:
+
+- heroicons
+- lordicon
+- react.js
+- react-beautiful-dnd
+- react-calendar
+- react-markdown w/ remark-gfm plugin
+- react-router-dom
+- redux saga
+- redux w/ react-redux and reduxjs/toolkit
+- tailwindcss w/ postcss
+- typescript
+- vite
