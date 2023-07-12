@@ -31,6 +31,8 @@ function AppLayout() {
   }, [dispatch]);
 
   useEffect(() => {
+    if (lists.length === 1) return;
+
     const list = lists.find((l) => (!slug ? l.slug === "" : l.slug === slug));
 
     if (!list) {
