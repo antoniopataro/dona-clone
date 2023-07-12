@@ -19,8 +19,6 @@ import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-import "./index.scss";
-
 interface Props {
   adding: boolean;
   addingId: string | null;

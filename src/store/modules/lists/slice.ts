@@ -165,6 +165,9 @@ const lists = createSlice({
           ? {
               ...l,
               ...list,
+              slug: list.name
+                ? list.name.toLowerCase().replace(" ", "-")
+                : l.slug,
             }
           : l
       );
