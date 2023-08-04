@@ -160,14 +160,17 @@ const lists = createSlice({
     ) => {
       const { list } = action.payload;
 
+      const isHome = list.slug === "";
+
       state.lists = state.lists.map((l) =>
         l.slug === list.slug
           ? {
               ...l,
               ...list,
-              slug: list.name
-                ? list.name.toLowerCase().replace(" ", "-")
-                : l.slug,
+              slug:
+                list.name && !isHome
+                  ? list.name.toLowerCase().replace(" ", "-")
+                  : l.slug,
             }
           : l
       );
